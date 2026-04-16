@@ -26,6 +26,22 @@
 \titlespacing*{\section}{0pt}{4pt}{2pt}
 \titlespacing*{\subsection}{0pt}{3pt}{1pt}
 
+%% Reduce excessive vertical stretching; let pages end naturally.
+\raggedbottom
+
+%% Relax float parameters so floats pack more aggressively
+%% (reduces whitespace left when LaTeX defers a figure/table).
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.70}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\dblfloatpagefraction}{0.70}
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{6}
+\setcounter{dbltopnumber}{4}
+
 %% Theorem environments
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -880,6 +896,171 @@ in Sections~I--X are unaffected.}
 This section provides the full experimental details summarised in the
 main paper. All notation follows Sections~I--X above.
 
+\subsection{Cost-Model Parameters}\label{supp:costmodel}
+
+\begin{table}[!htb]\centering\small
+\caption{Cost model parameters used in Theorems~3,~5, and~6 of the main paper.}\label{tab:costmodel-supp}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lp{3.1cm}l@{}}
+\toprule
+\textbf{Symbol} & \textbf{Definition} & \textbf{Complexity}\\
+\midrule
+$C_{\mathrm{comp}}$   & HSM computation cost     & $c\Npts\!=\!\Theta(\Npts)$\\
+$C_{\mathrm{create}}$ & Index creation cost      & $aN\!\log N$\\
+$C_{\mathrm{drop}}$   & Index drop cost          & $b$ (constant)\\
+$c_{\mathrm{scan}}$   & Per-query cost w/o idx   & $fN\!=\!\Theta(N)$\\
+$c_{\mathrm{idx}}$    & Per-query cost w/ idx    & $g\!\log N$\\
+$Q$                   & Query volume next window & Sys.-dep.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Structural Comparison with Prior Methods}\label{supp:features}
+
+\begin{table*}[!t]\centering\small
+\caption{Structural comparison with prior methods.
+Metric: satisfies P1--P4. Multi-dim: orthogonal similarity dimensions.
+Decision: cont.\ = continuous score + closed-form threshold.
+Train-free: no labelled data or gradient-based training.}\label{tab:features-supp}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Method} & \textbf{Metric P1--P4} & \textbf{Multi-dim} & \textbf{Temporal} & \textbf{Decision} & \textbf{Train-free} & \textbf{Transition}\\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Physical index methods}}\\
+B-Tree~\cite{Ramakrishnan2003DMS}        & \texttimes & \texttimes & \texttimes & \texttimes & \checkmark & $\Theta(N\!\log N)$\\
+Cracking~\cite{Idreos2011Cracking}       & \texttimes & \texttimes & \texttimes & \texttimes & \checkmark & $\Theta(N\!\log N)$\\
+Learned~\cite{Kraska2018LearnedIndex}    & \texttimes & \texttimes & \texttimes & \texttimes & \texttimes & $\Theta(N\!\log N)$\\
+ALEX/PGM/XIndex                          & \texttimes & \texttimes & \texttimes & \texttimes & \texttimes & $\Theta(N\!\log N)$\\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Workload characterisation methods}}\\
+BALANCE~\cite{Wang2024BALANCE}           & \texttimes & latent & \texttimes & binary & \texttimes & ---\\
+Indexer++~\cite{Sharma2022IndexerPP}     & \texttimes & latent & \texttimes & binary & \texttimes & ---\\
+ShapeShifter~\cite{Wang2025ShapeShifter} & \texttimes & \texttimes & partial & binary & \texttimes & $\Theta(N\!\log N)$\\
+Brucato~\cite{Brucato2025WorkloadSim}    & \texttimes & \texttimes & \texttimes & binary & \texttimes & ---\\
+\midrule
+\textbf{HSM} (this work) & \checkmark & 5 (T2) & \checkmark & cont. & \checkmark & $O(1)$\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Workload Phase Mappings}\label{supp:phases}
+
+Tables~\ref{tab:phases-supp} and~\ref{tab:mongo-phases-supp} list the
+per-phase window assignments and dominant query/operation mixes for the
+PostgreSQL TPC-H and MongoDB cross-engine workloads, respectively
+(referenced from the main paper, Experimental Evaluation).
+
+\begin{table}[!htb]\centering\small
+\caption{TPC-H SF\,=\,0.2 workload phases (PostgreSQL~16).
+$\Npts$ range reflects Poisson-sampled window sizes
+(mean~19.5, range~16--20).}\label{tab:phases-supp}
+\begin{tabular}{@{}llp{3.5cm}@{}}
+\toprule
+\textbf{Phase} & \textbf{Windows} & \textbf{Dominant queries}\\
+\midrule
+Reporting & 1--8 & Q1, Q6, Q14, Q15, Q4, Q12\\
+Join-Heavy & 9--16 & Q3, Q5, Q7, Q8, Q9, Q21\\
+Customer & 17--24 & Q10, Q13, Q18, Q22, Q2, Q16\\
+Procurement & 25--32 & Q11, Q17, Q19, Q20, Q2, Q16\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]\centering\small
+\caption{MongoDB~7 workload phases (Tier~3, cross-engine validation).
+Single polymorphic collection \texttt{combined\_clean} (5\,M documents,
+5 document types discriminated by \texttt{label});
+ground-truth drift at W7, W13, W19. Fixed window size
+($\Npts\!=\!20$), 10-block paired RCB.}\label{tab:mongo-phases-supp}
+\begin{tabular}{@{}llp{3.4cm}@{}}
+\toprule
+\textbf{Phase} & \textbf{Windows} & \textbf{Dominant operations}\\
+\midrule
+Edge        & 1--6   & Geo-near on \texttt{livejournal\_edge}\\
+Geo         & 7--12  & Aggregation on \texttt{thailand\_osm}\\
+Text        & 13--18 & Text search on \texttt{arxiv}\\
+Review      & 19--24 & Rating aggregation on \texttt{patio\_review}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dimensional-Utility Table}\label{supp:dim-utility}
+
+\begin{table}[!htb]\centering\scriptsize
+\caption{Dimensional utility ($\Delta\!=\!\text{within}-\text{cross}$).
+Every dimension achieves $\Delta\!>\!0.10$ in at least one workload,
+validating Theorem~2 (Minimal Sufficient Dimensions) of the main paper.}\label{tab:dim-utility-supp}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Dim} & \textbf{TPC-H} & \textbf{SDSS} & \textbf{pgbench} & \textbf{Burst} & \textbf{JOB}\\
+\midrule
+$\SR$   & $+0.340$ & $+0.462$ & $+0.425$ & $0.000$  & $+0.476$\\
+$\SV$   & $0.000$  & $0.000$  & $+0.389$ & $+0.072$ & $+0.143$\\
+$\ST$   & $+0.414$ & $+0.608$ & $+0.404$ & $0.000$  & $+0.930$\\
+$\SA$   & $+0.342$ & $+0.830$ & $+0.227$ & $0.000$  & $+0.138$\\
+$\SPER$ & $0.000$  & $0.000$  & $+0.016$ & $+0.109$ & $-0.026$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dimension-Ablation Study}\label{supp:ablation}
+
+\begin{table*}[!t]\centering\small
+\caption{Discrimination ratio when each dimension is removed (weight
+redistributed equally). TPC-H Poisson SF\,=\,1 (32 windows) and SDSS
+(776 windows, 10 seeds), all-pairs protocol.}\label{tab:ablation-supp}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{TPC-H} (DR\,=\,1.567)} & \multicolumn{2}{c}{\textbf{SDSS} (DR\,=\,1.310)} & \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Removed} & \textbf{DR} & \textbf{\%} & \textbf{DR} & \textbf{\%} & \textbf{Verdict}\\
+\midrule
+None (full HSM) & 1.567 & --- & 1.310 & --- & Baseline\\
+$-\SA$  & 1.454 & $-7.2$  & 1.296 & $-1.1$  & Critical (TPC-H schema)\\
+$-\ST$  & 1.394 & $-11.1$ & 1.122 & $-14.4$ & Critical (query-mix)\\
+$-\SR$  & 1.465 & $-6.5$  & 1.346 & $+2.8$  & Critical (TPC-H rank)\\
+$-\SV$  & 1.826 & $+16.5$ & 1.441 & $+10.0$ & Stable OLAP; critical in pgbench (A8c)\\
+$-\SPER$& 1.720 & $+9.7$  & 1.380 & $+5.4$  & Steady; critical in burst (A8d)\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Research-Question Map}\label{supp:rq}
+
+\begin{table}[!htb]\centering\scriptsize
+\caption{Research questions and validating theorems.}\label{tab:rq-supp}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llll@{}}
+\toprule
+ & \textbf{RQ} & \textbf{Focus} & \textbf{Valid.}\\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Part I --- Primary Validation (A1--A8)}}\\
+& A1--A4 & Metric axioms for $\SR,\SV,\ST,\SA$ & L1\\
+& A5 & Composite $\SHSM$ discrimination & L1\\
+& A6 & Adaptation trigger + regret & T2,T3\\
+& A7 & Pipeline $\Theta(\Npts)$ scaling & L3\\
+& A8 & SDSS/JOB/pgbench/burst generalisation & Gen.\\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Part II --- Extended Validation (A9--A14)}}\\
+& A9  & Overhead vs.\ query execution & Util.\\
+& A10 & Noise robustness ($\pm$30--60\,\%) & Rob.\\
+& A11 & Break-even cost justification & T3\\
+& A12 & $\Theta(N\log N)$ rebuild scaling ($50\times$) & T5\\
+& A13 & Gated throughput vs.\ always-on & T4,T5\\
+& A13b & Gate sensitivity ($z\!>\!3\sigma$?) & T4\\
+& A13c & Cross-workload T5 bound (OLTP/burst/JOB/SDSS) & T5\\
+& A14 & Youden $J$, Hoeffding band, speedup & T4,T5\\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Part III --- Cross-Engine (A-CE)}}\\
+& A-CE1 & MongoDB phase discrimination & L1,T2\\
+& A-CE2 & Gated precision/recall on doc.\ store & T4,T5\\
+& A-CE3 & Schema parity across engines & Repro.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{A1--A4: Individual Dimension Validation (Full Results)}
 
 \textbf{A1 (Metric Axioms of $\SR$, Lemma~1).} All four axioms verified on
@@ -1036,15 +1217,15 @@ without modification.
 
 \textbf{B3 (Cross-Engine $\theta$ Mismatch).}
 To validate that $\theta$ must be per-engine calibrated, we measure precision when applying one engine's optimal $\theta$ to the other.
-\begin{table}[h]\centering\small
+\begin{table}[h]\centering\footnotesize
 \caption{Cross-engine $\theta$ mismatch (B3). Applying PostgreSQL-optimal $\theta\!=\!0.775$ to MongoDB or MongoDB-optimal $\theta\!=\!0.55$ to PostgreSQL degrades precision sharply, confirming Theorem~3's workload- and engine-specific prediction. Discussed in main paper (A-CE: Cross-Engine Validation on MongoDB).}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lcccc@{}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllrl@{}}
 \toprule
-\textbf{Scenario} & \textbf{Engine} & $\theta$ & \textbf{Triggers/Block} & \textbf{Precision}\\
+\textbf{Scen.} & \textbf{Engine} & $\theta$ & \textbf{Trig./Blk} & \textbf{Prec.}\\
 \midrule
-B3-A & PostgreSQL & 0.55\,(Mongo-opt) & 0 & N/A\,(no fires)\\
-B3-B & MongoDB & 0.775\,(PG-opt) & $\approx$10 & 0.27\\
+B3-A & PostgreSQL & 0.55 (Mongo-opt)    & 0           & N/A\\
+B3-B & MongoDB    & 0.775 (PG-opt)      & $\approx$10 & 0.27\\
 \bottomrule
 \end{tabular}
 \label{tab:cross-engine-theta}
@@ -1203,21 +1384,21 @@ arrival patterns.
 
 \subsection{A13d Burst End-to-End: Extended Periodic Comparators ($K\!\in\!\{3,4\}$)}
 
-Main Table~\ref{tab:a13d-results} uses periodic $K\!=\!2$ as the
-scheduled-baseline representative.  For completeness, Table~\ref{tab:a13d-supp}
+The main paper's A13d burst end-to-end table (periodic $K\!=\!2$ as the
+scheduled-baseline representative) is extended below.  For completeness, Table~\ref{tab:a13d-supp}
 reports the same two operating points (Small-$Q$, Mid-$Q$) against
 periodic $K\!\in\!\{3,4\}$, demonstrating that raising $K$ does not
 close the gap to HSM-gated: although higher $K$ reduces advisor
 calls (and therefore $t_{\mathrm{adv}}$), it keeps trigger precision
 near zero on the burst workload because the rhythm of fixed-stride
-polling does not align with the Theorem~\ref{thm:econ} economic
-transitions.  Block medians with 95\,\% bootstrap CIs
+polling does not align with the economic-optimum
+transitions of Theorem~3 (main paper).  Block medians with 95\,\% bootstrap CIs
 ($B\!=\!10\,000$, paired within-block resamples, $n\!=\!10$ blocks).
 
 \begin{table}[!htb]\centering\scriptsize
 \caption{A13d supplementary: periodic $K\!\in\!\{3,4\}$ on the
 burst workload, both operating points.  Columns identical to
-main Table~\ref{tab:a13d-results}.  Raw CSVs in
+the main paper's A13d burst end-to-end table.  Raw CSVs in
 \texttt{results/burst\_end\_to\_end/}.}\label{tab:a13d-supp}
 \setlength{\tabcolsep}{2.5pt}
 \resizebox{\columnwidth}{!}{%
@@ -1248,13 +1429,13 @@ transitions); (ii) at Mid-$Q$, $K\!=\!3$ similarly misses both (hence
 $P_{\mathrm{strict}}\!=\!0$) while $K\!=\!4$ catches at most one of
 the 104 calls on a ground-truth boundary, giving
 $P_{\mathrm{strict}}\!=\!0.019$---still two orders of magnitude worse
-than HSM-gated's $1.000$ in main Table~\ref{tab:a13d-results};
+than HSM-gated's $1.000$ reported in the main paper (A13d);
 (iii) raising $K$ monotonically reduces wall-clock but never beats
 HSM-gated's $20.58$\,s (Dexter) / $14.65$\,s (\texttt{index\_adv.}),
 confirming that the advantage of economic gating is not merely a
 frequency reduction but a \emph{selective} frequency reduction aligned
-with Theorem~\ref{thm:econ}'s $Q_i\!>\!Q_{\min}/(1\!-\!S_i)$
-inequality.
+with the $Q_i\!>\!Q_{\min}/(1\!-\!S_i)$
+inequality of Theorem~3 (main paper).
 
 %%─────────────────────────────────────────────────────────────
 \section{A12/A14: Scale Sensitivity, Detector Quality, and Speedup Certificate}\label{supp:a12a14}
@@ -1380,12 +1561,9 @@ shift reflects data-model differences, not kernel failure.}
 To assess whether the operating point $\theta^{*}$ generalises beyond
 the calibration workload, we extend the all-pairs within-vs.-cross
 protocol to four heterogeneous workloads: TPC-H (PostgreSQL,
-SF\,$=\!0.2$; \texttt{score\_distribution.csv}, $n\!=\!7{,}892$
-pairs), SDSS (\texttt{sdss\_hsm\_pair\_scores.csv}, $n\!=\!4{,}954$),
-and the two JOB variants---JOB-light
-(\texttt{job\_hsm\_execute\_pair\_scores.csv}, $n\!=\!210$) and
-JOB-complexity (\texttt{job\_hsm\_complexity\_execute\_pair\_scores.csv},
-$n\!=\!630$).  For every candidate $\theta\!\in\![0,1]$ on a $0.0025$
+SF\,$=\!0.2$; $n\!=\!7{,}892$ pairs), SDSS ($n\!=\!4{,}954$), and the
+two JOB variants---JOB-light ($n\!=\!210$) and JOB-complexity
+($n\!=\!630$).  For every candidate $\theta\!\in\![0,1]$ on a $0.0025$
 grid we compute TPR\,$=\!\Pr(\mathrm{score}\!<\!\theta\,\vert\,\mathrm{cross})$,
 FPR\,$=\!\Pr(\mathrm{score}\!<\!\theta\,\vert\,\mathrm{within})$ and
 Youden $J(\theta)\!=\!\mathrm{TPR}\!-\!\mathrm{FPR}$; the empirical
@@ -1473,6 +1651,95 @@ Theorem~3 (Economic Optimality)'s parameter-invariance prediction
 \end{figure*}
 
 \FloatBarrier
+
+%%─────────────────────────────────────────────────────────────
+\section{A13 Decision-Layer Cost (Full Tables and Figures)}
+\label{supp:a13}
+%%─────────────────────────────────────────────────────────────
+
+This section reports the full per-SF wall-QPS table and the
+throughput-comparison figure summarised in main paper~\S A13, plus
+the cross-workload speedup-bound table (A13c) and the kernel-ablation
+figure for the burst-mid-$Q$ workload.
+
+\begin{table}[!htb]\centering\scriptsize
+\caption{Decision-layer cost measurement (wall-QPS $\pm$ s.d., 10-block RCB,
+PostgreSQL~16). All conditions execute on identical schemas; the wall-clock
+gap from \emph{Base} isolates the in-band cost of each invocation policy
+(decision layer $+$ triggered advisor work). Sp.\textsubscript{A} = HSM-gated
+ratio over always-on; Sp.\textsubscript{P} = HSM-gated ratio over periodic
+($K\!=\!3$). Both ratios are scale-invariant (CV\,$<$\,7\,\%) across the $15\times$
+data-volume range.}\label{tab:throughput-supp}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lccccrr@{}}
+\toprule
+\textbf{SF} & \textbf{Base} & \textbf{Always} & \textbf{Period.} & \textbf{HSM} & \textbf{Sp.\textsubscript{A}} & \textbf{Sp.\textsubscript{P}}\\
+\midrule
+0.2 & $23.19\!\pm\!0.56$ & $4.81\!\pm\!0.17$ & $10.03\!\pm\!0.81$ & $14.36\!\pm\!0.88$ & $2.99\times$ & $1.43\times$\\
+1.0 & $4.10\!\pm\!0.06$  & $0.81\!\pm\!0.04$ & $1.70\!\pm\!0.15$  & $2.49\!\pm\!0.15$  & $3.05\times$ & $1.46\times$\\
+3.0 & $1.06\!\pm\!0.01$  & $0.25\!\pm\!0.01$ & $0.48\!\pm\!0.04$  & $0.67\!\pm\!0.05$  & $2.71\times$ & $1.39\times$\\
+\midrule
+\multicolumn{4}{l}{\emph{HSM-gated retention (vs.\ Base, paired)}} & $61.9\,\%$ & \multicolumn{2}{r}{($\pm 1.2\,\%$ across SF)}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!htb]\centering
+\includegraphics[width=\columnwidth]{../main/figures/fig07_throughput_comparison.pdf}
+\caption{Decision-layer cost across invocation policies (10-block RCB,
+$n\!=\!10$ per cell). All conditions execute on identical schemas; bars
+isolate the in-band cost of each policy (decision layer $+$ triggered
+advisor work) as a within-block paired ratio versus the no-advisor
+baseline (95\,\% percentile bootstrap CI).
+HSM-gated retains $61.9\!\pm\!1.2\,\%$ of baseline at every SF
+($1.43\times$ over periodic, $2.92\times$ over always-on) while
+invoking the advisor only $19.2\,\%$ of the time---a scale-invariant
+operating point across the $15\times$ data-volume range.}
+\label{fig:throughput-supp}
+\end{figure}
+
+\begin{table}[!htb]\centering\scriptsize
+\caption{A13c: Cross-workload empirical validation of
+Theorem~5 (operational speedup with phase-mix prior).
+Each row is one workload at its calibrated $\thetastar$.
+$N$\,=\,number of consecutive window-pairs;
+$\hat{p}^{\,\mathrm{T}}_{\mathrm{stable}}$\,=\,fraction of within-phase pairs;
+Bnd\,=\,$1/(1\!-\!\hat{p}^{\,\mathrm{T}}_{\mathrm{stable}})$
+(asymptotic upper bound of Theorem~5);
+TPR\,=\,gate sensitivity against phase labels;
+sav\textsubscript{A}/sav\textsubscript{P}\,=\,realised invocation
+savings versus always-on / periodic ($K\!=\!3$). TPC-H entries aggregate
+$10$-block RCB across SF\,$\in\!\{0.2,1.0,3.0\}$.}\label{tab:t5-cross-supp}
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+\textbf{Workload} & $\theta$ & $N$ &
+$\hat{p}^{\,\mathrm{T}}_{\mathrm{stable}}$ & Bnd & TPR &
+sav\textsubscript{A} & sav\textsubscript{P}\\
+\midrule
+TPC-H (3 SFs)    & 0.750 & 240  & ---   & ---   & ---  & $80.8\,\%$ & $42.5\,\%$\\
+Burst            & 0.750 & 26   & 0.923 & $13.0\times$ & 0.50 & $80.8\,\%$ & $44.4\,\%$\\
+SDSS ($\thetastar$) & 0.633 & 4954 & 0.731 & $3.71\times$ & 0.60 & $75.1\,\%$ & $25.2\,\%$\\
+JOB ($\thetastar$, small $n$) & 0.728 & 20  & 0.850 & $6.67\times$ & 0.00 & $95.0\,\%$ & $85.7\,\%$\\
+OLTP (pgbench)   & 0.750 & 37   & 0.919 & $12.3\times$ & 1.00 & $0.0\,\%$  & ---\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=0.70\textwidth]{../main/figures/fig08_kernel_ablation.pdf}
+\caption{Kernel ablation on the burst-mid-$Q$ workload
+($n_w\!=\!4170$, $n_c\!=\!20$, 10 blocks). Angular and cosine kernels
+achieve identical $J^{*}\!=\!0.667$ and AUC\,$=\!0.833$ at
+$\theta^{*}\!\approx\!0.9$. The Euclidean distance attains
+$J^{*}\!=\!1.0$ (AUC\,$=\!1.0$), an outcome consistent with
+overfitting to the limited cross-phase sample. Fig.~\ref{fig:supp-amplitude}
+confirms amplitude invariance across workload scaling, and
+Fig.~\ref{fig:supp-noise-weight} validates robustness to weight
+perturbations.}
+\label{fig:kernel-ablation-supp}
+\end{figure*}
+
 %%─────────────────────────────────────────────────────────────
 \section*{Notation Summary}
 %%─────────────────────────────────────────────────────────────
