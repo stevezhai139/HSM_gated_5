@@ -82,12 +82,15 @@ from datetime import datetime
 from pathlib import Path
 from typing import Iterable
 
+# psycopg2 is optional at import-time so CPU-only smoke scripts can load
+# this module for its shared helpers; DB entrypoints check _HAS_PSYCOPG2.
 try:
     import psycopg2
     import psycopg2.extensions
+    _HAS_PSYCOPG2 = True
 except ImportError:
-    print("ERROR: psycopg2 not found. Run: pip install psycopg2-binary", file=sys.stderr)
-    sys.exit(1)
+    psycopg2 = None  # type: ignore[assignment]
+    _HAS_PSYCOPG2 = False
 
 # ─── Path bootstrap so we can import from code/experiments/ ───────────────────
 _HERE = Path(__file__).resolve().parent

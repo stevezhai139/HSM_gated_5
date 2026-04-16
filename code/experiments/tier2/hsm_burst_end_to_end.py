@@ -92,12 +92,17 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
+# psycopg2 is optional: the module is imported by CPU-only smoke scripts
+# (e.g. b2_kernel_ablation, b4_inphase_perturbation) that only use
+# build_query_pool / build_trace and never open a DB connection. We fall
+# back to None here and let the DB-touching functions raise at call time.
 try:
     import psycopg2
     import psycopg2.extensions
+    _HAS_PSYCOPG2 = True
 except ImportError:
-    print("ERROR: psycopg2 not found. Run: pip install psycopg2-binary", file=sys.stderr)
-    sys.exit(1)
+    psycopg2 = None  # type: ignore[assignment]
+    _HAS_PSYCOPG2 = False
 
 # ─── Path bootstrap so we can import from code/experiments/ ───────────────────
 _HERE = Path(__file__).resolve().parent
@@ -294,6 +299,11 @@ def is_relaxed_hit(w_idx: int) -> bool:
 # 2. Database helpers  (identical to OLTP runner — shared schema)
 # =============================================================================
 def get_connection(dbname: str = DOCKER_DB, autocommit: bool = True):
+    if not _HAS_PSYCOPG2:
+        raise RuntimeError(
+            "psycopg2 is required for DB-connected experiments. "
+            "Install it with: pip install psycopg2-binary"
+        )
     conn = psycopg2.connect(
         host=DOCKER_HOST, port=DOCKER_PORT, dbname=dbname,
         user=DOCKER_USER, password=DOCKER_PASS, connect_timeout=10,

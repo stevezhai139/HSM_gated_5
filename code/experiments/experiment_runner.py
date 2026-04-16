@@ -117,12 +117,14 @@ import logging
 from datetime import datetime
 from pathlib import Path
 
+# psycopg2 is optional for import; DB-touching code paths check _HAS_PSYCOPG2.
 try:
     import psycopg2
     import psycopg2.extras
+    _HAS_PSYCOPG2 = True
 except ImportError:
-    print("ERROR: psycopg2 not found. Run: pip install psycopg2-binary")
-    sys.exit(1)
+    psycopg2 = None  # type: ignore[assignment]
+    _HAS_PSYCOPG2 = False
 
 # ─── Add parent directory to path ──────────────────────────────────────────────
 sys.path.insert(0, str(Path(__file__).parent))
