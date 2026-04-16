@@ -1,0 +1,145 @@
+% =============================================================================
+%  §A13d Burst-workload paragraphs + table (V5 draft v3, 2026-04-15 23:30)
+%  --------------------------------------------------------------------
+%  Drops into main_article.tex right after the protocol block
+%  (around line 1525) and before the cross-workload bound table
+%  (tab:t5-cross, line 1554 in current main).
+%
+%  Sources (10-block paired RCB, bootstrap B=10000, seed=42):
+%   * Small-Q  : results/burst_end_to_end/burst_small_q_results.csv
+%                (Q=35,  theta=0.750)
+%   * Mid-Q    : results/burst_end_to_end/burst_mid_q_results.csv
+%                (Q=700, theta*=0.826, rerun at 22:13-23:16 2026-04-15)
+%  Numbers are block-medians; brackets are 95% bootstrap CIs.
+% =============================================================================
+
+\emph{Two burst operating points.} We evaluate the burst workload at two
+points on the Theorem~\ref{thm:econ} economic frontier, chosen to
+exercise both sides of the $Q \gtrless Q_{\min}(N)$ test.  At pgbench
+scale\,$10$ ($N\!=\!10^6$), the calibration of Lemma~\ref{lem:complexity}
+gives $Q_{\min}(10^6)\!\approx\!122$ queries.
+(i)~\textbf{Small-$Q$:} three phases $\times\,Q\!=\!35$ queries
+(10\,blocks, $\theta\!=\!0.750$).  Because $Q\!<\!Q_{\min}$,
+Theorem~\ref{thm:econ} predicts $\thetastar(N,Q)\!=\!0$---no rebuild is
+economic---and HSM-gated should retain.
+(ii)~\textbf{Mid-$Q$:} three phases $\times\,Q\!=\!700$ queries
+(10\,blocks, $\thetastar\!=\!1\!-\!Q_{\min}/Q\!=\!0.826$).  Here the
+per-transition economic threshold $Q_i\!=\!Q_{\min}/(1\!-\!S_i)$ splits
+the two ground-truth phase boundaries: the $S\!=\!0.892$
+(\textsc{Steady}\,$\to$\,\textsc{Burst\_Alt}) boundary needs
+$Q\!\ge\!1130$ to be economic, while the $S\!=\!0.781$
+(\textsc{Burst\_Alt}\,$\to$\,\textsc{Burst\_Grp}) boundary only needs
+$Q\!\ge\!557$.  At $Q\!=\!700$, HSM-gated should fire \emph{once per
+run}---at the second boundary only.
+
+Table~\ref{tab:a13d-results} reports the end-to-end wall-clock budget,
+advisor cost, trigger count, and precision for both operating points
+against each of the two deployed advisors, with periodic ($K\!=\!2$)
+as the realistic scheduled baseline.  Brackets give 95\,\% bootstrap
+confidence intervals ($B\!=\!10\,000$, paired within-block
+resamples).
+
+\begin{table*}[!htb]\centering\scriptsize
+\caption{End-to-end wall-clock validation on burst workload with
+deployed PostgreSQL advisors (Dexter, Supabase
+\texttt{index\_advisor}), two operating points.  Block medians with
+95\,\% bootstrap CIs in brackets ($B\!=\!10\,000$, paired within-block
+resamples, 10 blocks each variant); periodic $K\!=\!2$ is the
+realistic scheduled baseline ($K\!\in\!\{3,4\}$ in Supplementary
+Table~\ref{tab:a13d-supp}).  $t_{\mathrm{wall}}$ is total run
+wall-clock including advisor cost; $t_{\mathrm{adv}}$ is
+advisor-only; $\text{CETS}$ is Cost-Effective Timing Savings (higher
+is better); $P_{\mathrm{strict}}$ is trigger precision (fraction of
+gate fires that land on a ground-truth phase boundary);
+$p_{95}^{\mathrm{lat}}$ is per-query p95 latency (ms).  Raw CSVs in
+\texttt{results/burst\_end\_to\_end/burst\_small\_q\_results.csv}
+and \texttt{results/burst\_end\_to\_end/burst\_mid\_q\_results.csv}.}
+\label{tab:a13d-results}
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+\textbf{Variant} & \textbf{Policy (Advisor)} &
+$t_{\mathrm{wall}}$\,(s) & $t_{\mathrm{adv}}$\,(s) & \textbf{Calls} &
+$\text{CETS}_{\mathrm{always}}$ & $P_{\mathrm{strict}}$ & $p_{95}^{\mathrm{lat}}$\,(ms) \\
+\midrule
+\multicolumn{8}{@{}l}{\emph{Small-$Q$: $Q\!=\!35$ ($Q\!<\!Q_{\min}$), $\theta\!=\!0.750$, 10\,blocks}}\\
+ & baseline                                 & $0.996$\,{\tiny[0.954,1.032]} & $0.000$                   & $0$  & --       & --                       & $44.36$\,{\tiny[38.84,45.57]} \\
+ & \textbf{HSM-gated (Dexter)}              & $\mathbf{1.075}$\,{\tiny[1.033,1.131]} & $\mathbf{0.000}$  & $\mathbf{0}$ & $\mathbf{0.680}$  & N/A\,(0\,fires)          & $45.24$\,{\tiny[42.25,45.74]} \\
+ & \textbf{HSM-gated (\texttt{index\_adv.})}& $\mathbf{1.073}$\,{\tiny[1.046,1.084]} & $\mathbf{0.000}$  & $\mathbf{0}$ & $\mathbf{0.664}$  & N/A\,(0\,fires)          & $44.90$\,{\tiny[43.99,45.60]} \\
+ & Periodic $K\!=\!2$ (Dexter)              & $2.229$\,{\tiny[2.123,2.283]} & $1.187$\,{\tiny[1.10,1.21]} & $10$ & --   & $0.100$                  & $45.45$\,{\tiny[42.61,46.22]} \\
+ & Periodic $K\!=\!2$ (\texttt{index\_adv.})& $1.915$\,{\tiny[1.774,2.246]} & $1.203$\,{\tiny[1.11,1.52]} & $10$ & --   & $0.100$                  & $32.06$\,{\tiny[31.25,32.78]} \\
+ & Always-on (Dexter)                       & $3.354$\,{\tiny[3.305,3.438]} & $2.298$\,{\tiny[2.26,2.35]} & $21$ & --   & $0.095$                  & $45.93$\,{\tiny[45.53,47.52]} \\
+ & Always-on (\texttt{index\_adv.})         & $3.194$\,{\tiny[2.942,3.386]} & $2.388$\,{\tiny[2.25,2.65]} & $21$ & --   & $0.095$                  & $43.60$\,{\tiny[40.13,45.53]} \\
+\midrule
+\multicolumn{8}{@{}l}{\emph{Mid-$Q$: $Q\!=\!700$ ($Q_{\min}\!<\!Q\!<\!Q_1$), $\thetastar\!=\!0.826$, 10\,blocks}}\\
+ & baseline                                 & $18.47$\,{\tiny[18.30,19.14]} & $0.000$                    & $0$   & --       & --                       & $42.69$\,{\tiny[42.54,43.42]} \\
+ & \textbf{HSM-gated (Dexter)}              & $\mathbf{20.58}$\,{\tiny[20.38,20.69]} & $\mathbf{0.159}$\,{\tiny[0.13,0.19]} & $\mathbf{1}$ & $\mathbf{0.665}$ & $\mathbf{1.000}$\,{\tiny[1.000,1.000]} & $\mathbf{42.59}$\,{\tiny[42.38,42.76]} \\
+ & \textbf{HSM-gated (\texttt{index\_adv.})}& $\mathbf{14.65}$\,{\tiny[14.57,14.94]} & $\mathbf{0.504}$\,{\tiny[0.50,0.51]} & $\mathbf{1}$ & $\mathbf{0.711}$ & $\mathbf{1.000}$\,{\tiny[1.000,1.000]} & $\mathbf{28.80}$\,{\tiny[28.54,29.24]} \\
+ & Periodic $K\!=\!2$ (Dexter)              & $41.73$\,{\tiny[41.38,42.42]} & $21.97$\,{\tiny[21.83,22.43]} & $209$ & --       & $0.010$                  & $43.18$\,{\tiny[43.08,43.74]} \\
+ & Periodic $K\!=\!2$ (\texttt{index\_adv.})& $31.28$\,{\tiny[31.18,34.43]} & $19.10$\,{\tiny[18.89,19.33]} & $209$ & --       & $0.010$                  & $29.55$\,{\tiny[29.18,46.82]} \\
+ & Always-on (Dexter)                       & $61.43$\,{\tiny[60.98,62.50]} & $40.80$\,{\tiny[40.31,41.57]} & $420$ & --       & $0.005$                  & $44.26$\,{\tiny[44.10,44.68]} \\
+ & Always-on (\texttt{index\_adv.})         & $50.64$\,{\tiny[50.36,51.43]} & $38.15$\,{\tiny[37.87,38.42]} & $420$ & --       & $0.005$                  & $29.80$\,{\tiny[29.52,31.59]} \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+\emph{Receipt for Theorem~\ref{thm:econ}: small-$Q$ retention.}
+At $Q\!=\!35$ ($<\!Q_{\min}$), HSM-gated under both advisors fires
+\emph{zero} times over the entire 10-block run, matching
+$\thetastar(N,Q)\!=\!0$ exactly.  Wall-clock is within $8\%$ of the
+no-advisor baseline ($1.075$ vs.\ $0.996$\,s, non-overlapping CIs but
+a negligible absolute gap of $\approx\!80$\,ms) with p95 latency
+within $\approx\!1$\,ms---the HSM decision layer is effectively free.
+Against the scheduled policies, $\text{CETS}_{\mathrm{always}}$ is
+$66.4$--$68.0\%$ and $\text{CETS}_{\mathrm{periodic},K=2}$ is
+$44.0$--$51.8\%$: because no advisor call is economic, every trigger
+the scheduled baselines issue is wasted work.  Trigger precision for
+the scheduled policies is correspondingly low ($P_{\mathrm{strict}}
+\!=\!0.100$ at periodic $K\!=\!2$, $0.095$ at always-on), since both
+spend advisor cycles on windows that Theorem~\ref{thm:econ} proves
+are sub-economic.
+
+\emph{Receipt for Theorem~\ref{thm:econ}: mid-$Q$ selectivity.}
+At $Q\!=\!700$ with $\thetastar\!=\!0.826$, HSM-gated fires exactly
+once per run in every one of the 10 blocks, yielding
+$P_{\mathrm{strict}}\!=\!1.000$ with a degenerate $[1.000,1.000]$
+bootstrap interval---unambiguous evidence that the gate both selects
+the economically profitable transition
+(\textsc{Burst\_Alt}\,$\to$\,\textsc{Burst\_Grp}, $S\!=\!0.781$,
+$Q_i\!=\!557\!<\!700$) and correctly \emph{skips} the shallower one
+($S\!=\!0.892$, $Q_1\!=\!1130\!>\!700$).  Versus always-on, HSM-gated
+saves $66.5\%$ (Dexter) and $71.1\%$ (\texttt{index\_adv.}) of
+wall-clock; versus periodic $K\!=\!2$, $50.7\%$ and $53.2\%$.
+Precision is $100\times$--$200\times$ the scheduled baselines
+($0.005$ always-on, $0.010$ periodic $K\!=\!2$).  Critically, p95
+query latency under HSM-gated is \emph{equal to or better than} the
+no-advisor baseline (Dexter: $42.59$ vs.\ $42.69$\,ms;
+\texttt{index\_adv.}: $28.80$ vs.\ $42.69$\,ms with
+non-overlapping CIs---Supabase's \texttt{index\_advisor} actually
+reduces tail latency below baseline via its one economic rebuild).
+This confirms HSM's skip decisions impose zero user-observable
+penalty (\S\ref{sec:a13d} \emph{latency-on-skip} metric).
+
+\emph{Practical $\theta$ bound: within-phase noise floor.}
+Applying Theorem~\ref{thm:econ}'s $\thetastar(N,Q)\!=\!1\!-\!Q_{\min}/Q$
+formula naively at $Q\!=\!1500$ yields $\thetastar\!=\!0.919$, which
+over-fires every window because the within-phase signature in our
+synthetic burst exhibits a \emph{noise floor} at
+$S_{\mathrm{floor}}\!\approx\!0.875$ (random \texttt{aid}-sample
+variability).  In general, the usable threshold is bounded below by
+the stable-phase distribution:
+$\thetastar_{\mathrm{eff}}(N,Q)\!=\!\min\!\bigl(\thetastar(N,Q),\,
+S_{\mathrm{floor}}(W)\bigr)$, where $S_{\mathrm{floor}}(W)$ is the
+$5$th-percentile within-phase similarity at window size $W$.  The
+$Q\!=\!700$ operating point respects this bound
+($0.826\!<\!0.875$); the $Q\!=\!1500$ operating point does not and
+is therefore excluded from the main table.  For workloads whose
+$Q_{\min}\!/(1\!-\!S_{\mathrm{floor}})\!>\!Q_i$ for every true
+transition $i$, HSM-gated's economic recall is necessarily
+$\le\!\lvert\{i:Q\!>\!Q_i\}\rvert\,/\,|\mathcal{T}|$---i.e.\ HSM
+catches every transition that is economic \emph{and} separable from
+within-phase drift.  Here that yields economic-recall $1/1$ at
+$Q\!=\!700$ and strict-recall $1/2$ (the second transition being
+correctly ignored per Theorem~\ref{thm:econ}).  We return to this in
+\S\ref{sec:limitations}(iv).

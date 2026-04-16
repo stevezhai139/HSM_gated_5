@@ -1,0 +1,501 @@
+{
+  "wall_time_s": 1.822218665998662,
+  "total_query_time_s": 1.0215119989588857,
+  "total_advisor_time_s": 0.7965464989829343,
+  "num_queries": 120,
+  "errors": 0,
+  "qps": 117.47292261109291,
+  "wall_qps": 65.85378705592083,
+  "advisor_calls": 7,
+  "trigger_rate": 0.2916666666666667,
+  "trigger_precision": 0.42857142857142855,
+  "transitions_hit": 3,
+  "transitions_total": 3,
+  "latency_p50_ms": 0.3065839991904795,
+  "latency_p95_ms": 46.43304098863155,
+  "latency_p99_ms": 85.36199998343363,
+  "latency_mean_skip_ms": 8.632133788812686,
+  "latency_mean_trigger_ms": 8.210436853447131,
+  "per_window": [
+    {
+      "window_idx": 0,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.001970000012079254,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.486,
+        0.637,
+        0.287,
+        0.275,
+        0.255
+      ]
+    },
+    {
+      "window_idx": 1,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0019187500001862645,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.459,
+        0.358,
+        0.239,
+        0.458,
+        0.373
+      ]
+    },
+    {
+      "window_idx": 2,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0013629590102937073,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.321,
+        0.304,
+        0.252,
+        0.254,
+        0.213
+      ]
+    },
+    {
+      "window_idx": 3,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0012525409983936697,
+      "advisor_wall_s": 0.13695112499408424,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.248,
+        0.242,
+        0.275,
+        0.229,
+        0.218
+      ]
+    },
+    {
+      "window_idx": 4,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0011724589858204126,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.244,
+        0.214,
+        0.315,
+        0.193,
+        0.197
+      ]
+    },
+    {
+      "window_idx": 5,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0009973749984055758,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.21,
+        0.202,
+        0.192,
+        0.189,
+        0.198
+      ]
+    },
+    {
+      "window_idx": 6,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 1,
+      "query_time_s": 0.0018414160003885627,
+      "advisor_wall_s": 0.10014570798375644,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.52,
+        0.343,
+        0.351,
+        0.319,
+        0.302
+      ]
+    },
+    {
+      "window_idx": 7,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.001807249995181337,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.499,
+        0.333,
+        0.326,
+        0.314,
+        0.308
+      ]
+    },
+    {
+      "window_idx": 8,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0012330000172369182,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.219,
+        0.273,
+        0.255,
+        0.259,
+        0.222
+      ]
+    },
+    {
+      "window_idx": 9,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0011301249905955046,
+      "advisor_wall_s": 0.09977787500247359,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.268,
+        0.244,
+        0.231,
+        0.231,
+        0.152
+      ]
+    },
+    {
+      "window_idx": 10,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0018176249868702143,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.5,
+        0.372,
+        0.34,
+        0.307,
+        0.292
+      ]
+    },
+    {
+      "window_idx": 11,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0014919170062057674,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.312,
+        0.217,
+        0.343,
+        0.293,
+        0.321
+      ]
+    },
+    {
+      "window_idx": 12,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 1,
+      "query_time_s": 0.0014220000011846423,
+      "advisor_wall_s": 0.10067354200873524,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.353,
+        0.367,
+        0.236,
+        0.228,
+        0.234
+      ]
+    },
+    {
+      "window_idx": 13,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.001263290992937982,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.206,
+        0.404,
+        0.33,
+        0.185,
+        0.132
+      ]
+    },
+    {
+      "window_idx": 14,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0010074579913634807,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.219,
+        0.206,
+        0.235,
+        0.221,
+        0.122
+      ]
+    },
+    {
+      "window_idx": 15,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0008143330051098019,
+      "advisor_wall_s": 0.09943820798071101,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.144,
+        0.129,
+        0.181,
+        0.228,
+        0.128
+      ]
+    },
+    {
+      "window_idx": 16,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0017563749861437827,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.248,
+        0.653,
+        0.224,
+        0.441,
+        0.18
+      ]
+    },
+    {
+      "window_idx": 17,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.0010158329969272017,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.235,
+        0.19,
+        0.203,
+        0.201,
+        0.18
+      ]
+    },
+    {
+      "window_idx": 18,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 1,
+      "query_time_s": 0.1808708329917863,
+      "advisor_wall_s": 0.12743104100809433,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        46.433,
+        13.868,
+        85.362,
+        5.961,
+        29.227
+      ]
+    },
+    {
+      "window_idx": 19,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.14823529199929908,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        17.758,
+        34.985,
+        33.175,
+        29.811,
+        32.491
+      ]
+    },
+    {
+      "window_idx": 20,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.13811187498504296,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        13.425,
+        31.952,
+        30.033,
+        11.824,
+        50.853
+      ]
+    },
+    {
+      "window_idx": 21,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.10015970800304785,
+      "advisor_wall_s": 0.13212900000507943,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        7.483,
+        29.854,
+        49.648,
+        6.125,
+        7.003
+      ]
+    },
+    {
+      "window_idx": 22,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.21926266700029373,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        96.751,
+        51.104,
+        29.534,
+        29.865,
+        11.968
+      ]
+    },
+    {
+      "window_idx": 23,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 0,
+      "is_true_trans": 0,
+      "query_time_s": 0.20959691700409167,
+      "advisor_wall_s": 0.0,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        31.758,
+        29.959,
+        30.418,
+        83.886,
+        33.535
+      ]
+    }
+  ]
+}

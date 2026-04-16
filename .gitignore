@@ -1,0 +1,74 @@
+# Local environment (NEVER commit real credentials)
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Data and temporary files (NOT experiment results)
+# Match TPC-H scale-factor dirs anywhere in tree
+**/data/sf*/
+**/data/imdb/
+# code/data/job/queries/*.sql ARE benchmark queries — KEEP THEM.
+# Only ignore JOB raw data dumps if any:
+**/data/job/*.csv
+**/data/job/*.tbl
+*.tbl
+*.dump
+
+# Experiment logs (keep CSVs and manifests)
+results/**/overnight_*/*.log
+results/_run_logs/
+results/overnight_*/b*_rerun.log
+
+# Large experiment artefacts (raw timeseries dumps too big for GitHub)
+results/burst_end_to_end/
+**/results/burst_end_to_end/
+
+# TPC-H build artefacts (the symlink + bin compiled here)
+**/TPC-H V3.0.1
+TPC-H V3.0.1/
+**/dbgen
+**/qgen
+**/*.o
+
+# OS junk
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Stray shell-redirect files at repo root (safe to ignore)
+/0
+/3
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+*.sublime-project
+*.sublime-workspace
+
+# LaTeX build artefacts (we only ship the final PDFs)
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.out
+paper/**/*.toc
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.fls
+paper/**/*.fdb_latexmk
+paper/**/*.synctex.gz
+paper/**/*.pdf~
+paper/**/*.dvi

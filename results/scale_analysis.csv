@@ -1,0 +1,13 @@
+N,advisor_time_s,model
+100,0.005925,empirical
+300,0.020602,empirical
+1000,0.074562,empirical
+3000,0.251186,empirical
+10000,0.910017,empirical
+30000,3.120086,empirical
+100,0.005937,a*N*log(N)+b fit
+300,0.018529,a*N*log(N)+b fit
+1000,0.070852,a*N*log(N)+b fit
+3000,0.243142,a*N*log(N)+b fit
+10000,0.928667,a*N*log(N)+b fit
+30000,3.115251,a*N*log(N)+b fit

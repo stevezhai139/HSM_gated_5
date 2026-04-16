@@ -1,0 +1,501 @@
+{
+  "wall_time_s": 3.555539749999298,
+  "total_query_time_s": 1.0697603360167705,
+  "total_advisor_time_s": 2.479898376914207,
+  "num_queries": 120,
+  "errors": 0,
+  "qps": 112.17465815457078,
+  "wall_qps": 33.75015002997047,
+  "advisor_calls": 24,
+  "trigger_rate": 1.0,
+  "trigger_precision": 0.125,
+  "transitions_hit": 3,
+  "transitions_total": 3,
+  "latency_p50_ms": 0.41133398190140724,
+  "latency_p95_ms": 49.18987498967908,
+  "latency_p99_ms": 96.77462500985712,
+  "latency_mean_skip_ms": 0.0,
+  "latency_mean_trigger_ms": 8.912244126016352,
+  "per_window": [
+    {
+      "window_idx": 0,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.002539875014917925,
+      "advisor_wall_s": 0.16568929198547266,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.62,
+        0.669,
+        0.405,
+        0.425,
+        0.41
+      ]
+    },
+    {
+      "window_idx": 1,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0010684170119930059,
+      "advisor_wall_s": 0.09735149997868575,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.275,
+        0.208,
+        0.255,
+        0.161,
+        0.163
+      ]
+    },
+    {
+      "window_idx": 2,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0011495839862618595,
+      "advisor_wall_s": 0.09559966699453071,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.258,
+        0.267,
+        0.21,
+        0.199,
+        0.207
+      ]
+    },
+    {
+      "window_idx": 3,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0013146669953130186,
+      "advisor_wall_s": 0.09607787497225218,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.4,
+        0.231,
+        0.231,
+        0.208,
+        0.232
+      ]
+    },
+    {
+      "window_idx": 4,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0014212079986464232,
+      "advisor_wall_s": 0.09575358300935477,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.408,
+        0.239,
+        0.205,
+        0.235,
+        0.32
+      ]
+    },
+    {
+      "window_idx": 5,
+      "phase": "ReadOnly",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0012162910134065896,
+      "advisor_wall_s": 0.09524633298860863,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.315,
+        0.272,
+        0.242,
+        0.203,
+        0.177
+      ]
+    },
+    {
+      "window_idx": 6,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 1,
+      "query_time_s": 0.003718624997418374,
+      "advisor_wall_s": 0.09612225100863725,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        1.241,
+        0.864,
+        0.634,
+        0.661,
+        0.311
+      ]
+    },
+    {
+      "window_idx": 7,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0024908749910537153,
+      "advisor_wall_s": 0.09652504199766554,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        1.15,
+        0.261,
+        0.363,
+        0.36,
+        0.347
+      ]
+    },
+    {
+      "window_idx": 8,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0038477919879369438,
+      "advisor_wall_s": 0.0958629579981789,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        1.528,
+        0.996,
+        0.454,
+        0.497,
+        0.362
+      ]
+    },
+    {
+      "window_idx": 9,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0021665839885827154,
+      "advisor_wall_s": 0.09781208302592859,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.856,
+        0.437,
+        0.241,
+        0.362,
+        0.262
+      ]
+    },
+    {
+      "window_idx": 10,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0040372910152655095,
+      "advisor_wall_s": 0.09824879199732095,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        1.841,
+        0.955,
+        0.411,
+        0.486,
+        0.333
+      ]
+    },
+    {
+      "window_idx": 11,
+      "phase": "WriteHeavy",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.003394333994947374,
+      "advisor_wall_s": 0.09519379198900424,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        1.315,
+        0.615,
+        0.703,
+        0.411,
+        0.34
+      ]
+    },
+    {
+      "window_idx": 12,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 1,
+      "query_time_s": 0.0021676670003216714,
+      "advisor_wall_s": 0.09877783301635645,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.224,
+        0.719,
+        0.43,
+        0.394,
+        0.391
+      ]
+    },
+    {
+      "window_idx": 13,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0021145000064279884,
+      "advisor_wall_s": 0.09451925099710934,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.326,
+        0.865,
+        0.372,
+        0.349,
+        0.194
+      ]
+    },
+    {
+      "window_idx": 14,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0016812499961815774,
+      "advisor_wall_s": 0.0963382080080919,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.534,
+        0.369,
+        0.221,
+        0.352,
+        0.199
+      ]
+    },
+    {
+      "window_idx": 15,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0019581250089686364,
+      "advisor_wall_s": 0.09611533299903385,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.312,
+        0.248,
+        0.857,
+        0.348,
+        0.185
+      ]
+    },
+    {
+      "window_idx": 16,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.0015686250117141753,
+      "advisor_wall_s": 0.09685870897374116,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        0.333,
+        0.201,
+        0.24,
+        0.481,
+        0.304
+      ]
+    },
+    {
+      "window_idx": 17,
+      "phase": "Mixed",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.002760250004939735,
+      "advisor_wall_s": 0.09717208298388869,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        1.208,
+        0.416,
+        0.327,
+        0.453,
+        0.348
+      ]
+    },
+    {
+      "window_idx": 18,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 1,
+      "query_time_s": 0.19302199999219738,
+      "advisor_wall_s": 0.1169939579849597,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        52.87,
+        89.886,
+        31.115,
+        7.149,
+        11.98
+      ]
+    },
+    {
+      "window_idx": 19,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.14746845900663175,
+      "advisor_wall_s": 0.10791462598717771,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        40.188,
+        31.994,
+        13.154,
+        29.535,
+        32.575
+      ]
+    },
+    {
+      "window_idx": 20,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.20029158299439587,
+      "advisor_wall_s": 0.12070299999322742,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        96.775,
+        30.486,
+        11.119,
+        12.068,
+        49.82
+      ]
+    },
+    {
+      "window_idx": 21,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.23558425001101568,
+      "advisor_wall_s": 0.11783279202063568,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        97.696,
+        49.948,
+        49.19,
+        31.922,
+        6.803
+      ]
+    },
+    {
+      "window_idx": 22,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.13417487498372793,
+      "advisor_wall_s": 0.10872654101694934,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        37.799,
+        30.88,
+        6.182,
+        29.366,
+        29.934
+      ]
+    },
+    {
+      "window_idx": 23,
+      "phase": "BulkRead",
+      "hsm_score": 1.0,
+      "triggered": 1,
+      "is_true_trans": 0,
+      "query_time_s": 0.1186032090045046,
+      "advisor_wall_s": 0.10246287498739548,
+      "n_ddl": 0,
+      "dropped": 0,
+      "created": 0,
+      "errors": 0,
+      "latencies_ms": [
+        16.237,
+        35.587,
+        31.221,
+        6.145,
+        29.394
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Core numerics
+numpy>=1.26,<3.0
+scipy>=1.11,<2.0
+pandas>=2.1,<3.0
+
+# HSM signal-processing pipeline (§III)
+pywavelets>=1.5,<2.0          # DWT: db4 wavelet, L=3 decomposition levels (paper §III.E)
+fastdtw>=0.3.4,<0.4           # DTW with Sakoe-Chiba radius r=3 (paper §III.E)
+scikit-learn>=1.4,<2.0        # Spearman correlation, cross-validation utilities
+
+# Plotting / figures
+matplotlib>=3.8,<4.0
+
+# Testing
+pytest>=7.4,<9.0
+
+# Optional: Database drivers for workload validation
+# Uncomment below to enable PostgreSQL and MongoDB experiments.
+# Requires system libraries: libpq-dev (for psycopg) and libmongo-client (for pymongo)
+#
+# psycopg[binary]>=3.1,<4.0      # PostgreSQL 16 driver (TPC-H, JOB, OLTP experiments)
+# pymongo>=4.6,<5.0              # MongoDB 7 driver (cross-platform θ transfer, Appendix A7)

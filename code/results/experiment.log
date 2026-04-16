@@ -1,0 +1,1590 @@
+2026-04-15 00:47:52,005 [INFO] Native mode: connecting to localhost:5432 as 'postgres'
+2026-04-15 00:47:52,005 [INFO] ======================================================================
+2026-04-15 00:47:52,005 [INFO]   HSM Throughput Experiment  (v3 — steady-state design)
+2026-04-15 00:47:52,005 [INFO]   Scale Factors   : [0.2]
+2026-04-15 00:47:52,005 [INFO]   Conditions      : ['baseline', 'always_on', 'hsm_gated', 'periodic']
+2026-04-15 00:47:52,005 [INFO]   Blocks (reps)   : 2
+2026-04-15 00:47:52,005 [INFO]   Theta           : 0.7
+2026-04-15 00:47:52,005 [INFO]   Design          : Randomized block (seed per block)
+2026-04-15 00:47:52,005 [INFO]   Base indexes    : 9 FK/join + 8 Phase-A filter (steady-state)
+2026-04-15 00:47:52,005 [INFO]   HSM window 0    : observe-only (no advisor trigger)
+2026-04-15 00:47:52,005 [INFO]   Advisor DROP    : all non-FK indexes dropped before CREATE
+2026-04-15 00:47:52,005 [INFO]   Queries/phase   : 30 (120 total, 24 windows)
+2026-04-15 00:47:52,005 [INFO]   Sampling        : without-replacement + 3-variant param pools
+2026-04-15 00:47:52,005 [INFO]   Trace seed      : per-block (seed=block eliminates cache reuse)
+2026-04-15 00:47:52,005 [INFO]   Settle time     : 2s between conditions
+2026-04-15 00:47:52,005 [INFO] ======================================================================
+2026-04-15 00:47:52,005 [INFO] 
+── Scale Factor SF=0.2  db=tpch_scale_sf0_2  (timeout=300s / 5min per query) ─────────────
+2026-04-15 00:47:52,005 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 00:47:52,005 [INFO] 
+  Block 1/2  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 00:47:52,005 [INFO]     [1/8]  Block 1  Condition: hsm_gated
+2026-04-15 01:00:35,848 [INFO] Native mode: connecting to localhost:5432 as 'postgres'
+2026-04-15 01:00:35,849 [INFO] ======================================================================
+2026-04-15 01:00:35,849 [INFO]   HSM Throughput Experiment  (v3 — steady-state design)
+2026-04-15 01:00:35,849 [INFO]   Scale Factors   : [0.2]
+2026-04-15 01:00:35,849 [INFO]   Conditions      : ['baseline', 'always_on', 'hsm_gated', 'periodic']
+2026-04-15 01:00:35,849 [INFO]   Blocks (reps)   : 2
+2026-04-15 01:00:35,849 [INFO]   Theta           : 0.75
+2026-04-15 01:00:35,849 [INFO]   Design          : Randomized block (seed per block)
+2026-04-15 01:00:35,849 [INFO]   Base indexes    : 9 FK/join + 8 Phase-A filter (steady-state)
+2026-04-15 01:00:35,849 [INFO]   HSM window 0    : observe-only (no advisor trigger)
+2026-04-15 01:00:35,849 [INFO]   Advisor DROP    : all non-FK indexes dropped before CREATE
+2026-04-15 01:00:35,849 [INFO]   Queries/phase   : 30 (120 total, 24 windows)
+2026-04-15 01:00:35,849 [INFO]   Sampling        : without-replacement + 3-variant param pools
+2026-04-15 01:00:35,849 [INFO]   Trace seed      : per-block (seed=block eliminates cache reuse)
+2026-04-15 01:00:35,849 [INFO]   Settle time     : 2s between conditions
+2026-04-15 01:00:35,849 [INFO] ======================================================================
+2026-04-15 01:00:35,849 [INFO] 
+── Scale Factor SF=0.2  db=tpch_scale_sf0_2  (timeout=300s / 5min per query) ─────────────
+2026-04-15 01:00:35,849 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 01:00:35,849 [INFO] 
+  Block 1/2  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 01:00:35,849 [INFO]     [1/8]  Block 1  Condition: hsm_gated
+2026-04-15 01:00:47,475 [INFO]       ✓  wall_QPS=13.5011  qps=20.6363  queries=120  errors=0  wall=8.89s  advisor_calls=5
+2026-04-15 01:00:47,477 [INFO]       … settling 2s …
+2026-04-15 01:00:49,482 [INFO]     [2/8]  Block 1  Condition: baseline
+2026-04-15 01:00:57,537 [INFO]       ✓  wall_QPS=22.6169  qps=22.6185  queries=120  errors=0  wall=5.31s  advisor_calls=0
+2026-04-15 01:00:57,539 [INFO]       … settling 2s …
+2026-04-15 01:00:59,540 [INFO]     [3/8]  Block 1  Condition: always_on
+2026-04-15 01:01:28,380 [INFO]       ✓  wall_QPS=4.5672  qps=17.7160  queries=120  errors=0  wall=26.27s  advisor_calls=24
+2026-04-15 01:01:28,382 [INFO]       … settling 2s …
+2026-04-15 01:01:30,387 [INFO]     [4/8]  Block 1  Condition: periodic
+2026-04-15 01:01:44,173 [INFO]       ✓  wall_QPS=10.7217  qps=20.6646  queries=120  errors=0  wall=11.19s  advisor_calls=8
+2026-04-15 01:01:44,175 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 01:01:44,175 [INFO] 
+  Block 2/2  order: periodic → baseline → hsm_gated → always_on
+2026-04-15 01:01:44,175 [INFO]     [5/8]  Block 2  Condition: periodic
+2026-04-15 01:01:58,464 [INFO]       ✓  wall_QPS=10.2287  qps=20.8063  queries=120  errors=0  wall=11.73s  advisor_calls=8
+2026-04-15 01:01:58,467 [INFO]       … settling 2s …
+2026-04-15 01:02:00,468 [INFO]     [6/8]  Block 2  Condition: baseline
+2026-04-15 01:02:08,375 [INFO]       ✓  wall_QPS=22.4061  qps=22.4075  queries=120  errors=0  wall=5.36s  advisor_calls=0
+2026-04-15 01:02:08,377 [INFO]       … settling 2s …
+2026-04-15 01:02:10,378 [INFO]     [7/8]  Block 2  Condition: hsm_gated
+2026-04-15 01:02:21,912 [INFO]       ✓  wall_QPS=13.3603  qps=20.9050  queries=120  errors=0  wall=8.98s  advisor_calls=5
+2026-04-15 01:02:21,914 [INFO]       … settling 2s …
+2026-04-15 01:02:23,916 [INFO]     [8/8]  Block 2  Condition: always_on
+2026-04-15 01:02:52,364 [INFO]       ✓  wall_QPS=4.6435  qps=17.8557  queries=120  errors=0  wall=25.84s  advisor_calls=24
+2026-04-15 01:02:52,366 [INFO] 
+======================================================================
+2026-04-15 01:02:52,366 [INFO]   All experiments completed (8 runs)
+2026-04-15 01:02:52,366 [INFO]   Results saved to: /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/code/results
+2026-04-15 01:02:52,366 [INFO]   Run analysis/compute_statistics.py to generate tables
+2026-04-15 01:02:52,366 [INFO] ======================================================================
+2026-04-15 01:14:36,767 [INFO] Native mode: connecting to localhost:5432 as 'postgres'
+2026-04-15 01:14:36,767 [INFO] ======================================================================
+2026-04-15 01:14:36,767 [INFO]   HSM Throughput Experiment  (v3 — steady-state design)
+2026-04-15 01:14:36,767 [INFO]   Scale Factors   : [0.2]
+2026-04-15 01:14:36,767 [INFO]   Conditions      : ['baseline', 'always_on', 'hsm_gated', 'periodic']
+2026-04-15 01:14:36,767 [INFO]   Blocks (reps)   : 2
+2026-04-15 01:14:36,767 [INFO]   Theta           : 0.75
+2026-04-15 01:14:36,767 [INFO]   Design          : Randomized block (seed per block)
+2026-04-15 01:14:36,767 [INFO]   Base indexes    : 9 FK/join + 8 Phase-A filter (steady-state)
+2026-04-15 01:14:36,767 [INFO]   HSM window 0    : observe-only (no advisor trigger)
+2026-04-15 01:14:36,767 [INFO]   Advisor DROP    : all non-FK indexes dropped before CREATE
+2026-04-15 01:14:36,767 [INFO]   Queries/phase   : 30 (120 total, 24 windows)
+2026-04-15 01:14:36,767 [INFO]   Sampling        : without-replacement + 3-variant param pools
+2026-04-15 01:14:36,767 [INFO]   Trace seed      : per-block (seed=block eliminates cache reuse)
+2026-04-15 01:14:36,767 [INFO]   Settle time     : 2s between conditions
+2026-04-15 01:14:36,767 [INFO] ======================================================================
+2026-04-15 01:14:36,767 [INFO] 
+── Scale Factor SF=0.2  db=tpch_scale_sf0_2  (timeout=300s / 5min per query) ─────────────
+2026-04-15 01:14:36,767 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 01:14:36,767 [INFO] 
+  Block 1/2  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 01:14:36,767 [INFO]     [1/8]  Block 1  Condition: hsm_gated
+2026-04-15 01:14:40,491 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:40,720 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:40,963 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:41,195 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:41,459 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:42,724 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 01:14:43,155 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:43,525 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:43,947 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:44,322 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:44,732 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:46,613 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 01:14:46,854 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:47,099 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:47,341 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:47,576 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:47,817 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:48,070 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 01:14:48,126 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 01:14:48,171 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 01:14:48,223 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:14:48,340 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 01:14:48,988 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 01:14:48,988 [INFO]       ✓  wall_QPS=13.3382  qps=20.7419  queries=120  errors=0  wall=9.00s  advisor_calls=5
+2026-04-15 01:14:48,991 [INFO]       … settling 2s …
+2026-04-15 01:14:50,996 [INFO]     [2/8]  Block 1  Condition: baseline
+2026-04-15 01:14:58,763 [INFO]       ✓  wall_QPS=22.8712  qps=22.8731  queries=120  errors=0  wall=5.25s  advisor_calls=0
+2026-04-15 01:14:58,765 [INFO]       … settling 2s …
+2026-04-15 01:15:00,770 [INFO]     [3/8]  Block 1  Condition: always_on
+2026-04-15 01:15:29,564 [INFO]       ✓  wall_QPS=4.5562  qps=17.8755  queries=120  errors=0  wall=26.34s  advisor_calls=24
+2026-04-15 01:15:29,565 [INFO]       … settling 2s …
+2026-04-15 01:15:31,570 [INFO]     [4/8]  Block 1  Condition: periodic
+2026-04-15 01:15:45,486 [INFO]       ✓  wall_QPS=10.6259  qps=20.2279  queries=120  errors=0  wall=11.29s  advisor_calls=8
+2026-04-15 01:15:45,488 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 01:15:45,488 [INFO] 
+  Block 2/2  order: periodic → baseline → hsm_gated → always_on
+2026-04-15 01:15:45,488 [INFO]     [5/8]  Block 2  Condition: periodic
+2026-04-15 01:16:00,066 [INFO]       ✓  wall_QPS=10.0086  qps=20.1703  queries=120  errors=0  wall=11.99s  advisor_calls=8
+2026-04-15 01:16:00,069 [INFO]       … settling 2s …
+2026-04-15 01:16:02,074 [INFO]     [6/8]  Block 2  Condition: baseline
+2026-04-15 01:16:10,215 [INFO]       ✓  wall_QPS=21.5907  qps=21.5928  queries=120  errors=0  wall=5.56s  advisor_calls=0
+2026-04-15 01:16:10,219 [INFO]       … settling 2s …
+2026-04-15 01:16:12,221 [INFO]     [7/8]  Block 2  Condition: hsm_gated
+2026-04-15 01:16:15,445 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:15,739 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:15,978 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:16,218 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:16,458 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:17,745 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 01:16:18,175 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:18,625 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:19,011 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:19,455 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:19,862 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:21,427 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 01:16:21,674 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:21,917 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:22,173 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:22,414 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:22,659 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 01:16:23,388 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 01:16:23,466 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 01:16:23,536 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 01:16:23,582 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 01:16:24,205 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 01:16:24,451 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 01:16:24,452 [INFO]       ✓  wall_QPS=12.6457  qps=19.6172  queries=120  errors=0  wall=9.49s  advisor_calls=5
+2026-04-15 01:16:24,454 [INFO]       … settling 2s …
+2026-04-15 01:16:26,459 [INFO]     [8/8]  Block 2  Condition: always_on
+2026-04-15 01:16:55,275 [INFO]       ✓  wall_QPS=4.6013  qps=17.2833  queries=120  errors=0  wall=26.08s  advisor_calls=24
+2026-04-15 01:16:55,276 [INFO] 
+======================================================================
+2026-04-15 01:16:55,276 [INFO]   All experiments completed (8 runs)
+2026-04-15 01:16:55,276 [INFO]   Results saved to: /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/code/results
+2026-04-15 01:16:55,276 [INFO]   Run analysis/compute_statistics.py to generate tables
+2026-04-15 01:16:55,276 [INFO] ======================================================================
+2026-04-15 02:08:45,637 [INFO] Native mode: connecting to localhost:5432 as 'postgres'
+2026-04-15 02:08:45,638 [INFO] ======================================================================
+2026-04-15 02:08:45,638 [INFO]   HSM Throughput Experiment  (v3 — steady-state design)
+2026-04-15 02:08:45,638 [INFO]   Scale Factors   : [0.2, 1.0, 3.0]
+2026-04-15 02:08:45,638 [INFO]   Conditions      : ['hsm_gated']
+2026-04-15 02:08:45,638 [INFO]   Blocks (reps)   : 3
+2026-04-15 02:08:45,638 [INFO]   Theta           : 0.75
+2026-04-15 02:08:45,638 [INFO]   Design          : Randomized block (seed per block)
+2026-04-15 02:08:45,638 [INFO]   Base indexes    : 9 FK/join + 8 Phase-A filter (steady-state)
+2026-04-15 02:08:45,638 [INFO]   HSM window 0    : observe-only (no advisor trigger)
+2026-04-15 02:08:45,638 [INFO]   Advisor DROP    : all non-FK indexes dropped before CREATE
+2026-04-15 02:08:45,638 [INFO]   Queries/phase   : 30 (120 total, 24 windows)
+2026-04-15 02:08:45,638 [INFO]   Sampling        : without-replacement + 3-variant param pools
+2026-04-15 02:08:45,638 [INFO]   Trace seed      : per-block (seed=block eliminates cache reuse)
+2026-04-15 02:08:45,638 [INFO]   Settle time     : 2s between conditions
+2026-04-15 02:08:45,638 [INFO] ======================================================================
+2026-04-15 02:08:45,638 [INFO] 
+── Scale Factor SF=0.2  db=tpch_scale_sf0_2  (timeout=300s / 5min per query) ─────────────
+2026-04-15 02:08:45,638 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 02:08:45,638 [INFO] 
+  Block 1/3  order: hsm_gated
+2026-04-15 02:08:45,638 [INFO]     [1/9]  Block 1  Condition: hsm_gated
+2026-04-15 02:08:49,724 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:49,953 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:50,185 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:50,419 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:50,646 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:51,927 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:08:52,340 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:52,699 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:53,103 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:53,448 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:53,850 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:55,551 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:08:55,813 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:56,062 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:56,308 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:56,546 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:56,783 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:57,032 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:08:57,090 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:08:57,145 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:08:57,197 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:08:57,316 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:08:57,933 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:08:57,934 [INFO]       ✓  wall_QPS=13.7702  qps=21.2442  queries=120  errors=0  wall=8.71s  advisor_calls=5
+2026-04-15 02:08:57,937 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 02:08:57,937 [INFO] 
+  Block 2/3  order: hsm_gated
+2026-04-15 02:08:57,937 [INFO]     [2/9]  Block 2  Condition: hsm_gated
+2026-04-15 02:09:01,200 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:01,424 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:01,654 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:01,883 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:02,108 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:03,460 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:09:03,847 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:04,262 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:04,638 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:05,065 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:05,440 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:06,950 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:09:07,194 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:07,430 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:07,681 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:07,919 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:08,156 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:08,841 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:09:08,915 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:08,985 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:09,029 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:09,575 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:09:09,778 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:09:09,779 [INFO]       ✓  wall_QPS=13.2729  qps=20.8705  queries=120  errors=0  wall=9.04s  advisor_calls=5
+2026-04-15 02:09:09,781 [INFO]   Block trace: 120 queries (4 phases × 30, seed=2)
+2026-04-15 02:09:09,781 [INFO] 
+  Block 3/3  order: hsm_gated
+2026-04-15 02:09:09,782 [INFO]     [3/9]  Block 3  Condition: hsm_gated
+2026-04-15 02:09:12,737 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:12,966 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:13,191 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:13,421 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:13,644 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:15,143 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:09:15,553 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:15,987 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:16,394 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:16,828 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:17,210 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:18,862 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:09:19,093 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:19,325 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:19,558 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:19,794 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,024 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,592 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:09:20,675 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,751 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,827 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,906 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,974 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:09:20,975 [INFO]       ✓  wall_QPS=13.7818  qps=21.0063  queries=120  errors=0  wall=8.71s  advisor_calls=3
+2026-04-15 02:09:20,976 [INFO] 
+── Scale Factor SF=1.0  db=tpch_sf1  (timeout=900s / 15min per query) ─────────────
+2026-04-15 02:09:20,977 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 02:09:20,978 [INFO] 
+  Block 1/3  order: hsm_gated
+2026-04-15 02:09:20,978 [INFO]     [4/9]  Block 1  Condition: hsm_gated
+2026-04-15 02:09:39,787 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:41,006 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:42,221 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:43,501 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:44,732 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:54,161 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:09:56,892 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:09:59,293 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:01,717 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:03,995 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:06,298 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:17,206 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:10:18,485 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:19,793 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:21,153 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:22,541 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:23,934 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:24,661 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:10:24,880 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:10:25,013 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:10:25,148 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:25,518 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:10:28,850 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:10:28,851 [INFO]       ✓  wall_QPS=2.3248  qps=3.7824  queries=120  errors=0  wall=51.62s  advisor_calls=5
+2026-04-15 02:10:28,856 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 02:10:28,856 [INFO] 
+  Block 2/3  order: hsm_gated
+2026-04-15 02:10:28,856 [INFO]     [5/9]  Block 2  Condition: hsm_gated
+2026-04-15 02:10:47,169 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:48,570 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:49,889 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:51,148 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:10:52,473 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:01,715 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:11:04,801 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:07,309 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:09,824 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:12,525 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:15,560 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:25,262 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:11:26,511 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:27,809 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:29,076 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:30,351 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:31,642 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:35,271 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:11:35,428 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:11:35,633 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:11:35,841 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:11:38,906 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:11:39,506 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:11:39,507 [INFO]       ✓  wall_QPS=2.1819  qps=3.5220  queries=120  errors=0  wall=55.00s  advisor_calls=5
+2026-04-15 02:11:39,511 [INFO]   Block trace: 120 queries (4 phases × 30, seed=2)
+2026-04-15 02:11:39,512 [INFO] 
+  Block 3/3  order: hsm_gated
+2026-04-15 02:11:39,512 [INFO]     [6/9]  Block 3  Condition: hsm_gated
+2026-04-15 02:11:56,833 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:58,090 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:11:59,378 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:00,669 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:01,965 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:12,654 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:12:14,994 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:17,250 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:19,721 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:22,270 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:24,818 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:35,496 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:12:36,820 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:38,084 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:39,409 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:40,759 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:42,005 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:12:45,430 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:12:45,590 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:12:45,784 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:12:46,026 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:12:46,249 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:12:46,412 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:12:46,414 [INFO]       ✓  wall_QPS=2.3028  qps=3.7549  queries=120  errors=0  wall=52.11s  advisor_calls=3
+2026-04-15 02:12:46,416 [INFO] 
+── Scale Factor SF=3.0  db=tpch_sf3  (timeout=1800s / 30min per query) ─────────────
+2026-04-15 02:12:46,417 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 02:12:46,417 [INFO] 
+  Block 1/3  order: hsm_gated
+2026-04-15 02:12:46,417 [INFO]     [7/9]  Block 1  Condition: hsm_gated
+2026-04-15 02:14:32,183 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:14:36,069 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:14:39,928 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:14:43,927 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:14:47,726 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:15:20,745 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:15:35,036 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:15:49,668 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:16:04,227 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:16:18,609 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:16:32,640 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:08,274 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:17:12,087 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:15,950 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:19,671 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:23,240 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:26,928 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:29,354 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:17:30,055 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:17:30,495 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:17:30,942 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:17:32,010 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:17:41,190 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:17:41,191 [INFO]       ✓  wall_QPS=0.5705  qps=0.8081  queries=120  errors=0  wall=210.35s  advisor_calls=5
+2026-04-15 02:17:41,197 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 02:17:41,197 [INFO] 
+  Block 2/3  order: hsm_gated
+2026-04-15 02:17:41,197 [INFO]     [8/9]  Block 2  Condition: hsm_gated
+2026-04-15 02:18:31,342 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:18:35,114 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:18:38,918 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:18:42,664 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:18:46,350 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:19:17,240 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:19:31,176 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:19:45,650 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:19:59,786 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:20:13,773 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:20:28,258 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:20:59,237 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:21:03,032 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:21:07,206 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:21:11,096 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:21:15,372 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:21:19,500 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:21:29,342 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:21:29,826 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:21:30,491 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:21:31,176 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:21:39,379 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:21:41,255 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:21:41,256 [INFO]       ✓  wall_QPS=0.6078  qps=0.9012  queries=120  errors=0  wall=197.44s  advisor_calls=5
+2026-04-15 02:21:41,262 [INFO]   Block trace: 120 queries (4 phases × 30, seed=2)
+2026-04-15 02:21:41,262 [INFO] 
+  Block 3/3  order: hsm_gated
+2026-04-15 02:21:41,262 [INFO]     [9/9]  Block 3  Condition: hsm_gated
+2026-04-15 02:22:34,329 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:22:38,277 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:22:42,373 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:22:46,402 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:22:50,230 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:23:26,745 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:23:40,696 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:23:54,440 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:24:08,015 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:24:21,614 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:24:34,958 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:25:08,401 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:25:11,953 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:25:15,523 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:25:19,230 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:25:23,085 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:25:26,742 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:25:35,978 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:25:36,478 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:25:37,060 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:25:37,724 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:25:38,285 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:25:38,729 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:25:38,729 [INFO]       ✓  wall_QPS=0.6223  qps=0.9118  queries=120  errors=0  wall=192.84s  advisor_calls=3
+2026-04-15 02:25:38,734 [INFO] 
+======================================================================
+2026-04-15 02:25:38,734 [INFO]   All experiments completed (9 runs)
+2026-04-15 02:25:38,734 [INFO]   Results saved to: /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/code/results
+2026-04-15 02:25:38,734 [INFO]   Run analysis/compute_statistics.py to generate tables
+2026-04-15 02:25:38,734 [INFO] ======================================================================
+2026-04-15 02:37:45,383 [INFO] Native mode: connecting to localhost:5432 as 'postgres'
+2026-04-15 02:37:45,384 [INFO] ======================================================================
+2026-04-15 02:37:45,384 [INFO]   HSM Throughput Experiment  (v3 — steady-state design)
+2026-04-15 02:37:45,384 [INFO]   Scale Factors   : [0.2, 1.0, 3.0]
+2026-04-15 02:37:45,384 [INFO]   Conditions      : ['baseline', 'periodic', 'always_on', 'hsm_gated']
+2026-04-15 02:37:45,384 [INFO]   Blocks (reps)   : 10
+2026-04-15 02:37:45,384 [INFO]   Theta           : 0.75
+2026-04-15 02:37:45,384 [INFO]   Design          : Randomized block (seed per block)
+2026-04-15 02:37:45,384 [INFO]   Base indexes    : 9 FK/join + 8 Phase-A filter (steady-state)
+2026-04-15 02:37:45,384 [INFO]   HSM window 0    : observe-only (no advisor trigger)
+2026-04-15 02:37:45,384 [INFO]   Advisor DROP    : all non-FK indexes dropped before CREATE
+2026-04-15 02:37:45,384 [INFO]   Queries/phase   : 30 (120 total, 24 windows)
+2026-04-15 02:37:45,384 [INFO]   Sampling        : without-replacement + 3-variant param pools
+2026-04-15 02:37:45,384 [INFO]   Trace seed      : per-block (seed=block eliminates cache reuse)
+2026-04-15 02:37:45,384 [INFO]   Settle time     : 2s between conditions
+2026-04-15 02:37:45,384 [INFO] ======================================================================
+2026-04-15 02:37:45,384 [INFO] 
+── Scale Factor SF=0.2  db=tpch_scale_sf0_2  (timeout=300s / 5min per query) ─────────────
+2026-04-15 02:37:45,384 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 02:37:45,384 [INFO] 
+  Block 1/10  order: always_on → baseline → periodic → hsm_gated
+2026-04-15 02:37:45,384 [INFO]     [1/120]  Block 1  Condition: always_on
+2026-04-15 02:38:12,699 [INFO]       ✓  wall_QPS=4.9103  qps=18.7212  queries=120  errors=0  wall=24.44s  advisor_calls=24
+2026-04-15 02:38:12,700 [INFO]       … settling 2s …
+2026-04-15 02:38:14,706 [INFO]     [2/120]  Block 1  Condition: baseline
+2026-04-15 02:38:22,233 [INFO]       ✓  wall_QPS=23.8268  qps=23.8285  queries=120  errors=0  wall=5.04s  advisor_calls=0
+2026-04-15 02:38:22,235 [INFO]       … settling 2s …
+2026-04-15 02:38:24,240 [INFO]     [3/120]  Block 1  Condition: periodic
+2026-04-15 02:38:37,123 [INFO]       ✓  wall_QPS=11.5141  qps=21.8001  queries=120  errors=0  wall=10.42s  advisor_calls=8
+2026-04-15 02:38:37,125 [INFO]       … settling 2s …
+2026-04-15 02:38:39,127 [INFO]     [4/120]  Block 1  Condition: hsm_gated
+2026-04-15 02:38:42,091 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:42,319 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:42,552 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:42,779 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:43,007 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:44,192 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:38:44,607 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:44,952 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:45,358 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:45,711 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:46,107 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:47,798 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:38:48,038 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:48,265 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:48,489 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:48,728 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:48,964 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:49,175 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:38:49,227 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:38:49,274 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:38:49,323 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:49,436 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:38:50,059 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:38:50,059 [INFO]       ✓  wall_QPS=14.2114  qps=21.8861  queries=120  errors=0  wall=8.44s  advisor_calls=5
+2026-04-15 02:38:50,062 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 02:38:50,062 [INFO] 
+  Block 2/10  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 02:38:50,062 [INFO]     [5/120]  Block 2  Condition: hsm_gated
+2026-04-15 02:38:52,901 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:53,138 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:53,360 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:53,589 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:53,821 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:54,984 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:38:55,349 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:55,759 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:56,109 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:56,514 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:56,866 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:58,334 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:38:58,576 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:58,809 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:59,041 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:59,286 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:38:59,512 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:39:00,133 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:39:00,198 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:39:00,252 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:39:00,297 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:39:00,828 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:39:01,025 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:39:01,026 [INFO]       ✓  wall_QPS=13.9628  qps=21.7132  queries=120  errors=0  wall=8.59s  advisor_calls=5
+2026-04-15 02:39:01,027 [INFO]       … settling 2s …
+2026-04-15 02:39:03,028 [INFO]     [6/120]  Block 2  Condition: baseline
+2026-04-15 02:39:10,611 [INFO]       ✓  wall_QPS=23.5647  qps=23.5664  queries=120  errors=0  wall=5.09s  advisor_calls=0
+2026-04-15 02:39:10,612 [INFO]       … settling 2s …
+2026-04-15 02:39:12,614 [INFO]     [7/120]  Block 2  Condition: always_on
+2026-04-15 02:39:39,481 [INFO]       ✓  wall_QPS=4.9135  qps=18.3191  queries=120  errors=0  wall=24.42s  advisor_calls=24
+2026-04-15 02:39:39,484 [INFO]       … settling 2s …
+2026-04-15 02:39:41,489 [INFO]     [8/120]  Block 2  Condition: periodic
+2026-04-15 02:39:55,228 [INFO]       ✓  wall_QPS=10.6040  qps=20.9277  queries=120  errors=0  wall=11.32s  advisor_calls=8
+2026-04-15 02:39:55,231 [INFO]   Block trace: 120 queries (4 phases × 30, seed=2)
+2026-04-15 02:39:55,231 [INFO] 
+  Block 3/10  order: periodic → always_on → hsm_gated → baseline
+2026-04-15 02:39:55,231 [INFO]     [9/120]  Block 3  Condition: periodic
+2026-04-15 02:40:11,129 [INFO]       ✓  wall_QPS=8.9608  qps=20.8443  queries=120  errors=0  wall=13.39s  advisor_calls=8
+2026-04-15 02:40:11,131 [INFO]       … settling 2s …
+2026-04-15 02:40:13,136 [INFO]     [10/120]  Block 3  Condition: always_on
+2026-04-15 02:40:41,664 [INFO]       ✓  wall_QPS=4.6063  qps=18.3953  queries=120  errors=0  wall=26.05s  advisor_calls=24
+2026-04-15 02:40:41,666 [INFO]       … settling 2s …
+2026-04-15 02:40:43,672 [INFO]     [11/120]  Block 3  Condition: hsm_gated
+2026-04-15 02:40:46,581 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:46,806 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:47,030 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:47,251 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:47,475 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:48,894 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:40:49,257 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:49,672 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:50,030 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:50,447 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:50,806 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:52,373 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:40:52,603 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:52,827 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:53,058 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:53,282 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:53,501 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:40:54,040 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:40:54,115 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:40:54,186 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:40:54,251 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:40:54,326 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:40:54,392 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:40:54,392 [INFO]       ✓  wall_QPS=14.5414  qps=22.2251  queries=120  errors=0  wall=8.25s  advisor_calls=3
+2026-04-15 02:40:54,394 [INFO]       … settling 2s …
+2026-04-15 02:40:56,396 [INFO]     [12/120]  Block 3  Condition: baseline
+2026-04-15 02:41:04,193 [INFO]       ✓  wall_QPS=22.7233  qps=22.7249  queries=120  errors=0  wall=5.28s  advisor_calls=0
+2026-04-15 02:41:04,196 [INFO]   Block trace: 120 queries (4 phases × 30, seed=3)
+2026-04-15 02:41:04,196 [INFO] 
+  Block 4/10  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 02:41:04,196 [INFO]     [13/120]  Block 4  Condition: hsm_gated
+2026-04-15 02:41:07,053 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:07,277 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:07,501 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:07,734 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:07,964 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:09,227 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:41:09,641 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:10,050 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:10,420 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:10,838 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:11,246 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:12,888 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:41:13,140 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:13,380 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:13,611 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:13,835 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:14,069 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:41:14,237 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:41:14,430 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:41:14,973 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:41:15,047 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:41:15,586 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:41:15,731 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:41:15,732 [INFO]       ✓  wall_QPS=13.1328  qps=20.5899  queries=120  errors=0  wall=9.14s  advisor_calls=7
+2026-04-15 02:41:15,733 [INFO]       … settling 2s …
+2026-04-15 02:41:17,738 [INFO]     [14/120]  Block 4  Condition: baseline
+2026-04-15 02:41:25,600 [INFO]       ✓  wall_QPS=22.2695  qps=22.2713  queries=120  errors=0  wall=5.39s  advisor_calls=0
+2026-04-15 02:41:25,603 [INFO]       … settling 2s …
+2026-04-15 02:41:27,608 [INFO]     [15/120]  Block 4  Condition: always_on
+2026-04-15 02:41:56,519 [INFO]       ✓  wall_QPS=4.5390  qps=18.1438  queries=120  errors=0  wall=26.44s  advisor_calls=24
+2026-04-15 02:41:56,521 [INFO]       … settling 2s …
+2026-04-15 02:41:58,522 [INFO]     [16/120]  Block 4  Condition: periodic
+2026-04-15 02:42:13,292 [INFO]       ✓  wall_QPS=9.7094  qps=20.6796  queries=120  errors=0  wall=12.36s  advisor_calls=8
+2026-04-15 02:42:13,295 [INFO]   Block trace: 120 queries (4 phases × 30, seed=4)
+2026-04-15 02:42:13,295 [INFO] 
+  Block 5/10  order: always_on → baseline → hsm_gated → periodic
+2026-04-15 02:42:13,295 [INFO]     [17/120]  Block 5  Condition: always_on
+2026-04-15 02:42:40,656 [INFO]       ✓  wall_QPS=4.8170  qps=18.0282  queries=120  errors=0  wall=24.91s  advisor_calls=24
+2026-04-15 02:42:40,658 [INFO]       … settling 2s …
+2026-04-15 02:42:42,663 [INFO]     [18/120]  Block 5  Condition: baseline
+2026-04-15 02:42:50,432 [INFO]       ✓  wall_QPS=22.8350  qps=22.8365  queries=120  errors=0  wall=5.26s  advisor_calls=0
+2026-04-15 02:42:50,434 [INFO]       … settling 2s …
+2026-04-15 02:42:52,439 [INFO]     [19/120]  Block 5  Condition: hsm_gated
+2026-04-15 02:42:55,421 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:55,647 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:55,875 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:56,112 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:56,351 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:57,798 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:42:58,167 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:58,530 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:58,950 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:59,371 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:42:59,736 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:01,425 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:43:01,653 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:01,884 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:02,112 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:02,337 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:02,565 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:03,115 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:43:03,196 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:43:03,270 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:43:03,341 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:03,418 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:43:03,487 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:43:03,487 [INFO]       ✓  wall_QPS=14.0770  qps=21.8004  queries=120  errors=0  wall=8.52s  advisor_calls=3
+2026-04-15 02:43:03,489 [INFO]       … settling 2s …
+2026-04-15 02:43:05,491 [INFO]     [20/120]  Block 5  Condition: periodic
+2026-04-15 02:43:20,394 [INFO]       ✓  wall_QPS=9.6160  qps=20.9133  queries=120  errors=0  wall=12.48s  advisor_calls=8
+2026-04-15 02:43:20,397 [INFO]   Block trace: 120 queries (4 phases × 30, seed=5)
+2026-04-15 02:43:20,397 [INFO] 
+  Block 6/10  order: baseline → periodic → hsm_gated → always_on
+2026-04-15 02:43:20,397 [INFO]     [21/120]  Block 6  Condition: baseline
+2026-04-15 02:43:28,069 [INFO]       ✓  wall_QPS=22.8747  qps=22.8764  queries=120  errors=0  wall=5.25s  advisor_calls=0
+2026-04-15 02:43:28,071 [INFO]       … settling 2s …
+2026-04-15 02:43:30,076 [INFO]     [22/120]  Block 6  Condition: periodic
+2026-04-15 02:43:44,283 [INFO]       ✓  wall_QPS=10.2967  qps=20.6222  queries=120  errors=0  wall=11.65s  advisor_calls=8
+2026-04-15 02:43:44,285 [INFO]       … settling 2s …
+2026-04-15 02:43:46,290 [INFO]     [23/120]  Block 6  Condition: hsm_gated
+2026-04-15 02:43:49,181 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:49,410 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:49,632 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:49,861 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:50,093 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:51,405 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:43:51,838 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:52,223 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:52,612 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:53,045 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:53,464 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:54,749 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:43:54,992 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:55,232 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:55,468 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:55,709 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:55,958 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:56,113 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:43:56,189 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:43:56,255 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:43:56,324 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:43:56,522 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:43:57,082 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:43:57,082 [INFO]       ✓  wall_QPS=14.3928  qps=20.9031  queries=120  errors=0  wall=8.34s  advisor_calls=5
+2026-04-15 02:43:57,084 [INFO]       … settling 2s …
+2026-04-15 02:43:59,086 [INFO]     [24/120]  Block 6  Condition: always_on
+2026-04-15 02:44:25,857 [INFO]       ✓  wall_QPS=4.9340  qps=18.2867  queries=120  errors=0  wall=24.32s  advisor_calls=24
+2026-04-15 02:44:25,861 [INFO]   Block trace: 120 queries (4 phases × 30, seed=6)
+2026-04-15 02:44:25,861 [INFO] 
+  Block 7/10  order: hsm_gated → always_on → periodic → baseline
+2026-04-15 02:44:25,861 [INFO]     [25/120]  Block 7  Condition: hsm_gated
+2026-04-15 02:44:28,706 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:28,935 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:29,155 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:29,382 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:29,605 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:31,103 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:44:31,463 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:31,822 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:32,186 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:32,543 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:32,902 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:34,031 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:44:34,263 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:34,485 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:34,707 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:34,931 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:35,159 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:35,772 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:44:35,906 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:44:36,465 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:44:36,544 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:44:36,697 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:44:37,335 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:44:37,336 [INFO]       ✓  wall_QPS=13.1990  qps=21.7733  queries=120  errors=0  wall=9.09s  advisor_calls=7
+2026-04-15 02:44:37,337 [INFO]       … settling 2s …
+2026-04-15 02:44:39,343 [INFO]     [26/120]  Block 7  Condition: always_on
+2026-04-15 02:45:07,929 [INFO]       ✓  wall_QPS=4.6132  qps=18.7906  queries=120  errors=0  wall=26.01s  advisor_calls=24
+2026-04-15 02:45:07,931 [INFO]       … settling 2s …
+2026-04-15 02:45:09,934 [INFO]     [27/120]  Block 7  Condition: periodic
+2026-04-15 02:45:25,249 [INFO]       ✓  wall_QPS=9.3641  qps=21.5232  queries=120  errors=0  wall=12.81s  advisor_calls=8
+2026-04-15 02:45:25,252 [INFO]       … settling 2s …
+2026-04-15 02:45:27,257 [INFO]     [28/120]  Block 7  Condition: baseline
+2026-04-15 02:45:34,782 [INFO]       ✓  wall_QPS=23.8663  qps=23.8681  queries=120  errors=0  wall=5.03s  advisor_calls=0
+2026-04-15 02:45:34,784 [INFO]   Block trace: 120 queries (4 phases × 30, seed=7)
+2026-04-15 02:45:34,785 [INFO] 
+  Block 8/10  order: hsm_gated → periodic → baseline → always_on
+2026-04-15 02:45:34,785 [INFO]     [29/120]  Block 8  Condition: hsm_gated
+2026-04-15 02:45:37,789 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:38,013 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:38,244 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:38,470 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:38,694 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:39,914 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:45:40,273 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:40,619 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:40,967 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:41,314 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:41,653 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:43,079 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:45:43,330 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:43,567 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:43,808 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,048 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,291 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,518 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:45:44,568 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,630 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,687 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,732 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,777 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:45:44,777 [INFO]       ✓  wall_QPS=16.0987  qps=22.9354  queries=120  errors=0  wall=7.45s  advisor_calls=3
+2026-04-15 02:45:44,779 [INFO]       … settling 2s …
+2026-04-15 02:45:46,784 [INFO]     [30/120]  Block 8  Condition: periodic
+2026-04-15 02:46:00,106 [INFO]       ✓  wall_QPS=11.0336  qps=21.6457  queries=120  errors=0  wall=10.88s  advisor_calls=8
+2026-04-15 02:46:00,108 [INFO]       … settling 2s …
+2026-04-15 02:46:02,113 [INFO]     [31/120]  Block 8  Condition: baseline
+2026-04-15 02:46:09,766 [INFO]       ✓  wall_QPS=23.7463  qps=23.7479  queries=120  errors=0  wall=5.05s  advisor_calls=0
+2026-04-15 02:46:09,768 [INFO]       … settling 2s …
+2026-04-15 02:46:11,772 [INFO]     [32/120]  Block 8  Condition: always_on
+2026-04-15 02:46:38,306 [INFO]       ✓  wall_QPS=5.0194  qps=18.5067  queries=120  errors=0  wall=23.91s  advisor_calls=24
+2026-04-15 02:46:38,309 [INFO]   Block trace: 120 queries (4 phases × 30, seed=8)
+2026-04-15 02:46:38,309 [INFO] 
+  Block 9/10  order: baseline → always_on → hsm_gated → periodic
+2026-04-15 02:46:38,309 [INFO]     [33/120]  Block 9  Condition: baseline
+2026-04-15 02:46:45,989 [INFO]       ✓  wall_QPS=22.8017  qps=22.8033  queries=120  errors=0  wall=5.26s  advisor_calls=0
+2026-04-15 02:46:45,992 [INFO]       … settling 2s …
+2026-04-15 02:46:47,997 [INFO]     [34/120]  Block 9  Condition: always_on
+2026-04-15 02:47:15,531 [INFO]       ✓  wall_QPS=4.8169  qps=17.9622  queries=120  errors=0  wall=24.91s  advisor_calls=24
+2026-04-15 02:47:15,533 [INFO]       … settling 2s …
+2026-04-15 02:47:17,535 [INFO]     [35/120]  Block 9  Condition: hsm_gated
+2026-04-15 02:47:20,538 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:20,762 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:20,985 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:21,206 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:21,436 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:22,865 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:47:23,282 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:23,628 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:23,979 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:24,388 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:24,789 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:25,895 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:47:26,123 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:26,353 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:26,579 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:26,809 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:27,029 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:47:27,236 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:47:27,777 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:47:27,929 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:47:28,006 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:47:28,073 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:47:28,141 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:47:28,141 [INFO]       ✓  wall_QPS=14.9038  qps=21.8085  queries=120  errors=0  wall=8.05s  advisor_calls=5
+2026-04-15 02:47:28,143 [INFO]       … settling 2s …
+2026-04-15 02:47:30,145 [INFO]     [36/120]  Block 9  Condition: periodic
+2026-04-15 02:47:45,487 [INFO]       ✓  wall_QPS=9.3675  qps=20.9235  queries=120  errors=0  wall=12.81s  advisor_calls=8
+2026-04-15 02:47:45,491 [INFO]   Block trace: 120 queries (4 phases × 30, seed=9)
+2026-04-15 02:47:45,491 [INFO] 
+  Block 10/10  order: baseline → periodic → always_on → hsm_gated
+2026-04-15 02:47:45,491 [INFO]     [37/120]  Block 10  Condition: baseline
+2026-04-15 02:47:53,077 [INFO]       ✓  wall_QPS=23.3895  qps=23.3913  queries=120  errors=0  wall=5.13s  advisor_calls=0
+2026-04-15 02:47:53,078 [INFO]       … settling 2s …
+2026-04-15 02:47:55,079 [INFO]     [38/120]  Block 10  Condition: periodic
+2026-04-15 02:48:09,851 [INFO]       ✓  wall_QPS=9.8344  qps=21.3636  queries=120  errors=0  wall=12.20s  advisor_calls=8
+2026-04-15 02:48:09,853 [INFO]       … settling 2s …
+2026-04-15 02:48:11,856 [INFO]     [39/120]  Block 10  Condition: always_on
+2026-04-15 02:48:38,857 [INFO]       ✓  wall_QPS=4.9292  qps=18.3860  queries=120  errors=0  wall=24.34s  advisor_calls=24
+2026-04-15 02:48:38,859 [INFO]       … settling 2s …
+2026-04-15 02:48:40,865 [INFO]     [40/120]  Block 10  Condition: hsm_gated
+2026-04-15 02:48:44,041 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:44,262 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:44,485 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:44,710 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:44,933 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:46,306 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:48:46,727 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:47,141 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:47,510 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:47,880 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:48,247 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:49,361 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:48:49,593 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:49,819 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:50,046 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:50,278 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:50,505 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:48:51,146 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:48:51,234 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:48:51,324 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:48:51,399 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:48:51,477 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:48:51,547 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:48:51,548 [INFO]       ✓  wall_QPS=15.0588  qps=21.7354  queries=120  errors=0  wall=7.97s  advisor_calls=3
+2026-04-15 02:48:51,550 [INFO] 
+── Scale Factor SF=1.0  db=tpch_sf1  (timeout=900s / 15min per query) ─────────────
+2026-04-15 02:48:51,551 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 02:48:51,551 [INFO] 
+  Block 1/10  order: always_on → baseline → periodic → hsm_gated
+2026-04-15 02:48:51,551 [INFO]     [41/120]  Block 1  Condition: always_on
+2026-04-15 02:51:38,647 [INFO]       ✓  wall_QPS=0.7901  qps=3.9032  queries=120  errors=0  wall=151.88s  advisor_calls=24
+2026-04-15 02:51:38,650 [INFO]       … settling 2s …
+2026-04-15 02:51:40,654 [INFO]     [42/120]  Block 1  Condition: baseline
+2026-04-15 02:52:24,230 [INFO]       ✓  wall_QPS=4.0837  qps=4.0838  queries=120  errors=0  wall=29.38s  advisor_calls=0
+2026-04-15 02:52:24,233 [INFO]       … settling 2s …
+2026-04-15 02:52:26,244 [INFO]     [43/120]  Block 1  Condition: periodic
+2026-04-15 02:53:45,204 [INFO]       ✓  wall_QPS=1.8913  qps=4.0187  queries=120  errors=0  wall=63.45s  advisor_calls=8
+2026-04-15 02:53:45,207 [INFO]       … settling 2s …
+2026-04-15 02:53:47,210 [INFO]     [44/120]  Block 1  Condition: hsm_gated
+2026-04-15 02:54:03,851 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:05,060 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:06,274 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:07,550 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:08,779 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:18,110 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:54:20,378 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:22,650 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:24,889 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:27,092 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:29,364 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:40,121 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:54:41,396 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:42,658 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:43,923 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:45,186 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:46,467 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:47,145 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:54:47,345 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:54:47,475 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:54:47,601 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:54:47,967 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:54:51,485 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:54:51,486 [INFO]       ✓  wall_QPS=2.3946  qps=4.0173  queries=120  errors=0  wall=50.11s  advisor_calls=5
+2026-04-15 02:54:51,489 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 02:54:51,489 [INFO] 
+  Block 2/10  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 02:54:51,489 [INFO]     [45/120]  Block 2  Condition: hsm_gated
+2026-04-15 02:55:08,467 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:09,716 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:10,932 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:12,139 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:13,369 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:21,817 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:55:24,100 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:26,370 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:28,596 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:30,833 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:33,078 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:42,728 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 02:55:43,965 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:45,229 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:46,449 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:47,701 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:48,943 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 02:55:52,451 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 02:55:52,602 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:55:52,797 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:55:53,000 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 02:55:56,322 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:55:56,937 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 02:55:56,937 [INFO]       ✓  wall_QPS=2.3561  qps=4.0308  queries=120  errors=0  wall=50.93s  advisor_calls=5
+2026-04-15 02:55:56,939 [INFO]       … settling 2s …
+2026-04-15 02:55:58,941 [INFO]     [46/120]  Block 2  Condition: baseline
+2026-04-15 02:56:42,541 [INFO]       ✓  wall_QPS=4.1284  qps=4.1285  queries=120  errors=0  wall=29.07s  advisor_calls=0
+2026-04-15 02:56:42,545 [INFO]       … settling 2s …
+2026-04-15 02:56:44,551 [INFO]     [47/120]  Block 2  Condition: always_on
+2026-04-15 02:59:25,226 [INFO]       ✓  wall_QPS=0.8259  qps=3.9444  queries=120  errors=0  wall=145.30s  advisor_calls=24
+2026-04-15 02:59:25,232 [INFO]       … settling 2s …
+2026-04-15 02:59:27,234 [INFO]     [48/120]  Block 2  Condition: periodic
+2026-04-15 03:00:47,280 [INFO]       ✓  wall_QPS=1.8070  qps=4.0497  queries=120  errors=0  wall=66.41s  advisor_calls=8
+2026-04-15 03:00:47,285 [INFO]   Block trace: 120 queries (4 phases × 30, seed=2)
+2026-04-15 03:00:47,285 [INFO] 
+  Block 3/10  order: periodic → always_on → hsm_gated → baseline
+2026-04-15 03:00:47,285 [INFO]     [49/120]  Block 3  Condition: periodic
+2026-04-15 03:02:20,338 [INFO]       ✓  wall_QPS=1.5187  qps=4.0105  queries=120  errors=0  wall=79.01s  advisor_calls=8
+2026-04-15 03:02:20,341 [INFO]       … settling 2s …
+2026-04-15 03:02:22,345 [INFO]     [50/120]  Block 3  Condition: always_on
+2026-04-15 03:05:11,806 [INFO]       ✓  wall_QPS=0.7722  qps=3.9126  queries=120  errors=0  wall=155.39s  advisor_calls=24
+2026-04-15 03:05:11,813 [INFO]       … settling 2s …
+2026-04-15 03:05:13,821 [INFO]     [51/120]  Block 3  Condition: hsm_gated
+2026-04-15 03:05:29,972 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:31,169 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:32,417 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:33,684 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:34,905 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:44,503 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:05:46,721 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:48,926 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:51,236 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:53,513 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:05:55,759 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:06:06,158 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:06:07,387 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:06:08,641 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:06:09,910 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:06:11,180 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:06:12,432 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:06:15,781 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:06:15,932 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:06:16,108 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:06:16,301 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:06:16,473 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:06:16,602 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:06:16,603 [INFO]       ✓  wall_QPS=2.4418  qps=4.0471  queries=120  errors=0  wall=49.14s  advisor_calls=3
+2026-04-15 03:06:16,606 [INFO]       … settling 2s …
+2026-04-15 03:06:18,615 [INFO]     [52/120]  Block 3  Condition: baseline
+2026-04-15 03:07:03,203 [INFO]       ✓  wall_QPS=4.0802  qps=4.0802  queries=120  errors=0  wall=29.41s  advisor_calls=0
+2026-04-15 03:07:03,207 [INFO]   Block trace: 120 queries (4 phases × 30, seed=3)
+2026-04-15 03:07:03,207 [INFO] 
+  Block 4/10  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 03:07:03,207 [INFO]     [53/120]  Block 4  Condition: hsm_gated
+2026-04-15 03:07:21,106 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:22,348 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:23,608 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:24,858 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:26,085 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:33,817 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:07:36,109 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:38,317 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:40,460 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:42,703 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:44,893 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:55,301 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:07:56,588 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:57,873 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:07:59,153 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:08:00,574 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:08:01,990 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:08:02,398 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:08:02,962 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:08:06,219 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:08:06,428 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:08:09,610 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:08:09,944 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:08:09,944 [INFO]       ✓  wall_QPS=2.3388  qps=3.9818  queries=120  errors=0  wall=51.31s  advisor_calls=7
+2026-04-15 03:08:09,946 [INFO]       … settling 2s …
+2026-04-15 03:08:11,954 [INFO]     [54/120]  Block 4  Condition: baseline
+2026-04-15 03:08:56,719 [INFO]       ✓  wall_QPS=3.9466  qps=3.9467  queries=120  errors=0  wall=30.41s  advisor_calls=0
+2026-04-15 03:08:56,722 [INFO]       … settling 2s …
+2026-04-15 03:08:58,732 [INFO]     [55/120]  Block 4  Condition: always_on
+2026-04-15 03:11:51,994 [INFO]       ✓  wall_QPS=0.7613  qps=3.8925  queries=120  errors=0  wall=157.63s  advisor_calls=24
+2026-04-15 03:11:51,997 [INFO]       … settling 2s …
+2026-04-15 03:11:54,007 [INFO]     [56/120]  Block 4  Condition: periodic
+2026-04-15 03:13:20,802 [INFO]       ✓  wall_QPS=1.6387  qps=4.0191  queries=120  errors=0  wall=73.23s  advisor_calls=8
+2026-04-15 03:13:20,807 [INFO]   Block trace: 120 queries (4 phases × 30, seed=4)
+2026-04-15 03:13:20,807 [INFO] 
+  Block 5/10  order: always_on → baseline → hsm_gated → periodic
+2026-04-15 03:13:20,807 [INFO]     [57/120]  Block 5  Condition: always_on
+2026-04-15 03:16:00,078 [INFO]       ✓  wall_QPS=0.8253  qps=3.9094  queries=120  errors=0  wall=145.41s  advisor_calls=24
+2026-04-15 03:16:00,080 [INFO]       … settling 2s …
+2026-04-15 03:16:02,086 [INFO]     [58/120]  Block 5  Condition: baseline
+2026-04-15 03:16:45,420 [INFO]       ✓  wall_QPS=4.1308  qps=4.1309  queries=120  errors=0  wall=29.05s  advisor_calls=0
+2026-04-15 03:16:45,424 [INFO]       … settling 2s …
+2026-04-15 03:16:47,433 [INFO]     [59/120]  Block 5  Condition: hsm_gated
+2026-04-15 03:17:05,281 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:06,553 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:07,760 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:09,020 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:10,257 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:19,839 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:17:22,177 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:24,465 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:26,685 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:28,977 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:31,224 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:41,813 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:17:43,029 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:44,261 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:45,528 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:46,767 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:48,021 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:51,185 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:17:51,373 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:17:51,503 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:17:51,636 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:17:51,812 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:17:52,006 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:17:52,007 [INFO]       ✓  wall_QPS=2.4380  qps=4.0276  queries=120  errors=0  wall=49.22s  advisor_calls=3
+2026-04-15 03:17:52,010 [INFO]       … settling 2s …
+2026-04-15 03:17:54,012 [INFO]     [60/120]  Block 5  Condition: periodic
+2026-04-15 03:19:22,123 [INFO]       ✓  wall_QPS=1.6395  qps=4.0132  queries=120  errors=0  wall=73.19s  advisor_calls=8
+2026-04-15 03:19:22,127 [INFO]   Block trace: 120 queries (4 phases × 30, seed=5)
+2026-04-15 03:19:22,127 [INFO] 
+  Block 6/10  order: baseline → periodic → hsm_gated → always_on
+2026-04-15 03:19:22,128 [INFO]     [61/120]  Block 6  Condition: baseline
+2026-04-15 03:20:05,590 [INFO]       ✓  wall_QPS=4.1279  qps=4.1280  queries=120  errors=0  wall=29.07s  advisor_calls=0
+2026-04-15 03:20:05,593 [INFO]       … settling 2s …
+2026-04-15 03:20:07,600 [INFO]     [62/120]  Block 6  Condition: periodic
+2026-04-15 03:21:32,779 [INFO]       ✓  wall_QPS=1.7248  qps=4.0310  queries=120  errors=0  wall=69.57s  advisor_calls=8
+2026-04-15 03:21:32,782 [INFO]       … settling 2s …
+2026-04-15 03:21:34,792 [INFO]     [63/120]  Block 6  Condition: hsm_gated
+2026-04-15 03:21:51,425 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:21:52,669 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:21:53,956 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:21:55,214 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:21:56,482 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:04,925 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:22:07,275 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:09,523 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:11,787 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:14,014 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:16,293 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:24,509 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:22:25,751 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:27,018 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:28,238 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:29,441 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:30,704 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:31,129 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:22:31,270 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:22:31,434 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:22:31,597 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:22:32,239 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:22:35,523 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:22:35,524 [INFO]       ✓  wall_QPS=2.5771  qps=4.0149  queries=120  errors=0  wall=46.56s  advisor_calls=5
+2026-04-15 03:22:35,528 [INFO]       … settling 2s …
+2026-04-15 03:22:37,539 [INFO]     [64/120]  Block 6  Condition: always_on
+2026-04-15 03:25:13,969 [INFO]       ✓  wall_QPS=0.8482  qps=3.9222  queries=120  errors=0  wall=141.48s  advisor_calls=24
+2026-04-15 03:25:13,974 [INFO]   Block trace: 120 queries (4 phases × 30, seed=6)
+2026-04-15 03:25:13,974 [INFO] 
+  Block 7/10  order: hsm_gated → always_on → periodic → baseline
+2026-04-15 03:25:13,974 [INFO]     [65/120]  Block 7  Condition: hsm_gated
+2026-04-15 03:25:30,379 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:31,584 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:32,818 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:34,095 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:35,306 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:44,674 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:25:46,870 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:49,081 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:51,346 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:53,592 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:25:55,843 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:02,463 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:26:03,689 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:04,924 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:06,161 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:07,402 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:08,656 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:12,090 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:26:12,493 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:26:15,806 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:26:15,946 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:26:16,313 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:26:19,656 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:26:19,656 [INFO]       ✓  wall_QPS=2.3136  qps=4.0462  queries=120  errors=0  wall=51.87s  advisor_calls=7
+2026-04-15 03:26:19,658 [INFO]       … settling 2s …
+2026-04-15 03:26:21,667 [INFO]     [66/120]  Block 7  Condition: always_on
+2026-04-15 03:29:10,428 [INFO]       ✓  wall_QPS=0.7779  qps=3.9545  queries=120  errors=0  wall=154.26s  advisor_calls=24
+2026-04-15 03:29:10,431 [INFO]       … settling 2s …
+2026-04-15 03:29:12,441 [INFO]     [67/120]  Block 7  Condition: periodic
+2026-04-15 03:30:43,853 [INFO]       ✓  wall_QPS=1.5451  qps=3.9987  queries=120  errors=0  wall=77.66s  advisor_calls=8
+2026-04-15 03:30:43,857 [INFO]       … settling 2s …
+2026-04-15 03:30:45,867 [INFO]     [68/120]  Block 7  Condition: baseline
+2026-04-15 03:31:28,912 [INFO]       ✓  wall_QPS=4.1318  qps=4.1318  queries=120  errors=0  wall=29.04s  advisor_calls=0
+2026-04-15 03:31:28,916 [INFO]   Block trace: 120 queries (4 phases × 30, seed=7)
+2026-04-15 03:31:28,916 [INFO] 
+  Block 8/10  order: hsm_gated → periodic → baseline → always_on
+2026-04-15 03:31:28,916 [INFO]     [69/120]  Block 8  Condition: hsm_gated
+2026-04-15 03:31:46,921 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:31:48,180 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:31:49,396 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:31:50,639 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:31:51,883 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:31:59,415 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:32:01,754 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:03,973 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:06,231 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:08,392 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:10,576 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:20,435 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:32:21,686 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:22,919 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:24,202 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:25,446 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:26,706 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:27,362 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:32:27,563 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:32:27,686 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:32:27,811 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:32:28,009 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:32:28,170 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:32:28,171 [INFO]       ✓  wall_QPS=2.7403  qps=4.0737  queries=120  errors=0  wall=43.79s  advisor_calls=3
+2026-04-15 03:32:28,174 [INFO]       … settling 2s …
+2026-04-15 03:32:30,180 [INFO]     [70/120]  Block 8  Condition: periodic
+2026-04-15 03:33:46,008 [INFO]       ✓  wall_QPS=1.9760  qps=4.0541  queries=120  errors=0  wall=60.73s  advisor_calls=8
+2026-04-15 03:33:46,011 [INFO]       … settling 2s …
+2026-04-15 03:33:48,022 [INFO]     [71/120]  Block 8  Condition: baseline
+2026-04-15 03:34:31,576 [INFO]       ✓  wall_QPS=4.0916  qps=4.0917  queries=120  errors=0  wall=29.33s  advisor_calls=0
+2026-04-15 03:34:31,579 [INFO]       … settling 2s …
+2026-04-15 03:34:33,589 [INFO]     [72/120]  Block 8  Condition: always_on
+2026-04-15 03:37:09,567 [INFO]       ✓  wall_QPS=0.8560  qps=3.9124  queries=120  errors=0  wall=140.18s  advisor_calls=24
+2026-04-15 03:37:09,571 [INFO]   Block trace: 120 queries (4 phases × 30, seed=8)
+2026-04-15 03:37:09,571 [INFO] 
+  Block 9/10  order: baseline → always_on → hsm_gated → periodic
+2026-04-15 03:37:09,571 [INFO]     [73/120]  Block 9  Condition: baseline
+2026-04-15 03:37:52,432 [INFO]       ✓  wall_QPS=4.1027  qps=4.1028  queries=120  errors=0  wall=29.25s  advisor_calls=0
+2026-04-15 03:37:52,435 [INFO]       … settling 2s …
+2026-04-15 03:37:54,445 [INFO]     [74/120]  Block 9  Condition: always_on
+2026-04-15 03:40:36,129 [INFO]       ✓  wall_QPS=0.8270  qps=3.9198  queries=120  errors=0  wall=145.11s  advisor_calls=24
+2026-04-15 03:40:36,134 [INFO]       … settling 2s …
+2026-04-15 03:40:38,138 [INFO]     [75/120]  Block 9  Condition: hsm_gated
+2026-04-15 03:40:54,583 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:40:55,849 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:40:57,045 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:40:58,260 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:40:59,529 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:09,062 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:41:11,345 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:13,544 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:15,732 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:17,988 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:20,187 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:26,580 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:41:27,811 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:29,029 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:30,270 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:31,515 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:32,784 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:41:33,490 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:41:36,777 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:41:37,126 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 03:41:37,305 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:41:37,506 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:41:37,635 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:41:37,636 [INFO]       ✓  wall_QPS=2.6336  qps=4.0618  queries=120  errors=0  wall=45.57s  advisor_calls=5
+2026-04-15 03:41:37,638 [INFO]       … settling 2s …
+2026-04-15 03:41:39,641 [INFO]     [76/120]  Block 9  Condition: periodic
+2026-04-15 03:43:10,374 [INFO]       ✓  wall_QPS=1.6030  qps=4.0154  queries=120  errors=0  wall=74.86s  advisor_calls=8
+2026-04-15 03:43:10,379 [INFO]   Block trace: 120 queries (4 phases × 30, seed=9)
+2026-04-15 03:43:10,379 [INFO] 
+  Block 10/10  order: baseline → periodic → always_on → hsm_gated
+2026-04-15 03:43:10,379 [INFO]     [77/120]  Block 10  Condition: baseline
+2026-04-15 03:43:53,861 [INFO]       ✓  wall_QPS=4.1618  qps=4.1619  queries=120  errors=0  wall=28.83s  advisor_calls=0
+2026-04-15 03:43:53,864 [INFO]       … settling 2s …
+2026-04-15 03:43:55,865 [INFO]     [78/120]  Block 10  Condition: periodic
+2026-04-15 03:45:23,974 [INFO]       ✓  wall_QPS=1.6526  qps=4.0589  queries=120  errors=0  wall=72.61s  advisor_calls=8
+2026-04-15 03:45:23,978 [INFO]       … settling 2s …
+2026-04-15 03:45:25,983 [INFO]     [79/120]  Block 10  Condition: always_on
+2026-04-15 03:47:59,109 [INFO]       ✓  wall_QPS=0.8630  qps=3.8993  queries=120  errors=0  wall=139.06s  advisor_calls=24
+2026-04-15 03:47:59,112 [INFO]       … settling 2s …
+2026-04-15 03:48:01,116 [INFO]     [80/120]  Block 10  Condition: hsm_gated
+2026-04-15 03:48:17,287 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:18,498 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:19,765 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:21,007 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:22,268 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:31,907 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:48:34,160 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:36,476 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:38,715 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:40,882 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:43,036 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:49,803 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 03:48:51,040 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:52,308 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:53,591 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:54,831 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:56,074 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 03:48:59,390 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 03:48:59,615 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:48:59,791 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:48:59,932 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:49:00,117 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:49:00,304 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 03:49:00,305 [INFO]       ✓  wall_QPS=2.6322  qps=4.0610  queries=120  errors=0  wall=45.59s  advisor_calls=3
+2026-04-15 03:49:00,309 [INFO] 
+── Scale Factor SF=3.0  db=tpch_sf3  (timeout=1800s / 30min per query) ─────────────
+2026-04-15 03:49:00,310 [INFO]   Block trace: 120 queries (4 phases × 30, seed=0)
+2026-04-15 03:49:00,310 [INFO] 
+  Block 1/10  order: always_on → baseline → periodic → hsm_gated
+2026-04-15 03:49:00,310 [INFO]     [81/120]  Block 1  Condition: always_on
+2026-04-15 03:58:12,854 [INFO]       ✓  wall_QPS=0.2387  qps=0.9775  queries=120  errors=0  wall=502.76s  advisor_calls=24
+2026-04-15 03:58:12,859 [INFO]       … settling 2s …
+2026-04-15 03:58:14,866 [INFO]     [82/120]  Block 1  Condition: baseline
+2026-04-15 04:00:53,366 [INFO]       ✓  wall_QPS=1.0434  qps=1.0435  queries=120  errors=0  wall=115.00s  advisor_calls=0
+2026-04-15 04:00:53,371 [INFO]       … settling 2s …
+2026-04-15 04:00:55,381 [INFO]     [83/120]  Block 1  Condition: periodic
+2026-04-15 04:05:27,722 [INFO]       ✓  wall_QPS=0.5338  qps=0.9887  queries=120  errors=0  wall=224.82s  advisor_calls=8
+2026-04-15 04:05:27,728 [INFO]       … settling 2s …
+2026-04-15 04:05:29,738 [INFO]     [84/120]  Block 1  Condition: hsm_gated
+2026-04-15 04:06:19,536 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:06:23,227 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:06:27,000 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:06:30,857 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:06:34,589 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:07:06,095 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:07:20,204 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:07:34,501 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:07:48,394 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:08:02,394 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:08:16,147 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:08:50,805 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:08:54,424 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:08:58,093 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:09:01,672 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:09:05,293 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:09:08,930 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:09:10,981 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 04:09:11,678 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:09:12,125 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:09:12,579 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:09:13,638 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:09:22,768 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:09:22,769 [INFO]       ✓  wall_QPS=0.6288  qps=0.9205  queries=120  errors=0  wall=190.85s  advisor_calls=5
+2026-04-15 04:09:22,774 [INFO]   Block trace: 120 queries (4 phases × 30, seed=1)
+2026-04-15 04:09:22,775 [INFO] 
+  Block 2/10  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 04:09:22,775 [INFO]     [85/120]  Block 2  Condition: hsm_gated
+2026-04-15 04:10:14,359 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:10:18,152 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:10:21,968 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:10:25,772 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:10:29,593 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:11:00,778 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:11:14,826 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:11:29,116 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:11:42,628 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:11:56,146 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:12:09,719 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:12:40,229 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:12:43,842 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:12:47,510 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:12:51,060 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:12:54,665 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:12:58,286 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:13:07,837 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 04:13:08,304 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:13:08,948 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:13:09,636 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:13:17,766 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:13:19,681 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:13:19,682 [INFO]       ✓  wall_QPS=0.6211  qps=0.9267  queries=120  errors=0  wall=193.21s  advisor_calls=5
+2026-04-15 04:13:19,688 [INFO]       … settling 2s …
+2026-04-15 04:13:21,692 [INFO]     [86/120]  Block 2  Condition: baseline
+2026-04-15 04:15:56,061 [INFO]       ✓  wall_QPS=1.0650  qps=1.0650  queries=120  errors=0  wall=112.68s  advisor_calls=0
+2026-04-15 04:15:56,067 [INFO]       … settling 2s …
+2026-04-15 04:15:58,077 [INFO]     [87/120]  Block 2  Condition: always_on
+2026-04-15 04:24:45,720 [INFO]       ✓  wall_QPS=0.2508  qps=0.9782  queries=120  errors=0  wall=478.38s  advisor_calls=24
+2026-04-15 04:24:45,724 [INFO]       … settling 2s …
+2026-04-15 04:24:47,735 [INFO]     [88/120]  Block 2  Condition: periodic
+2026-04-15 04:29:30,069 [INFO]       ✓  wall_QPS=0.5024  qps=0.9834  queries=120  errors=0  wall=238.84s  advisor_calls=8
+2026-04-15 04:29:30,074 [INFO]   Block trace: 120 queries (4 phases × 30, seed=2)
+2026-04-15 04:29:30,074 [INFO] 
+  Block 3/10  order: periodic → always_on → hsm_gated → baseline
+2026-04-15 04:29:30,074 [INFO]     [89/120]  Block 3  Condition: periodic
+2026-04-15 04:34:52,889 [INFO]       ✓  wall_QPS=0.4279  qps=0.9282  queries=120  errors=0  wall=280.45s  advisor_calls=8
+2026-04-15 04:34:52,895 [INFO]       … settling 2s …
+2026-04-15 04:34:54,899 [INFO]     [90/120]  Block 3  Condition: always_on
+2026-04-15 04:44:12,516 [INFO]       ✓  wall_QPS=0.2330  qps=0.9585  queries=120  errors=0  wall=514.96s  advisor_calls=24
+2026-04-15 04:44:12,521 [INFO]       … settling 2s …
+2026-04-15 04:44:14,529 [INFO]     [91/120]  Block 3  Condition: hsm_gated
+2026-04-15 04:45:07,481 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:45:11,309 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:45:15,076 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:45:18,826 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:45:22,552 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:45:59,059 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:46:13,010 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:46:26,797 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:46:40,123 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:46:53,470 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:47:07,069 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:47:40,027 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:47:43,601 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:47:47,206 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:47:50,908 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:47:54,707 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:47:58,285 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:48:07,514 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 04:48:08,018 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:48:08,607 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:48:09,299 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:48:09,858 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:48:10,301 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:48:10,301 [INFO]       ✓  wall_QPS=0.6293  qps=0.9304  queries=120  errors=0  wall=190.69s  advisor_calls=3
+2026-04-15 04:48:10,305 [INFO]       … settling 2s …
+2026-04-15 04:48:12,311 [INFO]     [92/120]  Block 3  Condition: baseline
+2026-04-15 04:50:47,533 [INFO]       ✓  wall_QPS=1.0629  qps=1.0629  queries=120  errors=0  wall=112.90s  advisor_calls=0
+2026-04-15 04:50:47,540 [INFO]   Block trace: 120 queries (4 phases × 30, seed=3)
+2026-04-15 04:50:47,540 [INFO] 
+  Block 4/10  order: hsm_gated → baseline → always_on → periodic
+2026-04-15 04:50:47,540 [INFO]     [93/120]  Block 4  Condition: hsm_gated
+2026-04-15 04:51:41,543 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:51:45,338 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:51:49,128 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:51:52,943 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:51:56,700 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:52:24,699 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:52:35,294 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:52:45,989 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:52:56,270 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:53:06,605 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:53:16,937 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:53:49,602 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 04:53:53,346 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:53:57,011 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:54:00,527 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:54:04,148 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:54:07,738 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 04:54:08,902 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 04:54:10,614 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:54:18,769 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:54:19,445 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 04:54:27,484 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:54:28,461 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 04:54:28,462 [INFO]       ✓  wall_QPS=0.6880  qps=1.0710  queries=120  errors=0  wall=174.43s  advisor_calls=7
+2026-04-15 04:54:28,464 [INFO]       … settling 2s …
+2026-04-15 04:54:30,475 [INFO]     [94/120]  Block 4  Condition: baseline
+2026-04-15 04:57:07,040 [INFO]       ✓  wall_QPS=1.0571  qps=1.0571  queries=120  errors=0  wall=113.52s  advisor_calls=0
+2026-04-15 04:57:07,047 [INFO]       … settling 2s …
+2026-04-15 04:57:09,050 [INFO]     [95/120]  Block 4  Condition: always_on
+2026-04-15 05:06:33,335 [INFO]       ✓  wall_QPS=0.2324  qps=0.9732  queries=120  errors=0  wall=516.36s  advisor_calls=24
+2026-04-15 05:06:33,340 [INFO]       … settling 2s …
+2026-04-15 05:06:35,346 [INFO]     [96/120]  Block 4  Condition: periodic
+2026-04-15 05:11:31,677 [INFO]       ✓  wall_QPS=0.4741  qps=1.0171  queries=120  errors=0  wall=253.09s  advisor_calls=8
+2026-04-15 05:11:31,683 [INFO]   Block trace: 120 queries (4 phases × 30, seed=4)
+2026-04-15 05:11:31,683 [INFO] 
+  Block 5/10  order: always_on → baseline → hsm_gated → periodic
+2026-04-15 05:11:31,683 [INFO]     [97/120]  Block 5  Condition: always_on
+2026-04-15 05:20:18,681 [INFO]       ✓  wall_QPS=0.2474  qps=0.9898  queries=120  errors=0  wall=485.05s  advisor_calls=24
+2026-04-15 05:20:18,687 [INFO]       … settling 2s …
+2026-04-15 05:20:20,697 [INFO]     [98/120]  Block 5  Condition: baseline
+2026-04-15 05:22:56,799 [INFO]       ✓  wall_QPS=1.0472  qps=1.0472  queries=120  errors=0  wall=114.60s  advisor_calls=0
+2026-04-15 05:22:56,805 [INFO]       … settling 2s …
+2026-04-15 05:22:58,813 [INFO]     [99/120]  Block 5  Condition: hsm_gated
+2026-04-15 05:23:52,871 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:23:56,710 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:24:00,473 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:24:04,261 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:24:08,018 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:24:43,923 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 05:24:57,951 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:25:11,809 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:25:25,328 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:25:38,584 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:25:52,276 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:25,175 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 05:26:28,930 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:32,654 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:36,590 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:40,683 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:44,557 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:54,530 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 05:26:55,167 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 05:26:55,599 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 05:26:56,068 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:26:56,630 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 05:26:57,302 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 05:26:57,303 [INFO]       ✓  wall_QPS=0.6243  qps=0.9172  queries=120  errors=0  wall=192.20s  advisor_calls=3
+2026-04-15 05:26:57,307 [INFO]       … settling 2s …
+2026-04-15 05:26:59,313 [INFO]     [100/120]  Block 5  Condition: periodic
+2026-04-15 05:32:09,343 [INFO]       ✓  wall_QPS=0.4478  qps=0.9385  queries=120  errors=0  wall=267.95s  advisor_calls=8
+2026-04-15 05:32:09,349 [INFO]   Block trace: 120 queries (4 phases × 30, seed=5)
+2026-04-15 05:32:09,349 [INFO] 
+  Block 6/10  order: baseline → periodic → hsm_gated → always_on
+2026-04-15 05:32:09,349 [INFO]     [101/120]  Block 6  Condition: baseline
+2026-04-15 05:34:44,307 [INFO]       ✓  wall_QPS=1.0640  qps=1.0640  queries=120  errors=0  wall=112.78s  advisor_calls=0
+2026-04-15 05:34:44,313 [INFO]       … settling 2s …
+2026-04-15 05:34:46,317 [INFO]     [102/120]  Block 6  Condition: periodic
+2026-04-15 05:39:43,576 [INFO]       ✓  wall_QPS=0.4809  qps=0.9488  queries=120  errors=0  wall=249.53s  advisor_calls=8
+2026-04-15 05:39:43,582 [INFO]       … settling 2s …
+2026-04-15 05:39:45,590 [INFO]     [103/120]  Block 6  Condition: hsm_gated
+2026-04-15 05:40:35,039 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:40:38,798 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:40:42,618 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:40:46,394 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:40:50,186 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:41:22,385 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 05:41:36,608 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:41:50,088 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:42:03,556 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:42:17,126 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:42:30,536 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:42:56,751 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 05:43:00,370 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:43:04,073 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:43:07,628 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:43:11,255 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:43:14,965 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:43:16,205 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 05:43:16,680 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 05:43:17,259 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 05:43:17,815 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:43:19,749 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 05:43:28,732 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 05:43:28,733 [INFO]       ✓  wall_QPS=0.6623  qps=0.9438  queries=120  errors=0  wall=181.19s  advisor_calls=5
+2026-04-15 05:43:28,735 [INFO]       … settling 2s …
+2026-04-15 05:43:30,736 [INFO]     [104/120]  Block 6  Condition: always_on
+2026-04-15 05:52:12,711 [INFO]       ✓  wall_QPS=0.2503  qps=0.9707  queries=120  errors=0  wall=479.35s  advisor_calls=24
+2026-04-15 05:52:12,718 [INFO]   Block trace: 120 queries (4 phases × 30, seed=6)
+2026-04-15 05:52:12,718 [INFO] 
+  Block 7/10  order: hsm_gated → always_on → periodic → baseline
+2026-04-15 05:52:12,718 [INFO]     [105/120]  Block 7  Condition: hsm_gated
+2026-04-15 05:53:03,723 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:53:07,485 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:53:11,284 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:53:15,174 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:53:18,895 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:53:53,274 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 05:54:07,503 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:54:21,035 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:54:34,390 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:54:47,992 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:01,790 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:21,620 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 05:55:25,375 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:29,208 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:32,902 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:36,677 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:40,486 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:55:51,345 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 05:55:52,492 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 05:56:01,609 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 05:56:02,072 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 05:56:03,131 [INFO]   [gated] Window 22: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 05:56:12,218 [INFO]   [gated] Window 23: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 05:56:12,219 [INFO]       ✓  wall_QPS=0.6117  qps=0.9292  queries=120  errors=0  wall=196.17s  advisor_calls=7
+2026-04-15 05:56:12,222 [INFO]       … settling 2s …
+2026-04-15 05:56:14,230 [INFO]     [106/120]  Block 7  Condition: always_on
+2026-04-15 06:05:27,677 [INFO]       ✓  wall_QPS=0.2345  qps=0.9726  queries=120  errors=0  wall=511.78s  advisor_calls=24
+2026-04-15 06:05:27,682 [INFO]       … settling 2s …
+2026-04-15 06:05:29,689 [INFO]     [107/120]  Block 7  Condition: periodic
+2026-04-15 06:10:54,103 [INFO]       ✓  wall_QPS=0.4250  qps=0.9440  queries=120  errors=0  wall=282.38s  advisor_calls=8
+2026-04-15 06:10:54,108 [INFO]       … settling 2s …
+2026-04-15 06:10:56,117 [INFO]     [108/120]  Block 7  Condition: baseline
+2026-04-15 06:13:29,560 [INFO]       ✓  wall_QPS=1.0725  qps=1.0726  queries=120  errors=0  wall=111.88s  advisor_calls=0
+2026-04-15 06:13:29,567 [INFO]   Block trace: 120 queries (4 phases × 30, seed=7)
+2026-04-15 06:13:29,567 [INFO] 
+  Block 8/10  order: hsm_gated → periodic → baseline → always_on
+2026-04-15 06:13:29,568 [INFO]     [109/120]  Block 8  Condition: hsm_gated
+2026-04-15 06:14:23,731 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:14:27,603 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:14:31,381 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:14:35,200 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:14:38,969 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:15:06,902 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 06:15:17,633 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:15:28,161 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:15:39,493 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:15:51,081 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:02,200 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:31,917 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 06:16:35,572 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:39,174 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:42,861 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:46,422 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:50,143 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:52,346 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 06:16:53,033 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:16:53,476 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:16:53,917 [INFO]   [gated] Window 21: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:16:54,602 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:16:55,173 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:16:55,174 [INFO]       ✓  wall_QPS=0.7543  qps=1.0467  queries=120  errors=0  wall=159.09s  advisor_calls=3
+2026-04-15 06:16:55,178 [INFO]       … settling 2s …
+2026-04-15 06:16:57,183 [INFO]     [110/120]  Block 8  Condition: periodic
+2026-04-15 06:21:15,113 [INFO]       ✓  wall_QPS=0.5610  qps=1.0665  queries=120  errors=0  wall=213.89s  advisor_calls=8
+2026-04-15 06:21:15,118 [INFO]       … settling 2s …
+2026-04-15 06:21:17,123 [INFO]     [111/120]  Block 8  Condition: baseline
+2026-04-15 06:23:53,211 [INFO]       ✓  wall_QPS=1.0631  qps=1.0631  queries=120  errors=0  wall=112.88s  advisor_calls=0
+2026-04-15 06:23:53,219 [INFO]       … settling 2s …
+2026-04-15 06:23:55,227 [INFO]     [112/120]  Block 8  Condition: always_on
+2026-04-15 06:32:20,990 [INFO]       ✓  wall_QPS=0.2621  qps=0.9887  queries=120  errors=0  wall=457.77s  advisor_calls=24
+2026-04-15 06:32:20,995 [INFO]   Block trace: 120 queries (4 phases × 30, seed=8)
+2026-04-15 06:32:20,995 [INFO] 
+  Block 9/10  order: baseline → always_on → hsm_gated → periodic
+2026-04-15 06:32:20,995 [INFO]     [113/120]  Block 9  Condition: baseline
+2026-04-15 06:34:56,188 [INFO]       ✓  wall_QPS=1.0612  qps=1.0612  queries=120  errors=0  wall=113.08s  advisor_calls=0
+2026-04-15 06:34:56,192 [INFO]       … settling 2s …
+2026-04-15 06:34:58,198 [INFO]     [114/120]  Block 9  Condition: always_on
+2026-04-15 06:43:34,994 [INFO]       ✓  wall_QPS=0.2568  qps=1.0111  queries=120  errors=0  wall=467.21s  advisor_calls=24
+2026-04-15 06:43:35,000 [INFO]       … settling 2s …
+2026-04-15 06:43:37,007 [INFO]     [115/120]  Block 9  Condition: hsm_gated
+2026-04-15 06:44:26,567 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:44:30,636 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:44:34,565 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:44:38,509 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:44:42,468 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:45:16,629 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 06:45:27,418 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:45:38,362 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:45:48,946 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:00,000 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:10,493 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:30,266 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 06:46:34,084 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:37,937 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:41,756 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:45,616 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:49,575 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 06:46:51,921 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 06:47:02,006 [INFO]   [gated] Window 19: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 06:47:02,965 [INFO]   [gated] Window 20: HSM=0.649 < θ=0.75 → TRIGGER
+2026-04-15 06:47:03,541 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:47:04,227 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:47:04,665 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 06:47:04,665 [INFO]       ✓  wall_QPS=0.7227  qps=1.0341  queries=120  errors=0  wall=166.04s  advisor_calls=5
+2026-04-15 06:47:04,670 [INFO]       … settling 2s …
+2026-04-15 06:47:06,678 [INFO]     [116/120]  Block 9  Condition: periodic
+2026-04-15 06:52:06,372 [INFO]       ✓  wall_QPS=0.4676  qps=1.0058  queries=120  errors=0  wall=256.65s  advisor_calls=8
+2026-04-15 06:52:06,377 [INFO]   Block trace: 120 queries (4 phases × 30, seed=9)
+2026-04-15 06:52:06,377 [INFO] 
+  Block 10/10  order: baseline → periodic → always_on → hsm_gated
+2026-04-15 06:52:06,377 [INFO]     [117/120]  Block 10  Condition: baseline
+2026-04-15 06:54:42,371 [INFO]       ✓  wall_QPS=1.0514  qps=1.0514  queries=120  errors=0  wall=114.13s  advisor_calls=0
+2026-04-15 06:54:42,375 [INFO]       … settling 2s …
+2026-04-15 06:54:44,380 [INFO]     [118/120]  Block 10  Condition: periodic
+2026-04-15 06:59:35,728 [INFO]       ✓  wall_QPS=0.4896  qps=1.0544  queries=120  errors=0  wall=245.08s  advisor_calls=8
+2026-04-15 06:59:35,733 [INFO]       … settling 2s …
+2026-04-15 06:59:37,739 [INFO]     [119/120]  Block 10  Condition: always_on
+2026-04-15 07:08:02,693 [INFO]       ✓  wall_QPS=0.2600  qps=1.0140  queries=120  errors=0  wall=461.62s  advisor_calls=24
+2026-04-15 07:08:02,696 [INFO]       … settling 2s …
+2026-04-15 07:08:04,707 [INFO]     [120/120]  Block 10  Condition: hsm_gated
+2026-04-15 07:08:54,096 [INFO]   [gated] Window  1: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:08:57,844 [INFO]   [gated] Window  2: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:09:01,776 [INFO]   [gated] Window  3: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:09:05,557 [INFO]   [gated] Window  4: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:09:09,308 [INFO]   [gated] Window  5: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:09:42,056 [INFO]   [gated] Window  6: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 07:09:53,417 [INFO]   [gated] Window  7: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:10:04,723 [INFO]   [gated] Window  8: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:10:15,381 [INFO]   [gated] Window  9: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:10:26,112 [INFO]   [gated] Window 10: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:10:36,585 [INFO]   [gated] Window 11: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:10:56,252 [INFO]   [gated] Window 12: HSM=0.439 < θ=0.75 → TRIGGER
+2026-04-15 07:11:00,038 [INFO]   [gated] Window 13: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:11:03,956 [INFO]   [gated] Window 14: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:11:07,831 [INFO]   [gated] Window 15: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:11:11,671 [INFO]   [gated] Window 16: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:11:15,457 [INFO]   [gated] Window 17: HSM=1.000 ≥ θ=0.75 → skip
+2026-04-15 07:11:25,897 [INFO]   [gated] Window 18: HSM=0.420 < θ=0.75 → TRIGGER
+2026-04-15 07:11:26,632 [INFO]   [gated] Window 19: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 07:11:27,220 [INFO]   [gated] Window 20: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 07:11:27,660 [INFO]   [gated] Window 21: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 07:11:28,224 [INFO]   [gated] Window 22: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 07:11:28,894 [INFO]   [gated] Window 23: HSM=0.773 ≥ θ=0.75 → skip
+2026-04-15 07:11:28,895 [INFO]       ✓  wall_QPS=0.7388  qps=1.0417  queries=120  errors=0  wall=162.43s  advisor_calls=3
+2026-04-15 07:11:28,898 [INFO] 
+======================================================================
+2026-04-15 07:11:28,898 [INFO]   All experiments completed (120 runs)
+2026-04-15 07:11:28,898 [INFO]   Results saved to: /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/code/results
+2026-04-15 07:11:28,898 [INFO]   Run analysis/compute_statistics.py to generate tables
+2026-04-15 07:11:28,898 [INFO] ======================================================================

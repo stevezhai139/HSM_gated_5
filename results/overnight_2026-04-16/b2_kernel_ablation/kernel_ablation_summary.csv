@@ -1,0 +1,4 @@
+kernel,workload,n_within,n_cross,theta_star,J_star,TPR,TNR,AUC
+angular,burst-mid-Q,4170,20,0.892,0.6667,1.0,0.6667,0.8333
+cosine,burst-mid-Q,4170,20,0.95,0.6667,1.0,0.6667,0.8333
+euclid,burst-mid-Q,4170,20,0.7825,1.0,1.0,1.0,1.0

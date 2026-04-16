@@ -1,0 +1,33 @@
+{
+  "git_sha": "unknown",
+  "start_utc": "2026-04-15T17:24:34Z",
+  "end_utc": "2026-04-15T23:38:37Z",
+  "statuses": {
+    "B1": "ok",
+    "B2": "ok",
+    "B3": "ok",
+    "B4": "ok",
+    "B5": "ok"
+  },
+  "artefacts": {
+    "B1": {
+      "results/burst_end_to_end/burst_large_q_results.csv": "3e62fde16925b970",
+      "results/burst_end_to_end/burst_large_q_naive_results.csv": "ca4487a9deef8133"
+    },
+    "B2": {
+      "results/overnight_2026-04-16/b2_kernel_ablation/kernel_ablation_summary.csv": "aa7d15c8efe35d05",
+      "results/overnight_2026-04-16/b2_kernel_ablation/kernel_ablation_scores.csv": "44bf65a4caa3b36f"
+    },
+    "B3": {
+      "results/burst_end_to_end/burst_theta055_results.csv": "44019283e286ca49"
+    },
+    "B4": {
+      "results/overnight_2026-04-16/b4_inphase/inphase_amplitude.csv": "32f2846c8fe73596",
+      "results/overnight_2026-04-16/b4_inphase/inphase_summary.csv": "5c97ec93bb41beb4"
+    },
+    "B5": {
+      "results/overnight_2026-04-16/b5_noise_weight/noise_weight_grid.csv": "8ff0bf36011a6ef0"
+    }
+  },
+  "host": "Aruns-MacBook-Pro-2.local"
+}

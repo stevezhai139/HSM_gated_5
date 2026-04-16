@@ -1,0 +1,1956 @@
+2026-04-15 17:32:27,081 [INFO] ========================================================================
+2026-04-15 17:32:27,082 [INFO]   HSM Tier-2 end-to-end OLTP runner (pgbench TPC-B, scale 10)
+2026-04-15 17:32:27,082 [INFO] ========================================================================
+2026-04-15 17:32:27,082 [INFO]   DB          : oltp on localhost:5433 as postgres
+2026-04-15 17:32:27,082 [INFO]   Blocks      : 1
+2026-04-15 17:32:27,082 [INFO]   Policies    : ['always_on', 'hsm_gated']
+2026-04-15 17:32:27,082 [INFO]   Advisors    : ['dexter']
+2026-04-15 17:32:27,082 [INFO]   Window W    : 5  →  24 windows per trace
+2026-04-15 17:32:27,082 [INFO]   θ (HSM)     : 0.750
+2026-04-15 17:32:27,082 [INFO]   K (periodic): 3
+2026-04-15 17:32:27,082 [INFO]   Transitions : [6, 12, 18]
+2026-04-15 17:32:27,082 [INFO]   Raw CSV     : /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/oltp_tier2_raw.csv
+2026-04-15 17:32:27,082 [INFO]   Details     : /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/detail/
+2026-04-15 17:32:27,332 [INFO] prereqs OK — pgbench_accounts=1000000 rows, exts=['hypopg', 'index_advisor']
+2026-04-15 17:32:27,333 [INFO]   Query pool  : {'ReadOnly': 30, 'WriteHeavy': 36, 'Mixed': 30, 'BulkRead': 30}
+2026-04-15 17:32:27,333 [INFO] 
+── Block 1/1  order: always_on/dexter → baseline/— → hsm_gated/dexter
+2026-04-15 17:32:27,333 [INFO]   [1/3] always_on × dexter
+2026-04-15 17:32:27,543 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.19s  hsm=1.000  TRIG
+2026-04-15 17:32:27,641 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:27,753 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:32:27,853 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:27,954 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,054 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,161 [INFO]     w06 WriteHeavy  q=  0.01s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,262 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,365 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,469 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,569 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,671 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,772 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,874 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:28,975 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:29,073 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:29,175 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:32:29,285 [INFO]     w17 Mixed       q=  0.00s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:32:29,688 [INFO]     w18 BulkRead    q=  0.27s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:32:29,904 [INFO]     w19 BulkRead    q=  0.11s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:32:30,137 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:32:30,490 [INFO]     w21 BulkRead    q=  0.23s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:32:30,795 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:32:31,046 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:32:31,048 [INFO]     → wall=3.69s  qps=109.03  calls=24  trig_rate=1.00  precision=0.12  p95=41.7ms
+2026-04-15 17:32:33,052 [INFO]   [2/3] baseline × —
+2026-04-15 17:32:33,082 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,085 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,087 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,092 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,095 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,100 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,105 [INFO]     w06 WriteHeavy  q=  0.01s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,114 [INFO]     w07 WriteHeavy  q=  0.01s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,116 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,118 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,120 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,122 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,123 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,125 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,126 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,128 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,129 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,130 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,340 [INFO]     w18 BulkRead    q=  0.21s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,438 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,546 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,788 [INFO]     w21 BulkRead    q=  0.24s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:33,972 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:34,111 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:34,113 [INFO]     → wall=1.03s  qps=116.85  calls=0  trig_rate=0.00  precision=0.00  p95=33.5ms
+2026-04-15 17:32:36,118 [INFO]   [3/3] hsm_gated × dexter
+2026-04-15 17:32:36,149 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:32:36,352 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.11s  hsm=0.674  TRIG
+2026-04-15 17:32:36,458 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.701  TRIG
+2026-04-15 17:32:36,557 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.721  TRIG
+2026-04-15 17:32:36,560 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:32:36,562 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.773  skip
+2026-04-15 17:32:36,662 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.485  TRIG
+2026-04-15 17:32:36,665 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:32:36,667 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.878  skip
+2026-04-15 17:32:36,670 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.754  skip
+2026-04-15 17:32:36,671 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:32:36,673 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:32:36,675 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:32:36,677 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:32:36,679 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.848  skip
+2026-04-15 17:32:36,780 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=0.696  TRIG
+2026-04-15 17:32:36,883 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=0.647  TRIG
+2026-04-15 17:32:36,987 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=0.590  TRIG
+2026-04-15 17:32:37,329 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.12s  hsm=0.489  TRIG
+2026-04-15 17:32:37,539 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.10s  hsm=0.662  TRIG
+2026-04-15 17:32:37,761 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.10s  hsm=0.702  TRIG
+2026-04-15 17:32:37,986 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.00s  hsm=0.781  skip
+2026-04-15 17:32:38,271 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.11s  hsm=0.713  TRIG
+2026-04-15 17:32:38,414 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.00s  hsm=0.758  skip
+2026-04-15 17:32:38,415 [INFO]     → wall=2.27s  qps=121.38  calls=11  trig_rate=0.46  precision=0.18  p95=41.0ms
+2026-04-15 17:32:40,420 [INFO] 
+Done.  Raw results → /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/oltp_tier2_raw.csv
+2026-04-15 17:32:40,421 [INFO]         Per-window detail → /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/detail/
+2026-04-15 17:38:36,385 [INFO] ========================================================================
+2026-04-15 17:38:36,385 [INFO]   HSM Tier-2 end-to-end OLTP runner (pgbench TPC-B, scale 10)
+2026-04-15 17:38:36,385 [INFO] ========================================================================
+2026-04-15 17:38:36,386 [INFO]   DB          : oltp on localhost:5433 as postgres
+2026-04-15 17:38:36,386 [INFO]   Blocks      : 10
+2026-04-15 17:38:36,386 [INFO]   Policies    : ['always_on', 'hsm_gated', 'periodic']
+2026-04-15 17:38:36,386 [INFO]   Advisors    : ['dexter', 'supabase']
+2026-04-15 17:38:36,386 [INFO]   Window W    : 5  →  24 windows per trace
+2026-04-15 17:38:36,386 [INFO]   θ (HSM)     : 0.750
+2026-04-15 17:38:36,386 [INFO]   K (periodic): 3
+2026-04-15 17:38:36,386 [INFO]   Transitions : [6, 12, 18]
+2026-04-15 17:38:36,386 [INFO]   Raw CSV     : /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/oltp_tier2_raw.csv
+2026-04-15 17:38:36,386 [INFO]   Details     : /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/detail/
+2026-04-15 17:38:36,478 [INFO] prereqs OK — pgbench_accounts=1000000 rows, exts=['hypopg', 'index_advisor']
+2026-04-15 17:38:36,478 [INFO]   Query pool  : {'ReadOnly': 30, 'WriteHeavy': 36, 'Mixed': 30, 'BulkRead': 30}
+2026-04-15 17:38:36,478 [INFO] 
+── Block 1/10  order: always_on/supabase → periodic/dexter → hsm_gated/dexter → baseline/— → always_on/dexter → periodic/supabase → hsm_gated/supabase
+2026-04-15 17:38:36,478 [INFO]   [1/7] always_on × supabase
+2026-04-15 17:38:36,505 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:38:36,513 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,521 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,529 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,537 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,545 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,553 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,561 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,569 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,577 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,585 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,593 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,600 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,608 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,617 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,626 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,634 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:36,642 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:37,466 [INFO]     w18 BulkRead    q=  0.28s  adv= 0.55s  hsm=1.000  TRIG
+2026-04-15 17:38:37,530 [INFO]     w19 BulkRead    q=  0.05s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:38:37,897 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.26s  hsm=1.000  TRIG
+2026-04-15 17:38:38,070 [INFO]     w21 BulkRead    q=  0.16s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:38,484 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:38:38,798 [INFO]     w23 BulkRead    q=  0.08s  adv= 0.23s  hsm=1.000  TRIG
+2026-04-15 17:38:38,803 [INFO]     → wall=2.31s  qps=140.30  calls=24  trig_rate=1.00  precision=0.12  p95=31.7ms
+2026-04-15 17:38:40,807 [INFO]   [2/7] periodic × dexter
+2026-04-15 17:38:40,841 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:40,844 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:40,846 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,083 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.24s  hsm=1.000  TRIG
+2026-04-15 17:38:41,084 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,085 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,187 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:41,189 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,191 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,289 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:41,291 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,293 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,392 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:41,396 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,397 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,494 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:41,496 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,498 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:41,844 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:38:41,950 [INFO]     w19 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:42,055 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:42,380 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:38:42,557 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:42,704 [INFO]     w23 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:42,706 [INFO]     → wall=1.87s  qps=123.16  calls=7  trig_rate=0.29  precision=0.43  p95=38.2ms
+2026-04-15 17:38:44,708 [INFO]   [3/7] hsm_gated × dexter
+2026-04-15 17:38:44,741 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:44,898 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.11s  hsm=0.674  TRIG
+2026-04-15 17:38:44,997 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.701  TRIG
+2026-04-15 17:38:45,097 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.721  TRIG
+2026-04-15 17:38:45,100 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:38:45,102 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.773  skip
+2026-04-15 17:38:45,202 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.485  TRIG
+2026-04-15 17:38:45,205 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:38:45,208 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.878  skip
+2026-04-15 17:38:45,210 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.754  skip
+2026-04-15 17:38:45,212 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:38:45,214 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:38:45,216 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:38:45,217 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:38:45,220 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.848  skip
+2026-04-15 17:38:45,320 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=0.696  TRIG
+2026-04-15 17:38:45,420 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=0.647  TRIG
+2026-04-15 17:38:45,522 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=0.590  TRIG
+2026-04-15 17:38:45,862 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.11s  hsm=0.489  TRIG
+2026-04-15 17:38:46,072 [INFO]     w19 BulkRead    q=  0.11s  adv= 0.10s  hsm=0.662  TRIG
+2026-04-15 17:38:46,293 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.10s  hsm=0.702  TRIG
+2026-04-15 17:38:46,517 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.00s  hsm=0.781  skip
+2026-04-15 17:38:46,805 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.12s  hsm=0.713  TRIG
+2026-04-15 17:38:46,948 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.00s  hsm=0.758  skip
+2026-04-15 17:38:46,949 [INFO]     → wall=2.21s  qps=120.49  calls=11  trig_rate=0.46  precision=0.18  p95=41.9ms
+2026-04-15 17:38:48,953 [INFO]   [4/7] baseline × —
+2026-04-15 17:38:48,984 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:48,986 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:48,989 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:48,991 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:48,993 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:48,995 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:48,999 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,002 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,004 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,006 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,008 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,009 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,011 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,012 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,014 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,015 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,016 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,018 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,219 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,315 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,424 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,662 [INFO]     w21 BulkRead    q=  0.24s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,843 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,978 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:49,982 [INFO]     → wall=1.00s  qps=120.86  calls=0  trig_rate=0.00  precision=0.00  p95=34.1ms
+2026-04-15 17:38:51,987 [INFO]   [5/7] always_on × dexter
+2026-04-15 17:38:52,149 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:38:52,245 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:38:52,344 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:52,443 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:52,540 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:52,639 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:52,740 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:52,841 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:52,940 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,037 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:38:53,137 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,235 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,333 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,432 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,532 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,634 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,734 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:53,834 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:54,168 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:38:54,375 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:54,595 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:54,934 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:38:55,225 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:38:55,469 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:38:55,470 [INFO]     → wall=3.46s  qps=118.11  calls=24  trig_rate=1.00  precision=0.12  p95=41.0ms
+2026-04-15 17:38:57,471 [INFO]   [6/7] periodic × supabase
+2026-04-15 17:38:57,502 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,504 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,507 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,530 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:38:57,531 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,533 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,544 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:57,546 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,547 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,557 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:57,558 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,560 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,569 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:57,570 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,571 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,579 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:57,580 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:57,581 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:58,261 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.48s  hsm=1.000  TRIG
+2026-04-15 17:38:58,307 [INFO]     w19 BulkRead    q=  0.05s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:58,347 [INFO]     w20 BulkRead    q=  0.04s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:58,520 [INFO]     w21 BulkRead    q=  0.16s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:38:58,685 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:58,844 [INFO]     w23 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:38:58,847 [INFO]     → wall=1.35s  qps=151.21  calls=7  trig_rate=0.29  precision=0.43  p95=48.7ms
+2026-04-15 17:39:00,852 [INFO]   [7/7] hsm_gated × supabase
+2026-04-15 17:39:00,872 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:00,893 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.674  TRIG
+2026-04-15 17:39:00,906 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.701  TRIG
+2026-04-15 17:39:00,918 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.721  TRIG
+2026-04-15 17:39:00,921 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:39:00,923 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.773  skip
+2026-04-15 17:39:00,934 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.485  TRIG
+2026-04-15 17:39:00,937 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:39:00,940 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.878  skip
+2026-04-15 17:39:00,942 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.754  skip
+2026-04-15 17:39:00,944 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:39:00,946 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:00,948 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:39:00,950 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:39:00,953 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.848  skip
+2026-04-15 17:39:00,965 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=0.696  TRIG
+2026-04-15 17:39:00,977 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=0.647  TRIG
+2026-04-15 17:39:00,987 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=0.590  TRIG
+2026-04-15 17:39:01,666 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.48s  hsm=0.489  TRIG
+2026-04-15 17:39:01,725 [INFO]     w19 BulkRead    q=  0.05s  adv= 0.01s  hsm=0.662  TRIG
+2026-04-15 17:39:02,082 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.25s  hsm=0.702  TRIG
+2026-04-15 17:39:02,250 [INFO]     w21 BulkRead    q=  0.16s  adv= 0.00s  hsm=0.781  skip
+2026-04-15 17:39:02,360 [INFO]     w22 BulkRead    q=  0.10s  adv= 0.01s  hsm=0.713  TRIG
+2026-04-15 17:39:02,492 [INFO]     w23 BulkRead    q=  0.13s  adv= 0.00s  hsm=0.758  skip
+2026-04-15 17:39:02,495 [INFO]     → wall=1.62s  qps=158.24  calls=11  trig_rate=0.46  precision=0.18  p95=32.1ms
+2026-04-15 17:39:04,501 [INFO] 
+── Block 2/10  order: hsm_gated/supabase → baseline/— → periodic/dexter → hsm_gated/dexter → always_on/supabase → always_on/dexter → periodic/supabase
+2026-04-15 17:39:04,501 [INFO]   [1/7] hsm_gated × supabase
+2026-04-15 17:39:04,535 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:04,541 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:39:04,546 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:39:04,569 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.601  TRIG
+2026-04-15 17:39:04,582 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.647  TRIG
+2026-04-15 17:39:04,596 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.566  TRIG
+2026-04-15 17:39:04,609 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.485  TRIG
+2026-04-15 17:39:04,622 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.676  TRIG
+2026-04-15 17:39:04,627 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.862  skip
+2026-04-15 17:39:04,630 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:39:04,632 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:39:04,634 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.894  skip
+2026-04-15 17:39:04,644 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=0.686  TRIG
+2026-04-15 17:39:04,648 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:04,650 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:39:04,661 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=0.618  TRIG
+2026-04-15 17:39:04,663 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.782  skip
+2026-04-15 17:39:04,666 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:05,070 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.25s  hsm=0.586  TRIG
+2026-04-15 17:39:05,114 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.00s  hsm=0.785  skip
+2026-04-15 17:39:05,202 [INFO]     w20 BulkRead    q=  0.08s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:05,242 [INFO]     w21 BulkRead    q=  0.03s  adv= 0.00s  hsm=0.821  skip
+2026-04-15 17:39:05,640 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.25s  hsm=0.625  TRIG
+2026-04-15 17:39:06,038 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.26s  hsm=0.580  TRIG
+2026-04-15 17:39:06,042 [INFO]     → wall=1.51s  qps=194.32  calls=10  trig_rate=0.42  precision=0.30  p95=29.5ms
+2026-04-15 17:39:08,047 [INFO]   [2/7] baseline × —
+2026-04-15 17:39:08,079 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,081 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,083 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,084 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,086 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,088 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,091 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,093 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,094 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,095 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,097 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,099 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,100 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,101 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,102 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,103 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,104 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,105 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,257 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,370 [INFO]     w19 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,521 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,649 [INFO]     w21 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:08,822 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:09,010 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:09,013 [INFO]     → wall=0.93s  qps=129.07  calls=0  trig_rate=0.00  precision=0.00  p95=33.1ms
+2026-04-15 17:39:11,017 [INFO]   [3/7] periodic × dexter
+2026-04-15 17:39:11,046 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,048 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,051 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,225 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.17s  hsm=1.000  TRIG
+2026-04-15 17:39:11,226 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,227 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,326 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:11,328 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,330 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,429 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:11,431 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,432 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,529 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:11,531 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,533 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,630 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:11,633 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,635 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:11,914 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:12,035 [INFO]     w19 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:12,192 [INFO]     w20 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:12,440 [INFO]     w21 BulkRead    q=  0.13s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:12,627 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:12,813 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:12,816 [INFO]     → wall=1.77s  qps=122.77  calls=7  trig_rate=0.29  precision=0.43  p95=36.6ms
+2026-04-15 17:39:14,820 [INFO]   [4/7] hsm_gated × dexter
+2026-04-15 17:39:14,852 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:14,859 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:39:14,864 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:39:14,989 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.12s  hsm=0.601  TRIG
+2026-04-15 17:39:15,088 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.647  TRIG
+2026-04-15 17:39:15,187 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.566  TRIG
+2026-04-15 17:39:15,288 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=0.485  TRIG
+2026-04-15 17:39:15,387 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.676  TRIG
+2026-04-15 17:39:15,391 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.862  skip
+2026-04-15 17:39:15,395 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:39:15,397 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:39:15,398 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.894  skip
+2026-04-15 17:39:15,495 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=0.686  TRIG
+2026-04-15 17:39:15,500 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:15,502 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:39:15,603 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=0.618  TRIG
+2026-04-15 17:39:15,606 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.782  skip
+2026-04-15 17:39:15,608 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:15,892 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=0.586  TRIG
+2026-04-15 17:39:16,015 [INFO]     w19 BulkRead    q=  0.12s  adv= 0.00s  hsm=0.785  skip
+2026-04-15 17:39:16,175 [INFO]     w20 BulkRead    q=  0.16s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:16,308 [INFO]     w21 BulkRead    q=  0.13s  adv= 0.00s  hsm=0.821  skip
+2026-04-15 17:39:16,601 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.12s  hsm=0.625  TRIG
+2026-04-15 17:39:16,920 [INFO]     w23 BulkRead    q=  0.20s  adv= 0.11s  hsm=0.580  TRIG
+2026-04-15 17:39:16,921 [INFO]     → wall=2.07s  qps=122.18  calls=10  trig_rate=0.42  precision=0.30  p95=41.3ms
+2026-04-15 17:39:18,923 [INFO]   [5/7] always_on × supabase
+2026-04-15 17:39:18,965 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:18,979 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:18,989 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:18,999 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,009 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,018 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,029 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,038 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,048 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,057 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,065 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,073 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,081 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,090 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,098 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,107 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,116 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,124 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:19,534 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.27s  hsm=1.000  TRIG
+2026-04-15 17:39:19,586 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:20,254 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.52s  hsm=1.000  TRIG
+2026-04-15 17:39:20,302 [INFO]     w21 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:20,970 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.49s  hsm=1.000  TRIG
+2026-04-15 17:39:21,078 [INFO]     w23 BulkRead    q=  0.09s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:21,081 [INFO]     → wall=2.13s  qps=180.70  calls=24  trig_rate=1.00  precision=0.12  p95=30.0ms
+2026-04-15 17:39:23,086 [INFO]   [6/7] always_on × dexter
+2026-04-15 17:39:23,233 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:23,330 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:23,429 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:23,527 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:23,624 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:23,722 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:23,822 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:23,917 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:39:24,014 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:39:24,115 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:24,213 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:24,310 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:24,412 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:24,511 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:24,609 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:24,752 [INFO]     w15 Mixed       q=  0.00s  adv= 0.14s  hsm=1.000  TRIG
+2026-04-15 17:39:24,861 [INFO]     w16 Mixed       q=  0.00s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:24,962 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:25,241 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:25,465 [INFO]     w19 BulkRead    q=  0.12s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:25,740 [INFO]     w20 BulkRead    q=  0.16s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:25,984 [INFO]     w21 BulkRead    q=  0.14s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:26,287 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:26,610 [INFO]     w23 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:26,611 [INFO]     → wall=3.50s  qps=118.71  calls=24  trig_rate=1.00  precision=0.12  p95=42.8ms
+2026-04-15 17:39:28,614 [INFO]   [7/7] periodic × supabase
+2026-04-15 17:39:28,645 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,648 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,650 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,669 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:39:28,670 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,671 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,683 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:28,685 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,687 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,697 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:28,698 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,699 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,708 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:28,709 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,710 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,719 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:28,720 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:28,721 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:29,119 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:39:29,159 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:29,243 [INFO]     w20 BulkRead    q=  0.08s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:29,523 [INFO]     w21 BulkRead    q=  0.03s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:39:29,645 [INFO]     w22 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:29,781 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:29,784 [INFO]     → wall=1.14s  qps=204.08  calls=7  trig_rate=0.29  precision=0.43  p95=28.8ms
+2026-04-15 17:39:31,788 [INFO] 
+── Block 3/10  order: always_on/dexter → hsm_gated/supabase → always_on/supabase → periodic/dexter → baseline/— → periodic/supabase → hsm_gated/dexter
+2026-04-15 17:39:31,788 [INFO]   [1/7] always_on × dexter
+2026-04-15 17:39:31,936 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:32,034 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,131 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:39:32,228 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,326 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,423 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,524 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,624 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,725 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,823 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:32,926 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,026 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,123 [INFO]     w12 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:39:33,223 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,322 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,420 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,521 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,620 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:33,866 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:34,115 [INFO]     w19 BulkRead    q=  0.14s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:34,389 [INFO]     w20 BulkRead    q=  0.16s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:34,709 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:34,952 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:35,268 [INFO]     w23 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:35,269 [INFO]     → wall=3.46s  qps=118.64  calls=24  trig_rate=1.00  precision=0.12  p95=47.8ms
+2026-04-15 17:39:37,273 [INFO]   [2/7] hsm_gated × supabase
+2026-04-15 17:39:37,301 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:37,309 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.785  skip
+2026-04-15 17:39:37,334 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.686  TRIG
+2026-04-15 17:39:37,337 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:39:37,351 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.590  TRIG
+2026-04-15 17:39:37,363 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.606  TRIG
+2026-04-15 17:39:37,377 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.489  TRIG
+2026-04-15 17:39:37,381 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:39:37,385 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:39:37,388 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.862  skip
+2026-04-15 17:39:37,392 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:39:37,404 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.713  TRIG
+2026-04-15 17:39:37,407 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:39:37,410 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.773  skip
+2026-04-15 17:39:37,412 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:39:37,414 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:37,425 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=0.711  TRIG
+2026-04-15 17:39:37,429 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:39:37,837 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.25s  hsm=0.485  TRIG
+2026-04-15 17:39:38,161 [INFO]     w19 BulkRead    q=  0.08s  adv= 0.23s  hsm=0.662  TRIG
+2026-04-15 17:39:38,571 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.25s  hsm=0.744  TRIG
+2026-04-15 17:39:38,682 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.01s  hsm=0.691  TRIG
+2026-04-15 17:39:39,088 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.25s  hsm=0.738  TRIG
+2026-04-15 17:39:39,518 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.24s  hsm=0.654  TRIG
+2026-04-15 17:39:39,522 [INFO]     → wall=2.22s  qps=141.22  calls=12  trig_rate=0.50  precision=0.17  p95=50.3ms
+2026-04-15 17:39:41,527 [INFO]   [3/7] always_on × supabase
+2026-04-15 17:39:41,571 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,583 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,594 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,604 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,613 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,622 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,632 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,641 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,649 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,658 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,666 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,674 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,682 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,690 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,698 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,706 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,714 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:41,721 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:42,120 [INFO]     w18 BulkRead    q=  0.12s  adv= 0.28s  hsm=1.000  TRIG
+2026-04-15 17:39:42,463 [INFO]     w19 BulkRead    q=  0.08s  adv= 0.26s  hsm=1.000  TRIG
+2026-04-15 17:39:42,931 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.32s  hsm=1.000  TRIG
+2026-04-15 17:39:43,037 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:43,540 [INFO]     w22 BulkRead    q=  0.12s  adv= 0.38s  hsm=1.000  TRIG
+2026-04-15 17:39:44,027 [INFO]     w23 BulkRead    q=  0.18s  adv= 0.30s  hsm=1.000  TRIG
+2026-04-15 17:39:44,030 [INFO]     → wall=2.47s  qps=155.06  calls=24  trig_rate=1.00  precision=0.12  p95=32.7ms
+2026-04-15 17:39:46,035 [INFO]   [4/7] periodic × dexter
+2026-04-15 17:39:46,070 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,072 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,075 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,277 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.20s  hsm=1.000  TRIG
+2026-04-15 17:39:46,279 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,279 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,380 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:46,381 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,383 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,481 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:46,485 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,489 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,587 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:46,589 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,590 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,689 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:39:46,691 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,693 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:46,933 [INFO]     w18 BulkRead    q=  0.13s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:39:47,073 [INFO]     w19 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:47,225 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:47,535 [INFO]     w21 BulkRead    q=  0.19s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:39:47,669 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:47,855 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:47,859 [INFO]     → wall=1.79s  qps=124.52  calls=7  trig_rate=0.29  precision=0.43  p95=45.1ms
+2026-04-15 17:39:49,865 [INFO]   [5/7] baseline × —
+2026-04-15 17:39:49,893 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,895 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,898 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,900 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,902 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,904 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,907 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,909 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,911 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,914 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,915 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,917 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,919 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,920 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,921 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,923 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,924 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:49,926 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,051 [INFO]     w18 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,183 [INFO]     w19 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,340 [INFO]     w20 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,536 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,661 [INFO]     w22 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,845 [INFO]     w23 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:50,849 [INFO]     → wall=0.96s  qps=126.20  calls=0  trig_rate=0.00  precision=0.00  p95=39.5ms
+2026-04-15 17:39:52,855 [INFO]   [6/7] periodic × supabase
+2026-04-15 17:39:52,879 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,882 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,884 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,903 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:39:52,905 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,906 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,918 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:52,919 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,920 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,930 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:52,931 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,933 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,941 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:52,942 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,943 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,952 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:52,953 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:52,954 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:53,375 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.27s  hsm=1.000  TRIG
+2026-04-15 17:39:53,457 [INFO]     w19 BulkRead    q=  0.08s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:53,558 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:53,662 [INFO]     w21 BulkRead    q=  0.09s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:39:53,821 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:54,005 [INFO]     w23 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:54,010 [INFO]     → wall=1.13s  qps=151.19  calls=7  trig_rate=0.29  precision=0.43  p95=48.4ms
+2026-04-15 17:39:56,014 [INFO]   [7/7] hsm_gated × dexter
+2026-04-15 17:39:56,047 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:39:56,056 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.785  skip
+2026-04-15 17:39:56,188 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.13s  hsm=0.686  TRIG
+2026-04-15 17:39:56,190 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:39:56,305 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.11s  hsm=0.590  TRIG
+2026-04-15 17:39:56,405 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.606  TRIG
+2026-04-15 17:39:56,507 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.489  TRIG
+2026-04-15 17:39:56,511 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:39:56,513 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:39:56,515 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.862  skip
+2026-04-15 17:39:56,517 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:39:56,619 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.713  TRIG
+2026-04-15 17:39:56,622 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:39:56,624 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.773  skip
+2026-04-15 17:39:56,626 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:39:56,628 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:39:56,722 [INFO]     w16 Mixed       q=  0.00s  adv= 0.09s  hsm=0.711  TRIG
+2026-04-15 17:39:56,725 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:39:56,964 [INFO]     w18 BulkRead    q=  0.13s  adv= 0.10s  hsm=0.485  TRIG
+2026-04-15 17:39:57,219 [INFO]     w19 BulkRead    q=  0.14s  adv= 0.11s  hsm=0.662  TRIG
+2026-04-15 17:39:57,514 [INFO]     w20 BulkRead    q=  0.18s  adv= 0.11s  hsm=0.744  TRIG
+2026-04-15 17:39:57,855 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.12s  hsm=0.691  TRIG
+2026-04-15 17:39:58,097 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.10s  hsm=0.738  TRIG
+2026-04-15 17:39:58,428 [INFO]     w23 BulkRead    q=  0.21s  adv= 0.11s  hsm=0.654  TRIG
+2026-04-15 17:39:58,429 [INFO]     → wall=2.39s  qps=113.93  calls=12  trig_rate=0.50  precision=0.17  p95=45.7ms
+2026-04-15 17:40:00,431 [INFO] 
+── Block 4/10  order: hsm_gated/dexter → hsm_gated/supabase → periodic/supabase → always_on/dexter → periodic/dexter → always_on/supabase → baseline/—
+2026-04-15 17:40:00,431 [INFO]   [1/7] hsm_gated × dexter
+2026-04-15 17:40:00,446 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:00,451 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.797  skip
+2026-04-15 17:40:00,567 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.11s  hsm=0.600  TRIG
+2026-04-15 17:40:00,569 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.781  skip
+2026-04-15 17:40:00,670 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.699  TRIG
+2026-04-15 17:40:00,770 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.671  TRIG
+2026-04-15 17:40:00,873 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.589  TRIG
+2026-04-15 17:40:00,877 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.802  skip
+2026-04-15 17:40:00,980 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.711  TRIG
+2026-04-15 17:40:00,983 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:40:01,083 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.674  TRIG
+2026-04-15 17:40:01,183 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.699  TRIG
+2026-04-15 17:40:01,282 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=0.713  TRIG
+2026-04-15 17:40:01,285 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:40:01,384 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=0.686  TRIG
+2026-04-15 17:40:01,387 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:01,389 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.928  skip
+2026-04-15 17:40:01,391 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:40:01,639 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.11s  hsm=0.585  TRIG
+2026-04-15 17:40:01,963 [INFO]     w19 BulkRead    q=  0.20s  adv= 0.11s  hsm=0.556  TRIG
+2026-04-15 17:40:02,191 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.10s  hsm=0.647  TRIG
+2026-04-15 17:40:02,525 [INFO]     w21 BulkRead    q=  0.21s  adv= 0.11s  hsm=0.663  TRIG
+2026-04-15 17:40:02,820 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.11s  hsm=0.586  TRIG
+2026-04-15 17:40:03,057 [INFO]     w23 BulkRead    q=  0.13s  adv= 0.11s  hsm=0.680  TRIG
+2026-04-15 17:40:03,059 [INFO]     → wall=2.61s  qps=117.95  calls=15  trig_rate=0.62  precision=0.20  p95=49.2ms
+2026-04-15 17:40:05,062 [INFO]   [2/7] hsm_gated × supabase
+2026-04-15 17:40:05,091 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:05,096 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.797  skip
+2026-04-15 17:40:05,121 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.600  TRIG
+2026-04-15 17:40:05,124 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.781  skip
+2026-04-15 17:40:05,138 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.699  TRIG
+2026-04-15 17:40:05,150 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.671  TRIG
+2026-04-15 17:40:05,162 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.589  TRIG
+2026-04-15 17:40:05,165 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.802  skip
+2026-04-15 17:40:05,177 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.711  TRIG
+2026-04-15 17:40:05,181 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:40:05,191 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.674  TRIG
+2026-04-15 17:40:05,201 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.699  TRIG
+2026-04-15 17:40:05,210 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=0.713  TRIG
+2026-04-15 17:40:05,212 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:40:05,221 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=0.686  TRIG
+2026-04-15 17:40:05,225 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:05,227 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.928  skip
+2026-04-15 17:40:05,228 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:40:05,606 [INFO]     w18 BulkRead    q=  0.11s  adv= 0.26s  hsm=0.585  TRIG
+2026-04-15 17:40:05,985 [INFO]     w19 BulkRead    q=  0.13s  adv= 0.24s  hsm=0.556  TRIG
+2026-04-15 17:40:06,354 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.25s  hsm=0.647  TRIG
+2026-04-15 17:40:06,531 [INFO]     w21 BulkRead    q=  0.16s  adv= 0.01s  hsm=0.663  TRIG
+2026-04-15 17:40:07,210 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.51s  hsm=0.586  TRIG
+2026-04-15 17:40:07,275 [INFO]     w23 BulkRead    q=  0.05s  adv= 0.01s  hsm=0.680  TRIG
+2026-04-15 17:40:07,278 [INFO]     → wall=2.19s  qps=158.71  calls=15  trig_rate=0.62  precision=0.20  p95=33.2ms
+2026-04-15 17:40:09,283 [INFO]   [3/7] periodic × supabase
+2026-04-15 17:40:09,308 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,310 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,312 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,332 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:40:09,333 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,335 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,349 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:09,351 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,353 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,363 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:09,364 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,366 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,375 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:09,376 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,377 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,385 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:09,386 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,387 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,746 [INFO]     w18 BulkRead    q=  0.11s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:40:09,869 [INFO]     w19 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:09,908 [INFO]     w20 BulkRead    q=  0.04s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:10,098 [INFO]     w21 BulkRead    q=  0.18s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:10,269 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:10,383 [INFO]     w23 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:10,387 [INFO]     → wall=1.08s  qps=157.85  calls=7  trig_rate=0.29  precision=0.43  p95=34.1ms
+2026-04-15 17:40:12,392 [INFO]   [4/7] always_on × dexter
+2026-04-15 17:40:12,549 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:40:12,646 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:12,742 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:40:12,842 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:12,955 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:40:13,054 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,154 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,255 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,357 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,458 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,556 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,655 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,755 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,855 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:13,955 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:14,055 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:14,153 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:14,252 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:14,488 [INFO]     w18 BulkRead    q=  0.13s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:40:14,815 [INFO]     w19 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:15,037 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:15,368 [INFO]     w21 BulkRead    q=  0.21s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:15,666 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:15,895 [INFO]     w23 BulkRead    q=  0.13s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:15,896 [INFO]     → wall=3.47s  qps=118.55  calls=24  trig_rate=1.00  precision=0.12  p95=48.8ms
+2026-04-15 17:40:17,901 [INFO]   [5/7] periodic × dexter
+2026-04-15 17:40:17,929 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:17,931 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:17,933 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,068 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:40:18,069 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,071 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,170 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:18,172 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,174 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,272 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:18,274 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,276 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,374 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:18,376 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,378 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,474 [INFO]     w15 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:40:18,476 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,478 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:18,711 [INFO]     w18 BulkRead    q=  0.13s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:40:18,915 [INFO]     w19 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:19,024 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:19,348 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:19,521 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:19,637 [INFO]     w23 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:19,640 [INFO]     → wall=1.71s  qps=124.52  calls=7  trig_rate=0.29  precision=0.43  p95=47.0ms
+2026-04-15 17:40:21,640 [INFO]   [6/7] always_on × supabase
+2026-04-15 17:40:21,677 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,690 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,702 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,712 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,722 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,731 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,742 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,751 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,759 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,768 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,777 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,785 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,794 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,802 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,810 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,817 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,825 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:21,832 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:22,191 [INFO]     w18 BulkRead    q=  0.11s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:40:22,563 [INFO]     w19 BulkRead    q=  0.12s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:40:22,917 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:40:23,085 [INFO]     w21 BulkRead    q=  0.16s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:23,834 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.58s  hsm=1.000  TRIG
+2026-04-15 17:40:23,894 [INFO]     w23 BulkRead    q=  0.05s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:23,898 [INFO]     → wall=2.23s  qps=165.00  calls=24  trig_rate=1.00  precision=0.12  p95=31.4ms
+2026-04-15 17:40:25,899 [INFO]   [7/7] baseline × —
+2026-04-15 17:40:25,932 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,934 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,937 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,939 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,941 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,942 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,946 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,949 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,950 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,952 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,954 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,956 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,957 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,959 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,960 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,962 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,963 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:25,964 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,078 [INFO]     w18 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,269 [INFO]     w19 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,377 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,579 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,746 [INFO]     w22 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,862 [INFO]     w23 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:26,865 [INFO]     → wall=0.93s  qps=129.24  calls=0  trig_rate=0.00  precision=0.00  p95=38.3ms
+2026-04-15 17:40:28,870 [INFO] 
+── Block 5/10  order: periodic/dexter → periodic/supabase → always_on/supabase → hsm_gated/supabase → baseline/— → always_on/dexter → hsm_gated/dexter
+2026-04-15 17:40:28,870 [INFO]   [1/7] periodic × dexter
+2026-04-15 17:40:28,902 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:28,905 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:28,908 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,038 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:40:29,039 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,040 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,141 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:29,143 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,145 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,243 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:29,245 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,247 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,345 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:29,347 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,348 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,442 [INFO]     w15 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:40:29,444 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,445 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:29,727 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:40:29,874 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:30,045 [INFO]     w20 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:30,370 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:30,507 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:30,617 [INFO]     w23 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:30,619 [INFO]     → wall=1.72s  qps=124.06  calls=7  trig_rate=0.29  precision=0.43  p95=47.7ms
+2026-04-15 17:40:32,622 [INFO]   [2/7] periodic × supabase
+2026-04-15 17:40:32,654 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,656 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,658 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,677 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:40:32,678 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,680 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,691 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:32,693 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,694 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,704 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:32,706 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,707 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,716 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:32,717 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,718 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,726 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:32,727 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:32,728 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:33,132 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:40:33,174 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:33,320 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:33,738 [INFO]     w21 BulkRead    q=  0.18s  adv= 0.24s  hsm=1.000  TRIG
+2026-04-15 17:40:33,863 [INFO]     w22 BulkRead    q=  0.12s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:33,966 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:33,970 [INFO]     → wall=1.32s  qps=155.29  calls=7  trig_rate=0.29  precision=0.43  p95=35.9ms
+2026-04-15 17:40:35,975 [INFO]   [3/7] always_on × supabase
+2026-04-15 17:40:36,018 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,030 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,041 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,051 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,060 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,069 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,078 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,086 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,094 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,102 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,110 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,118 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,126 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,134 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,142 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,149 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,157 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,164 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:36,617 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.30s  hsm=1.000  TRIG
+2026-04-15 17:40:36,668 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:37,514 [INFO]     w20 BulkRead    q=  0.17s  adv= 0.68s  hsm=1.000  TRIG
+2026-04-15 17:40:37,611 [INFO]     w21 BulkRead    q=  0.09s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:38,318 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.58s  hsm=1.000  TRIG
+2026-04-15 17:40:38,366 [INFO]     w23 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:40:38,369 [INFO]     → wall=2.36s  qps=190.26  calls=24  trig_rate=1.00  precision=0.12  p95=30.6ms
+2026-04-15 17:40:40,372 [INFO]   [4/7] hsm_gated × supabase
+2026-04-15 17:40:40,393 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:40,399 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:40:40,403 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:40:40,407 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:40:40,427 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.581  TRIG
+2026-04-15 17:40:40,430 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:40:40,443 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.486  TRIG
+2026-04-15 17:40:40,447 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:40:40,459 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.711  TRIG
+2026-04-15 17:40:40,472 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.711  TRIG
+2026-04-15 17:40:40,476 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.782  skip
+2026-04-15 17:40:40,487 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.681  TRIG
+2026-04-15 17:40:40,491 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:40:40,493 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:40,495 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.885  skip
+2026-04-15 17:40:40,505 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=0.699  TRIG
+2026-04-15 17:40:40,509 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:40:40,518 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=0.671  TRIG
+2026-04-15 17:40:41,125 [INFO]     w18 BulkRead    q=  0.16s  adv= 0.45s  hsm=0.468  TRIG
+2026-04-15 17:40:41,170 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:41,558 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.23s  hsm=0.555  TRIG
+2026-04-15 17:40:41,921 [INFO]     w21 BulkRead    q=  0.11s  adv= 0.25s  hsm=0.596  TRIG
+2026-04-15 17:40:42,252 [INFO]     w22 BulkRead    q=  0.03s  adv= 0.29s  hsm=0.618  TRIG
+2026-04-15 17:40:42,362 [INFO]     w23 BulkRead    q=  0.11s  adv= 0.00s  hsm=0.807  skip
+2026-04-15 17:40:42,364 [INFO]     → wall=1.97s  qps=193.67  calls=11  trig_rate=0.46  precision=0.18  p95=31.6ms
+2026-04-15 17:40:44,367 [INFO]   [5/7] baseline × —
+2026-04-15 17:40:44,405 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,407 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,409 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,411 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,413 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,415 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,418 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,420 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,422 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,424 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,426 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,427 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,429 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,430 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,432 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,433 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,434 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,436 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,593 [INFO]     w18 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,730 [INFO]     w19 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:44,900 [INFO]     w20 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:45,105 [INFO]     w21 BulkRead    q=  0.21s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:45,231 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:45,335 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:45,339 [INFO]     → wall=0.93s  qps=129.13  calls=0  trig_rate=0.00  precision=0.00  p95=42.7ms
+2026-04-15 17:40:47,344 [INFO]   [6/7] always_on × dexter
+2026-04-15 17:40:47,538 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.17s  hsm=1.000  TRIG
+2026-04-15 17:40:47,636 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:47,733 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:47,831 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:47,928 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,025 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,125 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,224 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,325 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,425 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,527 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,626 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,727 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:48,824 [INFO]     w13 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:40:48,922 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:49,021 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:49,119 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:49,219 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:49,530 [INFO]     w18 BulkRead    q=  0.19s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:49,785 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:40:50,107 [INFO]     w20 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:50,460 [INFO]     w21 BulkRead    q=  0.24s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:40:50,703 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:40:50,925 [INFO]     w23 BulkRead    q=  0.12s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:40:50,926 [INFO]     → wall=3.56s  qps=112.17  calls=24  trig_rate=1.00  precision=0.12  p95=49.2ms
+2026-04-15 17:40:52,931 [INFO]   [7/7] hsm_gated × dexter
+2026-04-15 17:40:52,965 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:52,972 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:40:52,976 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:40:52,981 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:40:53,106 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.12s  hsm=0.581  TRIG
+2026-04-15 17:40:53,109 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:40:53,207 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.486  TRIG
+2026-04-15 17:40:53,211 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:40:53,309 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.711  TRIG
+2026-04-15 17:40:53,410 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.711  TRIG
+2026-04-15 17:40:53,414 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.782  skip
+2026-04-15 17:40:53,511 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=0.681  TRIG
+2026-04-15 17:40:53,516 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:40:53,518 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:53,521 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.885  skip
+2026-04-15 17:40:53,619 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=0.699  TRIG
+2026-04-15 17:40:53,623 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:40:53,721 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=0.671  TRIG
+2026-04-15 17:40:54,006 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=0.468  TRIG
+2026-04-15 17:40:54,154 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:54,447 [INFO]     w20 BulkRead    q=  0.17s  adv= 0.12s  hsm=0.555  TRIG
+2026-04-15 17:40:54,787 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.12s  hsm=0.596  TRIG
+2026-04-15 17:40:55,033 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.11s  hsm=0.618  TRIG
+2026-04-15 17:40:55,154 [INFO]     w23 BulkRead    q=  0.12s  adv= 0.00s  hsm=0.807  skip
+2026-04-15 17:40:55,155 [INFO]     → wall=2.19s  qps=119.59  calls=11  trig_rate=0.46  precision=0.18  p95=49.2ms
+2026-04-15 17:40:57,161 [INFO] 
+── Block 6/10  order: hsm_gated/supabase → hsm_gated/dexter → always_on/dexter → periodic/dexter → periodic/supabase → baseline/— → always_on/supabase
+2026-04-15 17:40:57,162 [INFO]   [1/7] hsm_gated × supabase
+2026-04-15 17:40:57,192 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:40:57,218 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.649  TRIG
+2026-04-15 17:40:57,233 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.686  TRIG
+2026-04-15 17:40:57,245 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.590  TRIG
+2026-04-15 17:40:57,257 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.590  TRIG
+2026-04-15 17:40:57,260 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:40:57,272 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.486  TRIG
+2026-04-15 17:40:57,274 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:40:57,285 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.647  TRIG
+2026-04-15 17:40:57,287 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:40:57,297 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.627  TRIG
+2026-04-15 17:40:57,301 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:40:57,312 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=0.655  TRIG
+2026-04-15 17:40:57,316 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:40:57,327 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=0.676  TRIG
+2026-04-15 17:40:57,338 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=0.651  TRIG
+2026-04-15 17:40:57,340 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:40:57,349 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=0.636  TRIG
+2026-04-15 17:40:57,537 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.01s  hsm=0.589  TRIG
+2026-04-15 17:40:57,941 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.25s  hsm=0.488  TRIG
+2026-04-15 17:40:57,993 [INFO]     w20 BulkRead    q=  0.04s  adv= 0.01s  hsm=0.654  TRIG
+2026-04-15 17:40:58,890 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.72s  hsm=0.613  TRIG
+2026-04-15 17:40:59,003 [INFO]     w22 BulkRead    q=  0.10s  adv= 0.01s  hsm=0.642  TRIG
+2026-04-15 17:40:59,690 [INFO]     w23 BulkRead    q=  0.17s  adv= 0.51s  hsm=0.696  TRIG
+2026-04-15 17:40:59,694 [INFO]     → wall=2.50s  qps=144.68  calls=17  trig_rate=0.71  precision=0.18  p95=32.2ms
+2026-04-15 17:41:01,697 [INFO]   [2/7] hsm_gated × dexter
+2026-04-15 17:41:01,732 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:01,867 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.13s  hsm=0.649  TRIG
+2026-04-15 17:41:01,965 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.09s  hsm=0.686  TRIG
+2026-04-15 17:41:02,063 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.590  TRIG
+2026-04-15 17:41:02,162 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.590  TRIG
+2026-04-15 17:41:02,165 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:41:02,264 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.486  TRIG
+2026-04-15 17:41:02,269 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.774  skip
+2026-04-15 17:41:02,368 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.647  TRIG
+2026-04-15 17:41:02,372 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:41:02,471 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.627  TRIG
+2026-04-15 17:41:02,475 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:41:02,573 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=0.655  TRIG
+2026-04-15 17:41:02,576 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:41:02,675 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=0.676  TRIG
+2026-04-15 17:41:02,775 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=0.651  TRIG
+2026-04-15 17:41:02,779 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:41:02,877 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=0.636  TRIG
+2026-04-15 17:41:03,188 [INFO]     w18 BulkRead    q=  0.19s  adv= 0.11s  hsm=0.589  TRIG
+2026-04-15 17:41:03,466 [INFO]     w19 BulkRead    q=  0.16s  adv= 0.11s  hsm=0.488  TRIG
+2026-04-15 17:41:03,662 [INFO]     w20 BulkRead    q=  0.09s  adv= 0.10s  hsm=0.654  TRIG
+2026-04-15 17:41:03,963 [INFO]     w21 BulkRead    q=  0.18s  adv= 0.11s  hsm=0.613  TRIG
+2026-04-15 17:41:04,235 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.11s  hsm=0.642  TRIG
+2026-04-15 17:41:04,529 [INFO]     w23 BulkRead    q=  0.18s  adv= 0.11s  hsm=0.696  TRIG
+2026-04-15 17:41:04,531 [INFO]     → wall=2.80s  qps=119.66  calls=17  trig_rate=0.71  precision=0.18  p95=41.3ms
+2026-04-15 17:41:06,531 [INFO]   [3/7] always_on × dexter
+2026-04-15 17:41:06,693 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:41:06,791 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:06,890 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:06,988 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,085 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,184 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,283 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,381 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,481 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,580 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,679 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,777 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,878 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:07,978 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:08,075 [INFO]     w14 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:08,174 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:08,272 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:08,368 [INFO]     w17 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:08,666 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:08,945 [INFO]     w19 BulkRead    q=  0.17s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:41:09,142 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:09,433 [INFO]     w21 BulkRead    q=  0.18s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:41:09,701 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:41:09,996 [INFO]     w23 BulkRead    q=  0.18s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:41:09,997 [INFO]     → wall=3.44s  qps=119.53  calls=24  trig_rate=1.00  precision=0.12  p95=39.9ms
+2026-04-15 17:41:12,002 [INFO]   [4/7] periodic × dexter
+2026-04-15 17:41:12,030 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,033 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,035 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,168 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:41:12,169 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,170 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,270 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:12,274 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,275 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,373 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:12,377 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,378 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,476 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:12,479 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,480 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,579 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:12,582 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,584 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:12,925 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:13,093 [INFO]     w19 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:13,177 [INFO]     w20 BulkRead    q=  0.08s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:13,471 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:13,652 [INFO]     w22 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:13,824 [INFO]     w23 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:13,826 [INFO]     → wall=1.80s  qps=115.98  calls=7  trig_rate=0.29  precision=0.43  p95=39.6ms
+2026-04-15 17:41:15,828 [INFO]   [5/7] periodic × supabase
+2026-04-15 17:41:15,852 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,854 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,856 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,874 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:41:15,876 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,877 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,890 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:15,892 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,893 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,904 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:15,905 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,906 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,915 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:15,917 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,918 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,927 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:15,928 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:15,929 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:16,106 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:16,258 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:16,342 [INFO]     w20 BulkRead    q=  0.08s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:17,087 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.57s  hsm=1.000  TRIG
+2026-04-15 17:41:17,187 [INFO]     w22 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:17,213 [INFO]     w23 BulkRead    q=  0.03s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:17,217 [INFO]     → wall=1.36s  qps=165.19  calls=7  trig_rate=0.29  precision=0.43  p95=32.8ms
+2026-04-15 17:41:19,220 [INFO]   [6/7] baseline × —
+2026-04-15 17:41:19,297 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,298 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,299 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,300 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,301 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,301 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,303 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,304 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,305 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,307 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,308 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,309 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,310 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,311 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,312 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,313 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,314 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,314 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,489 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,640 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,724 [INFO]     w20 BulkRead    q=  0.08s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:19,897 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:20,043 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:20,214 [INFO]     w23 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:20,218 [INFO]     → wall=0.92s  qps=131.09  calls=0  trig_rate=0.00  precision=0.00  p95=33.3ms
+2026-04-15 17:41:22,223 [INFO]   [7/7] always_on × supabase
+2026-04-15 17:41:22,266 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,279 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,290 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,301 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,310 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,319 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,329 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,338 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,347 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,356 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,364 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,372 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,380 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,389 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,396 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,404 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,412 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,420 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:22,599 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:23,023 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.28s  hsm=1.000  TRIG
+2026-04-15 17:41:23,072 [INFO]     w20 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:23,968 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.72s  hsm=1.000  TRIG
+2026-04-15 17:41:24,085 [INFO]     w22 BulkRead    q=  0.11s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:24,899 [INFO]     w23 BulkRead    q=  0.17s  adv= 0.64s  hsm=1.000  TRIG
+2026-04-15 17:41:24,902 [INFO]     → wall=2.65s  qps=144.37  calls=24  trig_rate=1.00  precision=0.12  p95=33.4ms
+2026-04-15 17:41:26,905 [INFO] 
+── Block 7/10  order: always_on/supabase → baseline/— → periodic/dexter → always_on/dexter → periodic/supabase → hsm_gated/dexter → hsm_gated/supabase
+2026-04-15 17:41:26,905 [INFO]   [1/7] always_on × supabase
+2026-04-15 17:41:26,953 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:26,965 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:26,975 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:26,985 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:26,995 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,007 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,022 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,034 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,042 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,050 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,058 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,065 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,073 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,081 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,089 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,097 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,105 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,113 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:27,924 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.63s  hsm=1.000  TRIG
+2026-04-15 17:41:28,034 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:28,385 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:41:28,432 [INFO]     w21 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:29,265 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.70s  hsm=1.000  TRIG
+2026-04-15 17:41:29,372 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:29,376 [INFO]     → wall=2.43s  qps=180.63  calls=24  trig_rate=1.00  precision=0.12  p95=31.8ms
+2026-04-15 17:41:31,380 [INFO]   [2/7] baseline × —
+2026-04-15 17:41:31,411 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,414 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,416 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,418 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,420 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,422 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,427 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,429 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,431 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,433 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,435 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,437 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,438 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,440 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,441 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,443 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,444 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,445 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,628 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,820 [INFO]     w19 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:31,922 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:32,026 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:32,156 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:32,341 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:32,346 [INFO]     → wall=0.93s  qps=129.13  calls=0  trig_rate=0.00  precision=0.00  p95=42.2ms
+2026-04-15 17:41:34,351 [INFO]   [3/7] periodic × dexter
+2026-04-15 17:41:34,383 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,385 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,386 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,574 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.19s  hsm=1.000  TRIG
+2026-04-15 17:41:34,575 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,576 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,676 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:34,677 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,679 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,775 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:34,778 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,779 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,876 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:34,878 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,880 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,980 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:34,982 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:34,983 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:35,309 [INFO]     w18 BulkRead    q=  0.19s  adv= 0.14s  hsm=1.000  TRIG
+2026-04-15 17:41:35,510 [INFO]     w19 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:35,609 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:35,835 [INFO]     w21 BulkRead    q=  0.11s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:35,982 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:36,172 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:36,177 [INFO]     → wall=1.79s  qps=125.18  calls=7  trig_rate=0.29  precision=0.43  p95=45.0ms
+2026-04-15 17:41:38,181 [INFO]   [4/7] always_on × dexter
+2026-04-15 17:41:38,343 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:41:38,441 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:38,536 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:38,633 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:38,730 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:38,828 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:38,929 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,026 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:39,124 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,225 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,325 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,429 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,523 [INFO]     w12 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:39,620 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,718 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,818 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:39,918 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:40,018 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:40,333 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:40,671 [INFO]     w19 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:40,889 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:41,112 [INFO]     w21 BulkRead    q=  0.12s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:41,355 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:41:41,677 [INFO]     w23 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:41,680 [INFO]     → wall=3.47s  qps=117.13  calls=24  trig_rate=1.00  precision=0.12  p95=50.3ms
+2026-04-15 17:41:43,683 [INFO]   [5/7] periodic × supabase
+2026-04-15 17:41:43,717 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,719 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,722 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,743 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:41:43,745 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,746 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,761 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:43,762 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,764 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,774 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:43,776 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,777 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,786 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:43,787 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,788 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,798 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:43,799 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:43,800 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:44,442 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.47s  hsm=1.000  TRIG
+2026-04-15 17:41:44,540 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:44,638 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:44,685 [INFO]     w21 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:41:44,816 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:45,003 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:45,006 [INFO]     → wall=1.29s  qps=159.82  calls=7  trig_rate=0.29  precision=0.43  p95=36.4ms
+2026-04-15 17:41:47,011 [INFO]   [6/7] hsm_gated × dexter
+2026-04-15 17:41:47,037 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:47,045 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:47,178 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.13s  hsm=0.671  TRIG
+2026-04-15 17:41:47,275 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.09s  hsm=0.674  TRIG
+2026-04-15 17:41:47,279 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.878  skip
+2026-04-15 17:41:47,281 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:41:47,383 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.490  TRIG
+2026-04-15 17:41:47,387 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.909  skip
+2026-04-15 17:41:47,485 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.636  TRIG
+2026-04-15 17:41:47,585 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.700  TRIG
+2026-04-15 17:41:47,590 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:41:47,592 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.813  skip
+2026-04-15 17:41:47,690 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=0.655  TRIG
+2026-04-15 17:41:47,693 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:41:47,790 [INFO]     w14 Mixed       q=  0.00s  adv= 0.09s  hsm=0.711  TRIG
+2026-04-15 17:41:47,793 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:41:47,796 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.813  skip
+2026-04-15 17:41:47,895 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=0.713  TRIG
+2026-04-15 17:41:48,211 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.11s  hsm=0.486  TRIG
+2026-04-15 17:41:48,424 [INFO]     w19 BulkRead    q=  0.21s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:41:48,647 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.12s  hsm=0.496  TRIG
+2026-04-15 17:41:48,874 [INFO]     w21 BulkRead    q=  0.12s  adv= 0.10s  hsm=0.701  TRIG
+2026-04-15 17:41:49,018 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:41:49,216 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:41:49,218 [INFO]     → wall=2.18s  qps=120.59  calls=11  trig_rate=0.46  precision=0.27  p95=50.0ms
+2026-04-15 17:41:51,221 [INFO]   [7/7] hsm_gated × supabase
+2026-04-15 17:41:51,236 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:51,240 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:51,265 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.671  TRIG
+2026-04-15 17:41:51,277 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.674  TRIG
+2026-04-15 17:41:51,280 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.878  skip
+2026-04-15 17:41:51,282 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:41:51,293 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.490  TRIG
+2026-04-15 17:41:51,296 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.909  skip
+2026-04-15 17:41:51,309 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.636  TRIG
+2026-04-15 17:41:51,320 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.700  TRIG
+2026-04-15 17:41:51,323 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:41:51,327 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.813  skip
+2026-04-15 17:41:51,337 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=0.655  TRIG
+2026-04-15 17:41:51,340 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:41:51,353 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=0.711  TRIG
+2026-04-15 17:41:51,357 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:41:51,360 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.813  skip
+2026-04-15 17:41:51,369 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=0.713  TRIG
+2026-04-15 17:41:52,539 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.99s  hsm=0.486  TRIG
+2026-04-15 17:41:52,643 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:41:52,758 [INFO]     w20 BulkRead    q=  0.10s  adv= 0.01s  hsm=0.496  TRIG
+2026-04-15 17:41:53,121 [INFO]     w21 BulkRead    q=  0.11s  adv= 0.25s  hsm=0.701  TRIG
+2026-04-15 17:41:53,211 [INFO]     w22 BulkRead    q=  0.09s  adv= 0.00s  hsm=0.836  skip
+2026-04-15 17:41:53,356 [INFO]     w23 BulkRead    q=  0.14s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:41:53,359 [INFO]     → wall=2.12s  qps=165.96  calls=11  trig_rate=0.46  precision=0.27  p95=35.3ms
+2026-04-15 17:41:55,361 [INFO] 
+── Block 8/10  order: periodic/dexter → hsm_gated/supabase → always_on/dexter → always_on/supabase → hsm_gated/dexter → periodic/supabase → baseline/—
+2026-04-15 17:41:55,361 [INFO]   [1/7] periodic × dexter
+2026-04-15 17:41:55,396 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,398 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,400 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,531 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:41:55,532 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,533 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,631 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:55,633 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,635 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,731 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:41:55,734 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,735 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,840 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:55,842 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,843 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,943 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:55,946 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:55,947 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:56,282 [INFO]     w18 BulkRead    q=  0.21s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:41:56,464 [INFO]     w19 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:56,570 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:56,846 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:41:56,996 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:57,101 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:57,107 [INFO]     → wall=1.71s  qps=125.64  calls=7  trig_rate=0.29  precision=0.43  p95=42.2ms
+2026-04-15 17:41:59,109 [INFO]   [2/7] hsm_gated × supabase
+2026-04-15 17:41:59,141 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:59,147 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:41:59,171 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.681  TRIG
+2026-04-15 17:41:59,174 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:41:59,188 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.576  TRIG
+2026-04-15 17:41:59,190 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:41:59,203 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.568  TRIG
+2026-04-15 17:41:59,206 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.928  skip
+2026-04-15 17:41:59,209 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:41:59,211 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.848  skip
+2026-04-15 17:41:59,223 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.691  TRIG
+2026-04-15 17:41:59,235 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.612  TRIG
+2026-04-15 17:41:59,247 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=0.748  TRIG
+2026-04-15 17:41:59,259 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=0.612  TRIG
+2026-04-15 17:41:59,270 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=0.636  TRIG
+2026-04-15 17:41:59,273 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:41:59,276 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.813  skip
+2026-04-15 17:41:59,286 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=0.619  TRIG
+2026-04-15 17:42:00,165 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.67s  hsm=0.463  TRIG
+2026-04-15 17:42:00,271 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.00s  hsm=0.928  skip
+2026-04-15 17:42:00,323 [INFO]     w20 BulkRead    q=  0.04s  adv= 0.01s  hsm=0.682  TRIG
+2026-04-15 17:42:01,134 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.63s  hsm=0.654  TRIG
+2026-04-15 17:42:01,252 [INFO]     w22 BulkRead    q=  0.10s  adv= 0.01s  hsm=0.630  TRIG
+2026-04-15 17:42:01,962 [INFO]     w23 BulkRead    q=  0.11s  adv= 0.60s  hsm=0.575  TRIG
+2026-04-15 17:42:01,964 [INFO]     → wall=2.82s  qps=160.14  calls=14  trig_rate=0.58  precision=0.21  p95=36.0ms
+2026-04-15 17:42:03,968 [INFO]   [3/7] always_on × dexter
+2026-04-15 17:42:04,190 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:04,289 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,389 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,488 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,586 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,684 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,785 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,884 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:04,983 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,083 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,185 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,284 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,382 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,481 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,581 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,679 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,779 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:05,876 [INFO]     w17 Mixed       q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:42:06,216 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:06,518 [INFO]     w19 BulkRead    q=  0.18s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:06,740 [INFO]     w20 BulkRead    q=  0.12s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:07,038 [INFO]     w21 BulkRead    q=  0.18s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:42:07,303 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:42:07,528 [INFO]     w23 BulkRead    q=  0.12s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:42:07,530 [INFO]     → wall=3.46s  qps=118.15  calls=24  trig_rate=1.00  precision=0.12  p95=45.2ms
+2026-04-15 17:42:09,535 [INFO]   [4/7] always_on × supabase
+2026-04-15 17:42:09,571 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,582 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,594 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,604 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,613 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,622 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,630 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,639 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,647 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,656 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,664 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,672 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,680 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,687 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,695 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,703 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,710 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:09,718 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:10,534 [INFO]     w18 BulkRead    q=  0.19s  adv= 0.62s  hsm=1.000  TRIG
+2026-04-15 17:42:10,648 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:11,008 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:42:11,333 [INFO]     w21 BulkRead    q=  0.08s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:42:11,769 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.29s  hsm=1.000  TRIG
+2026-04-15 17:42:12,191 [INFO]     w23 BulkRead    q=  0.08s  adv= 0.34s  hsm=1.000  TRIG
+2026-04-15 17:42:12,195 [INFO]     → wall=2.64s  qps=164.24  calls=24  trig_rate=1.00  precision=0.12  p95=34.9ms
+2026-04-15 17:42:14,200 [INFO]   [5/7] hsm_gated × dexter
+2026-04-15 17:42:14,232 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:14,240 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:42:14,370 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.13s  hsm=0.681  TRIG
+2026-04-15 17:42:14,374 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.897  skip
+2026-04-15 17:42:14,474 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.576  TRIG
+2026-04-15 17:42:14,477 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:14,578 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.568  TRIG
+2026-04-15 17:42:14,583 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.928  skip
+2026-04-15 17:42:14,585 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:42:14,587 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.848  skip
+2026-04-15 17:42:14,686 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.691  TRIG
+2026-04-15 17:42:14,785 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.612  TRIG
+2026-04-15 17:42:14,885 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=0.748  TRIG
+2026-04-15 17:42:14,987 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=0.612  TRIG
+2026-04-15 17:42:15,088 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=0.636  TRIG
+2026-04-15 17:42:15,091 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:42:15,093 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.813  skip
+2026-04-15 17:42:15,190 [INFO]     w17 Mixed       q=  0.00s  adv= 0.09s  hsm=0.619  TRIG
+2026-04-15 17:42:15,525 [INFO]     w18 BulkRead    q=  0.22s  adv= 0.11s  hsm=0.463  TRIG
+2026-04-15 17:42:15,713 [INFO]     w19 BulkRead    q=  0.18s  adv= 0.00s  hsm=0.928  skip
+2026-04-15 17:42:15,941 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.11s  hsm=0.682  TRIG
+2026-04-15 17:42:16,247 [INFO]     w21 BulkRead    q=  0.19s  adv= 0.11s  hsm=0.654  TRIG
+2026-04-15 17:42:16,515 [INFO]     w22 BulkRead    q=  0.16s  adv= 0.11s  hsm=0.630  TRIG
+2026-04-15 17:42:16,739 [INFO]     w23 BulkRead    q=  0.12s  adv= 0.10s  hsm=0.575  TRIG
+2026-04-15 17:42:16,740 [INFO]     → wall=2.51s  qps=119.35  calls=14  trig_rate=0.58  precision=0.21  p95=43.7ms
+2026-04-15 17:42:18,741 [INFO]   [6/7] periodic × supabase
+2026-04-15 17:42:18,767 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,769 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,771 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,792 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:42:18,794 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,795 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,807 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:18,809 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,810 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,820 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:18,821 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,822 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,831 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:18,832 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,833 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,841 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:18,842 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:18,844 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:19,649 [INFO]     w18 BulkRead    q=  0.19s  adv= 0.61s  hsm=1.000  TRIG
+2026-04-15 17:42:19,750 [INFO]     w19 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:19,789 [INFO]     w20 BulkRead    q=  0.04s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:19,834 [INFO]     w21 BulkRead    q=  0.03s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:42:19,982 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:20,086 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:20,090 [INFO]     → wall=1.32s  qps=188.06  calls=7  trig_rate=0.29  precision=0.43  p95=31.0ms
+2026-04-15 17:42:22,092 [INFO]   [7/7] baseline × —
+2026-04-15 17:42:22,124 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,126 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,129 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,131 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,132 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,134 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,137 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,140 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,142 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,144 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,146 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,148 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,149 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,151 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,152 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,153 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,155 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,156 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,359 [INFO]     w18 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,530 [INFO]     w19 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,640 [INFO]     w20 BulkRead    q=  0.11s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,811 [INFO]     w21 BulkRead    q=  0.17s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:22,958 [INFO]     w22 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:23,062 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:23,067 [INFO]     → wall=0.94s  qps=127.94  calls=0  trig_rate=0.00  precision=0.00  p95=37.8ms
+2026-04-15 17:42:25,072 [INFO] 
+── Block 9/10  order: periodic/dexter → hsm_gated/supabase → always_on/dexter → baseline/— → periodic/supabase → always_on/supabase → hsm_gated/dexter
+2026-04-15 17:42:25,073 [INFO]   [1/7] periodic × dexter
+2026-04-15 17:42:25,099 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,102 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,104 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,228 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:25,229 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,231 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,331 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:25,333 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,334 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,433 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:25,435 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,436 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,535 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:25,538 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,539 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,637 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:25,640 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,642 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:25,920 [INFO]     w18 BulkRead    q=  0.16s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:26,080 [INFO]     w19 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:26,267 [INFO]     w20 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:26,597 [INFO]     w21 BulkRead    q=  0.21s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:26,741 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:26,837 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:26,841 [INFO]     → wall=1.74s  qps=121.52  calls=7  trig_rate=0.29  precision=0.43  p95=42.3ms
+2026-04-15 17:42:28,841 [INFO]   [2/7] hsm_gated × supabase
+2026-04-15 17:42:28,873 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:28,880 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:42:28,902 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.547  TRIG
+2026-04-15 17:42:28,916 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.618  TRIG
+2026-04-15 17:42:28,920 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:42:28,933 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.669  TRIG
+2026-04-15 17:42:28,947 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.589  TRIG
+2026-04-15 17:42:28,950 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.894  skip
+2026-04-15 17:42:28,953 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.885  skip
+2026-04-15 17:42:28,964 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.666  TRIG
+2026-04-15 17:42:28,974 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.671  TRIG
+2026-04-15 17:42:28,986 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.696  TRIG
+2026-04-15 17:42:28,990 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:42:29,000 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=0.711  TRIG
+2026-04-15 17:42:29,003 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:42:29,013 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=0.681  TRIG
+2026-04-15 17:42:29,017 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:42:29,019 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:42:29,691 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.53s  hsm=0.485  TRIG
+2026-04-15 17:42:29,736 [INFO]     w19 BulkRead    q=  0.03s  adv= 0.01s  hsm=0.686  TRIG
+2026-04-15 17:42:30,580 [INFO]     w20 BulkRead    q=  0.19s  adv= 0.65s  hsm=0.596  TRIG
+2026-04-15 17:42:30,672 [INFO]     w21 BulkRead    q=  0.09s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:42:30,719 [INFO]     w22 BulkRead    q=  0.03s  adv= 0.01s  hsm=0.651  TRIG
+2026-04-15 17:42:31,069 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.25s  hsm=0.618  TRIG
+2026-04-15 17:42:31,072 [INFO]     → wall=2.20s  qps=199.11  calls=14  trig_rate=0.58  precision=0.14  p95=30.3ms
+2026-04-15 17:42:33,075 [INFO]   [3/7] always_on × dexter
+2026-04-15 17:42:33,239 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:42:33,336 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:33,435 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:33,534 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:33,634 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:33,731 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:33,833 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:33,931 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,033 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,133 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,231 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,331 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,429 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,527 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,627 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,727 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,827 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:34,927 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:35,198 [INFO]     w18 BulkRead    q=  0.16s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:42:35,467 [INFO]     w19 BulkRead    q=  0.16s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:42:35,782 [INFO]     w20 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:36,121 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:42:36,370 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:42:36,577 [INFO]     w23 BulkRead    q=  0.11s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:36,579 [INFO]     → wall=3.47s  qps=118.81  calls=24  trig_rate=1.00  precision=0.12  p95=42.0ms
+2026-04-15 17:42:38,584 [INFO]   [4/7] baseline × —
+2026-04-15 17:42:38,614 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,616 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,618 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,621 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,623 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,625 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,629 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,631 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,633 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,635 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,637 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,639 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,640 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,642 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,643 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,645 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,646 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,647 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,790 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:38,935 [INFO]     w19 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:39,119 [INFO]     w20 BulkRead    q=  0.18s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:39,324 [INFO]     w21 BulkRead    q=  0.20s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:39,457 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:39,554 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:39,558 [INFO]     → wall=0.94s  qps=127.86  calls=0  trig_rate=0.00  precision=0.00  p95=32.3ms
+2026-04-15 17:42:41,560 [INFO]   [5/7] periodic × supabase
+2026-04-15 17:42:41,581 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,582 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,584 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,600 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:41,601 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,602 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,613 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:41,615 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,617 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,626 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:41,627 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,628 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,637 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:41,638 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,638 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,646 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:41,647 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:41,649 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:42,431 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.65s  hsm=1.000  TRIG
+2026-04-15 17:42:42,458 [INFO]     w19 BulkRead    q=  0.03s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:42,621 [INFO]     w20 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:42,728 [INFO]     w21 BulkRead    q=  0.09s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:42:42,857 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:42,952 [INFO]     w23 BulkRead    q=  0.09s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:42,956 [INFO]     → wall=1.37s  qps=182.72  calls=7  trig_rate=0.29  precision=0.43  p95=32.0ms
+2026-04-15 17:42:44,957 [INFO]   [6/7] always_on × supabase
+2026-04-15 17:42:44,997 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,011 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,022 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,032 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,042 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,051 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,067 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,084 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:42:45,093 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,102 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,110 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,118 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,127 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,134 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,142 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,150 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,158 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,166 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:45,945 [INFO]     w18 BulkRead    q=  0.14s  adv= 0.64s  hsm=1.000  TRIG
+2026-04-15 17:42:45,984 [INFO]     w19 BulkRead    q=  0.03s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:46,934 [INFO]     w20 BulkRead    q=  0.19s  adv= 0.76s  hsm=1.000  TRIG
+2026-04-15 17:42:47,042 [INFO]     w21 BulkRead    q=  0.09s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:47,729 [INFO]     w22 BulkRead    q=  0.13s  adv= 0.55s  hsm=1.000  TRIG
+2026-04-15 17:42:47,799 [INFO]     w23 BulkRead    q=  0.06s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:42:47,803 [INFO]     → wall=2.82s  qps=179.48  calls=24  trig_rate=1.00  precision=0.12  p95=32.8ms
+2026-04-15 17:42:49,807 [INFO]   [7/7] hsm_gated × dexter
+2026-04-15 17:42:49,883 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:49,891 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:42:50,080 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.18s  hsm=0.547  TRIG
+2026-04-15 17:42:50,181 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.618  TRIG
+2026-04-15 17:42:50,184 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.763  skip
+2026-04-15 17:42:50,287 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.669  TRIG
+2026-04-15 17:42:50,391 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.589  TRIG
+2026-04-15 17:42:50,394 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.894  skip
+2026-04-15 17:42:50,396 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.885  skip
+2026-04-15 17:42:50,492 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=0.666  TRIG
+2026-04-15 17:42:50,595 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.671  TRIG
+2026-04-15 17:42:50,695 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.696  TRIG
+2026-04-15 17:42:50,699 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.779  skip
+2026-04-15 17:42:50,809 [INFO]     w13 Mixed       q=  0.00s  adv= 0.11s  hsm=0.711  TRIG
+2026-04-15 17:42:50,814 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:42:50,926 [INFO]     w15 Mixed       q=  0.00s  adv= 0.11s  hsm=0.681  TRIG
+2026-04-15 17:42:50,929 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:42:50,931 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=0.776  skip
+2026-04-15 17:42:51,241 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.12s  hsm=0.485  TRIG
+2026-04-15 17:42:51,536 [INFO]     w19 BulkRead    q=  0.16s  adv= 0.13s  hsm=0.686  TRIG
+2026-04-15 17:42:51,869 [INFO]     w20 BulkRead    q=  0.20s  adv= 0.13s  hsm=0.596  TRIG
+2026-04-15 17:42:52,102 [INFO]     w21 BulkRead    q=  0.22s  adv= 0.00s  hsm=0.752  skip
+2026-04-15 17:42:52,386 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.14s  hsm=0.651  TRIG
+2026-04-15 17:42:52,601 [INFO]     w23 BulkRead    q=  0.11s  adv= 0.10s  hsm=0.618  TRIG
+2026-04-15 17:42:52,602 [INFO]     → wall=2.72s  qps=114.83  calls=14  trig_rate=0.58  precision=0.14  p95=38.7ms
+2026-04-15 17:42:54,608 [INFO] 
+── Block 10/10  order: periodic/dexter → hsm_gated/supabase → hsm_gated/dexter → always_on/supabase → always_on/dexter → baseline/— → periodic/supabase
+2026-04-15 17:42:54,608 [INFO]   [1/7] periodic × dexter
+2026-04-15 17:42:54,648 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,650 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,652 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,790 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.14s  hsm=1.000  TRIG
+2026-04-15 17:42:54,792 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,793 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,895 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:54,897 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,898 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:54,999 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:55,001 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,003 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,105 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:55,106 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,107 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,208 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:42:55,210 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,211 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,519 [INFO]     w18 BulkRead    q=  0.18s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:42:55,668 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:55,806 [INFO]     w20 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:56,039 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.13s  hsm=1.000  TRIG
+2026-04-15 17:42:56,258 [INFO]     w22 BulkRead    q=  0.22s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:56,468 [INFO]     w23 BulkRead    q=  0.21s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:56,471 [INFO]     → wall=1.82s  qps=117.47  calls=7  trig_rate=0.29  precision=0.43  p95=46.4ms
+2026-04-15 17:42:58,473 [INFO]   [2/7] hsm_gated × supabase
+2026-04-15 17:42:58,496 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:58,521 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.02s  hsm=0.676  TRIG
+2026-04-15 17:42:58,527 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:58,532 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:42:58,550 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=0.674  TRIG
+2026-04-15 17:42:58,555 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:42:58,572 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.586  TRIG
+2026-04-15 17:42:58,578 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:42:58,593 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=0.713  TRIG
+2026-04-15 17:42:58,597 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:42:58,601 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.885  skip
+2026-04-15 17:42:58,608 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.782  skip
+2026-04-15 17:42:58,614 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:42:58,629 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=0.713  TRIG
+2026-04-15 17:42:58,635 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:42:58,639 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:42:58,652 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=0.696  TRIG
+2026-04-15 17:42:58,666 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=0.715  TRIG
+2026-04-15 17:42:59,259 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.43s  hsm=0.589  TRIG
+2026-04-15 17:42:59,318 [INFO]     w19 BulkRead    q=  0.05s  adv= 0.01s  hsm=0.663  TRIG
+2026-04-15 17:42:59,467 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:42:59,570 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.00s  hsm=0.828  skip
+2026-04-15 17:43:00,239 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.48s  hsm=0.711  TRIG
+2026-04-15 17:43:00,354 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.01s  hsm=0.662  TRIG
+2026-04-15 17:43:00,357 [INFO]     → wall=1.86s  qps=158.87  calls=11  trig_rate=0.46  precision=0.18  p95=35.5ms
+2026-04-15 17:43:02,358 [INFO]   [3/7] hsm_gated × dexter
+2026-04-15 17:43:02,394 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:02,529 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.13s  hsm=0.676  TRIG
+2026-04-15 17:43:02,532 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:02,534 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=0.858  skip
+2026-04-15 17:43:02,633 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=0.674  TRIG
+2026-04-15 17:43:02,636 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:02,734 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=0.586  TRIG
+2026-04-15 17:43:02,738 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:43:02,836 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=0.713  TRIG
+2026-04-15 17:43:02,841 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:43:02,843 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.885  skip
+2026-04-15 17:43:02,845 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=0.782  skip
+2026-04-15 17:43:02,847 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=0.762  skip
+2026-04-15 17:43:02,947 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=0.713  TRIG
+2026-04-15 17:43:02,950 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:43:02,952 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=0.771  skip
+2026-04-15 17:43:03,050 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=0.696  TRIG
+2026-04-15 17:43:03,152 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=0.715  TRIG
+2026-04-15 17:43:03,436 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=0.589  TRIG
+2026-04-15 17:43:03,694 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.11s  hsm=0.663  TRIG
+2026-04-15 17:43:03,842 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.00s  hsm=0.907  skip
+2026-04-15 17:43:03,945 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.00s  hsm=0.828  skip
+2026-04-15 17:43:04,252 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.12s  hsm=0.711  TRIG
+2026-04-15 17:43:04,578 [INFO]     w23 BulkRead    q=  0.21s  adv= 0.11s  hsm=0.662  TRIG
+2026-04-15 17:43:04,579 [INFO]     → wall=2.19s  qps=122.17  calls=11  trig_rate=0.46  precision=0.18  p95=49.3ms
+2026-04-15 17:43:06,580 [INFO]   [4/7] always_on × supabase
+2026-04-15 17:43:06,627 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.02s  hsm=1.000  TRIG
+2026-04-15 17:43:06,638 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,648 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,658 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,667 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,675 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,684 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,692 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,701 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,709 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,717 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,726 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,734 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,742 [INFO]     w13 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,750 [INFO]     w14 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,757 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,765 [INFO]     w16 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:06,772 [INFO]     w17 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:07,277 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.36s  hsm=1.000  TRIG
+2026-04-15 17:43:07,332 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:08,144 [INFO]     w20 BulkRead    q=  0.13s  adv= 0.68s  hsm=1.000  TRIG
+2026-04-15 17:43:08,181 [INFO]     w21 BulkRead    q=  0.03s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:08,906 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.53s  hsm=1.000  TRIG
+2026-04-15 17:43:09,019 [INFO]     w23 BulkRead    q=  0.10s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:09,023 [INFO]     → wall=2.42s  qps=181.54  calls=24  trig_rate=1.00  precision=0.12  p95=30.6ms
+2026-04-15 17:43:11,027 [INFO]   [5/7] always_on × dexter
+2026-04-15 17:43:11,203 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.15s  hsm=1.000  TRIG
+2026-04-15 17:43:11,308 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:11,409 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:11,508 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:11,607 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:11,705 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:11,801 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:43:11,896 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:43:11,993 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.09s  hsm=1.000  TRIG
+2026-04-15 17:43:12,094 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,195 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,294 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,393 [INFO]     w12 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,492 [INFO]     w13 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,591 [INFO]     w14 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,692 [INFO]     w15 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,793 [INFO]     w16 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:12,891 [INFO]     w17 Mixed       q=  0.00s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:13,169 [INFO]     w18 BulkRead    q=  0.17s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:43:13,425 [INFO]     w19 BulkRead    q=  0.15s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:43:13,681 [INFO]     w20 BulkRead    q=  0.15s  adv= 0.11s  hsm=1.000  TRIG
+2026-04-15 17:43:13,892 [INFO]     w21 BulkRead    q=  0.11s  adv= 0.10s  hsm=1.000  TRIG
+2026-04-15 17:43:14,207 [INFO]     w22 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:43:14,533 [INFO]     w23 BulkRead    q=  0.20s  adv= 0.12s  hsm=1.000  TRIG
+2026-04-15 17:43:14,534 [INFO]     → wall=3.48s  qps=118.81  calls=24  trig_rate=1.00  precision=0.12  p95=48.9ms
+2026-04-15 17:43:16,536 [INFO]   [6/7] baseline × —
+2026-04-15 17:43:16,565 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,568 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,571 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,573 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,575 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,577 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,581 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,583 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,585 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,587 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,589 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,591 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,593 [INFO]     w12 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,594 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,595 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,596 [INFO]     w15 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,598 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,599 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,756 [INFO]     w18 BulkRead    q=  0.16s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:16,891 [INFO]     w19 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:17,027 [INFO]     w20 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:17,125 [INFO]     w21 BulkRead    q=  0.10s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:17,313 [INFO]     w22 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:17,506 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:17,509 [INFO]     → wall=0.94s  qps=127.61  calls=0  trig_rate=0.00  precision=0.00  p95=40.0ms
+2026-04-15 17:43:19,515 [INFO]   [7/7] periodic × supabase
+2026-04-15 17:43:19,535 [INFO]     w00 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,536 [INFO]     w01 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,538 [INFO]     w02 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,553 [INFO]     w03 ReadOnly    q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:19,555 [INFO]     w04 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,556 [INFO]     w05 ReadOnly    q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,567 [INFO]     w06 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:19,569 [INFO]     w07 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,570 [INFO]     w08 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,580 [INFO]     w09 WriteHeavy  q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:19,581 [INFO]     w10 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,582 [INFO]     w11 WriteHeavy  q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,591 [INFO]     w12 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:19,592 [INFO]     w13 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,593 [INFO]     w14 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,602 [INFO]     w15 Mixed       q=  0.00s  adv= 0.01s  hsm=1.000  TRIG
+2026-04-15 17:43:19,603 [INFO]     w16 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:19,603 [INFO]     w17 Mixed       q=  0.00s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:20,006 [INFO]     w18 BulkRead    q=  0.15s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:43:20,050 [INFO]     w19 BulkRead    q=  0.04s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:20,141 [INFO]     w20 BulkRead    q=  0.09s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:20,464 [INFO]     w21 BulkRead    q=  0.07s  adv= 0.25s  hsm=1.000  TRIG
+2026-04-15 17:43:20,602 [INFO]     w22 BulkRead    q=  0.14s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:20,790 [INFO]     w23 BulkRead    q=  0.19s  adv= 0.00s  hsm=1.000  skip
+2026-04-15 17:43:20,794 [INFO]     → wall=1.26s  qps=170.61  calls=7  trig_rate=0.29  precision=0.43  p95=30.1ms
+2026-04-15 17:43:22,799 [INFO] 
+Done.  Raw results → /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/oltp_tier2_raw.csv
+2026-04-15 17:43:22,800 [INFO]         Per-window detail → /Users/arunreungsinkonkarn/Desktop/Research Papers/Paper 3 /Paper 3A/Version 4/HSM_gated/results/tier2_oltp/detail/
