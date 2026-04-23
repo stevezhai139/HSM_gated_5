@@ -51,7 +51,9 @@ HSM_gated/
 │   │   ├── experiment_runner.py      # TPC-H harness
 │   │   ├── hsm_*_validation.py       # SDSS / JOB / burst / OLTP
 │   │   ├── tier2/                    # End-to-end Dexter / index_advisor
-│   │   └── overnight/                # B1–B5 long-running receipts
+│   │   ├── overnight/                # B1–B5 long-running receipts
+│   │   └── cross_engine/             # §V cross-engine MongoDB validation
+│   │                                 #   (vendored from V3 — see README_VENDOR.md)
 │   ├── figures/                # Plot scripts (7 main + 3 supplementary)
 │   ├── tests/                  # Metric-axiom unit tests (Lemma 1)
 │   ├── setup/                  # Database + workload setup scripts
