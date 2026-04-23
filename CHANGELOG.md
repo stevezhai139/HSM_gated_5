@@ -6,6 +6,190 @@ audit exposed that the earlier implementation used a 5-Jaccard
 composite instead of the Spearman / log-ratio / angular / dual-Jaccard
 / DWT+SAX+FastDTW pipeline defined in §III of the paper.
 
+## [2026-04-23] — Post-submission repo cleanup
+
+### Replaced (paper/main/ now matches TKDE submission)
+- `paper/main/main_article.{tex,pdf}`, `references.bib`, `IEEEtran.cls`:
+  Replaced article-class manuscript with the IEEE Computer Society
+  `IEEEtran` compsoc version (13 pp) actually submitted to TKDE on
+  2026-04-20. Previous `IEEEtran.cls` was a 0-byte placeholder; now
+  the full v1.8b CTAN file (281 KB).
+- Added `paper/main/IEEEtran.bst` (57 KB, IEEE bibliography style)
+  — required to re-compile with `bibtex`.
+- `paper/supplementary/{supplementary.tex,pdf,references.bib}`: latest
+  versions matching submitted `02_supplementary.pdf`.
+
+### Vendored (cross-engine MongoDB self-containment)
+- New directory `code/experiments/cross_engine/` containing a verbatim
+  V3 snapshot of the MongoDB cross-engine experiment (8 files):
+    - `_v3_hsm/hsm_v2_core.py` (V3's HSM kernel — different signature
+      from V5's `hsm_v2_kernel.py`, must remain V3 for numerical
+      reproducibility of §V results)
+    - `common/{__init__,hsm_bridge,param_sampler,window_features}.py`
+    - `mongo/adaptation/{13_mongo_adaptation,hsm_mongo_validation}.py`
+      (the latter renamed from V3's `14_mongo_adaptation_theta_sweep.py`
+      to match the README traceability table)
+    - `mongo/workload/templates.py`
+- One-line edit in `cross_engine/common/hsm_bridge.py`: `_V2_DIR` now
+  points to vendored `../_v3_hsm/` instead of V3's original
+  `v2_10seed/`.
+- Refactored `code/experiments/overnight/b3_mongo_theta0775.py` to
+  load the vendored `hsm_mongo_validation.py` from within this repo,
+  removing the cross-repo `Version 3/` dependency that previously
+  caused `FATAL: cannot find ...` for any reviewer cloning only
+  `HSM_gated_5`.
+- Added `cross_engine/README_VENDOR.md` documenting provenance and
+  the rationale for not using V5's refactored kernel.
+- Smoke-tested: full import chain (templates → param_sampler →
+  window_features → hsm_bridge → V3 hsm_v2_core) resolves with no
+  ImportError; `hsm_bridge.is_available()` returns `True` and
+  `get_w0()` returns the canonical paper weights.
+
+### Fixed (CITATION.cff metadata)
+- Real ORCID `0009-0009-2077-0006` (was placeholder
+  `0000-0000-0000-0000`).
+- Repository URL `https://github.com/stevezhai139/HSM_gated_5` (was
+  `https://github.com/arunr/HSM_gated`, which does not exist).
+- Removed Zenodo DOI placeholder `10.5281/zenodo.0000000`; replaced
+  with a YAML comment template to fill in once the Zenodo archive is
+  minted on paper acceptance.
+
+### Updated (README traceability)
+- Page-count corrected: `paper/main/main_article` is **13 pp** (was
+  labelled 12 pp).
+- Cross-engine traceability row now points to the vendored
+  `code/experiments/cross_engine/mongo/adaptation/hsm_mongo_validation.py`
+  (was the non-existent `code/experiments/hsm_mongo_validation.py`).
+
+---
+
+## [2026-04-17b] — Second-pass cleanup (TKDE)
+
+### Fixed (Supplementary reference alignment)
+- `paper/main/main_article.tex` L622: Theorem 1 (Wavelet Pattern
+  Preservation) proof sketch cited `Supplementary~\S III` (which is
+  the Lemma 3 / Tight Linear Complexity proof). Corrected to
+  `Supplementary~\S V` (Theorem 1 proof). This was a pre-existing
+  misreference unrelated to the Lemma swap; caught in the post-swap
+  cross-check audit.
+
+### Cleaned (Dead macro removal)
+- `paper/main/main_article.tex` preamble: removed the retired
+  `\TBD / \TBDcell / \REMARK` macro definitions + the 8-line comment
+  block describing why they were kept. Zero live invocations remain
+  anywhere in the source; macros are no longer needed.
+- `paper/supplementary/supplementary.tex` preamble: same three-macro
+  block removed with its two-line comment.
+
+### Rephrased (Theorem 6: "closed-form optimal window size" \u2192 "convex-optimal")
+- Seven locations in `main/main_article.tex` where Theorem 6's
+  $\Nstar$ was described as "closed-form" have been rewritten to
+  reflect the technical reality that Theorem 6 provides a *closed-form
+  convex cost model* whose minimiser $\Nstar$ is characterised by an
+  *implicit fixed-point equation* (solved numerically). The cost model
+  itself is closed form; the minimiser is not.
+    - Abstract (L67), Intro contributions (L118), Conclusion (L1505):
+      "closed-form optimal window size" \u2192 "convex-optimal window size"
+    - Theorem 6 section intro (L544): rephrased as "the convex-optimal
+      window size $\Nstar$ that minimises total steady-state cost"
+    - Corollary (L953): "closed-form $\Nstar$" \u2192 "convex-optimal $\Nstar$"
+    - A17 empirical-match text (L969): "closed-form prediction" \u2192
+      "Theorem~6 prediction"
+    - A17 summary table row (L1370): "Optimal $\Npts$ closed-form" \u2192
+      "Optimal $\Npts$ from convex cost model"
+- Remaining "closed-form" uses audited and verified to refer to
+  genuinely closed-form objects: Theorem 3's $\thetastar(N,Q)$ (L123,
+  L158, L461, L484, L685, L1428); Theorem 1's $\varepsilon(M,\Npts,L)$
+  (L605); Theorem 5's speedup interval (L826).
+
+### Verification
+- `main_article.pdf` recompiled: 12 pages, no undefined references,
+  no errors.
+- `supplementary.pdf` recompiled: 14 pages, clean.
+- Page-count preserved at 12 after rephrasing by choosing the shorter
+  "convex-optimal" in list positions (abstract, intro, conclusion).
+
+## [2026-04-17] — Pre-submission consistency pass (TKDE)
+
+### Fixed (Lemma numbering + citation consistency main↔supp)
+- `paper/main/main_article.tex`: physical order of Lemma 3 and Lemma 4
+  swapped so both main and supplementary now agree:
+    - Lemma 1 = HSM Metric Properties (`lem:metric`)
+    - Lemma 2 = DWT Parameter Selection (`lem:dwt`)
+    - Lemma 3 = Tight Linear Complexity (`lem:complexity`)   ← was Lemma 4
+    - Lemma 4 = Wavelet Coefficient Bound   (`lem:wcb`)      ← was Lemma 3
+  All 14 `\ref{lem:complexity}` / `\ref{lem:wcb}` callers auto-renumber
+  correctly under the new ordering (verified in `main_article.aux`).
+- `paper/main/main_article.tex` (Theorem 6 body, L893 region): the
+  `a·Npts·log Npts` DWT/SAX/DTW term is now documented as a *conservative
+  upper bound* accommodating kernel variants beyond FastDTW, with the
+  tight $\Theta(\Npts)$ of Lemma~\ref{lem:complexity} noted as a strict
+  special case. Previously the citation implied Lemma 3 proved the
+  `N log N` form, which contradicted the lemma statement.
+- `paper/main/main_article.tex` (Corollary, L937 region): rebuild-cost
+  claim $\lambda(N)=\Theta(N\log N)$ now cites "the premise
+  $T_A(N)=\Omega(N\log N)$ of Theorem~\ref{thm:speedup}" instead of
+  Lemma 3 (whose scope is $T_{\mathrm{HSM}}$, not $T_A$).
+- `paper/supplementary/supplementary.tex` (L760 region): same cost-model
+  reframing as main, citing Lemma 3's Θ(Npts) as the tight special case.
+
+### Fixed (T2.4 — β=1.094 vs Θ(Npts) framing, A12/A14 + Limitation iii)
+- A12/A14 row in `main/main_article.tex` distinguishes two regression
+  domains: (a) rebuild-cost $T_A$ over $N_{\mathrm{lineitem}}\!\in\!
+  [1.2\mathrm{M},18\mathrm{M}]$ gives $\beta=1.177$, consistent with
+  $\Theta(N\log N)$; (b) kernel cost $T_{\mathrm{HSM}}$ over
+  $\Npts\!\in\![100,30{,}000]$ gives $\beta=1.094$, consistent with
+  the tight $\Theta(\Npts)$ of Lemma~\ref{lem:complexity} (the small
+  super-linear residual absorbs FastDTW path length and memory-hierarchy
+  constant-factor effects; no genuine $\log\Npts$ factor).
+- Limitation (iii) rewritten to say "sub-dominant constant-factor
+  effects within the finite micro-benchmark range; the asymptotic bound
+  is linear" — replacing the earlier text which implied
+  $\Theta(\Npts\log\Npts)$ scaling.
+
+### Added (T2.1 — Change-point detection literature in §II.B)
+- `paper/main/main_article.tex` §II.B: paragraph positioning HSM against
+  classical sequential CPD methods, citing CUSUM (Page, 1954) and
+  Bayesian Online Change-Point Detection (Adams & MacKay, 2007).
+  Frames HSM as a *window-pair similarity classifier* that is
+  complementary (not substitutable) to streaming CPD — streaming CPD
+  can supply windows to HSM dynamically; HSM supplies a DBMS-agnostic
+  composite similarity single-signal CPD does not provide.
+- `paper/main/references.bib`: two new `@article` entries
+  (`Page1954CUSUM`, `AdamsMacKay2007BOCPD`).
+
+### Fixed (T3.4 — Theorem 2 global sufficiency vs. workload utility)
+- `paper/main/main_article.tex` empirical caveat after Theorem 2
+  retitled "global sufficiency vs.\ per-workload utility" and rewritten
+  to make explicit that minimal sufficiency is a property of the
+  witness construction over the joint workload space; TPC-H's
+  $\Delta\SPER\!\approx\!0$ is per-workload utility and does not
+  contradict the theorem. Burst workload (A8d, 14% $\SPER$ contribution)
+  is invoked as the witness pair on which $\SPER$ is necessary.
+
+### Fixed (T1.1/T1.2/T1.3 — Tier-1 issues from PRE_SUBMIT_NOTES)
+- Theorem 6 body now cites $C_{\mathrm{db4}}=\sqrt{2}/2\approx 0.707$
+  (matching Lemma 4 / `lem:wcb`); the earlier $\approx 1.5$ value is
+  removed.
+- Equation (optwin-Nstar) reformulated as an explicit implicit
+  fixed-point equation in a single scalar $\Nstar$, with a note that
+  bisection converges in $O(\log(1/\epsilon))$.
+- Limitation (ii) rewritten to frame the fixed-weights trade-off as a
+  deliberate cross-workload-consistency choice (preserving composite
+  metric properties P1–P4 and Algorithm~2 diagnosis) rather than a
+  weakness.
+
+### Verification
+- `main_article.pdf` recompiled (12 pages, no undefined references, no
+  LaTeX errors).
+- `supplementary.pdf` recompiled (14 pages, no undefined references).
+- Cross-document numerical audit passed:
+  θ*∈{0.750, 0.6325, 0.7275} match; speedup bounds {5.22×, 5.20×,
+  4.01×, 20.0×} match; p̂_stable∈{0.808, 0.751, 0.950, 0.000} match;
+  95% certificate $[5.72\times, 23.45\times]$ matches; Youden
+  $J^*\!\in\!\{0.9626, 0.9684\}$ matches; savings pairs
+  80.8%/42.5% and 80.8%/44.4% match.
+
 ## [unreleased] — v2 regeneration
 
 ### Added (2026-04-14 figure-input aggregators)

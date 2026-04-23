@@ -60,7 +60,7 @@ HSM_gated/
 │       ├── sdss/               # SkyLog_Workload.csv (31 MB, included)
 │       └── job/queries/        # JOB/IMDB benchmark SQL (tracked)
 ├── paper/
-│   ├── main/main_article.{tex,pdf}          # 12-page IEEE TKDE main
+│   ├── main/main_article.{tex,pdf}          # 13-page IEEE TKDE main
 │   └── supplementary/supplementary.{tex,pdf}# 14-page appendix
 ├── results/                    # Shipped CSVs that back the paper tables
 ├── scripts/                    # Result aggregation helpers
@@ -106,7 +106,7 @@ retraining (see paper §III.F, A10b).
 | Theorem 4 (Hoeffding)   | `code/experiments/hsm_v2_kernel.py::hoeffding_band()`   |
 | Theorem 5 (speedup)     | `scripts/analyze_t5_validation.py`                      |
 | Table 3 (A13d)          | `code/experiments/tier2/hsm_burst_end_to_end.py`        |
-| §V (A-CE cross-engine)  | `code/experiments/hsm_mongo_validation.py`              |
+| §V (A-CE cross-engine)  | `code/experiments/cross_engine/mongo/adaptation/hsm_mongo_validation.py` |
 | Figures 1–7 (main)      | `code/figures/plot_fig0[1-7]_*.py`                      |
 | Figures S1–S3 (suppl.)  | `code/figures/plot_supp0[1-3]_*.py`                     |
 
