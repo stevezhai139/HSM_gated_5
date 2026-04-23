@@ -1,8 +1,6 @@
-% IEEE TKDE layout simulation (article class, 10pt, twocolumn)
-% For page count estimation. True compile: use Overleaf with IEEEtran.cls
-% Content faithful to v77 (Paper3A_Draft_v77_TKDE.docx)
-\documentclass[10pt,twocolumn,a4paper]{article}
-\usepackage[a4paper,top=19mm,bottom=24mm,left=14.5mm,right=14.5mm,columnsep=5mm]{geometry}
+% IEEE Transactions on Knowledge and Data Engineering (TKDE) — IEEEtran journal template
+% Per TKDE admin-check email 2026-04-20: manuscript must be reformatted using IEEEtran.cls
+\documentclass[10pt,journal,compsoc]{IEEEtran}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm}
@@ -12,16 +10,8 @@
 \usepackage{xcolor}
 \usepackage{url}
 \usepackage{microtype}
-\usepackage{times}
 \usepackage{cite}
-\usepackage{balance}
 \usepackage[hidelinks]{hyperref}
-\usepackage{titlesec}
-\titleformat{\section}{\bfseries\normalsize}{\Roman{section}.}{0.5em}{}
-\titleformat{\subsection}{\bfseries\itshape\small}{\Alph{subsection}.}{0.4em}{}
-\setlength\parindent{7pt}\setlength\parskip{0pt}
-\titlespacing*{\section}{0pt}{4pt}{2pt}
-\titlespacing*{\subsection}{0pt}{3pt}{1pt}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{definition}{Definition}
@@ -41,31 +31,21 @@
 \newcommand{\dHSM}{d_{\mathrm{HSM}}}
 \newcommand{\TPR}{\mathrm{TPR}}
 \newcommand{\TNR}{\mathrm{TNR}}
-%% ---------------------------------------------------------------------------
-%% HSM v2 backfill (2026-04-15)
-%%   All TBD/TBDcell/REMARK macros previously used as placeholders have been
-%%   resolved with measured values from the v2 sweep.  Source CSVs:
-%%     results/{summary_all,throughput,overhead,scale_analysis,
-%%              noise_sensitivity,window_sweep}.csv
-%%     code/results/{sdss,job,oltp,burst,burst_v3}_validation/.
-%%   The placeholder macros (\TBD, \TBDcell, \REMARK) are kept defined below
-%%   so the document still compiles if a future revision needs to re-introduce
-%%   them, but no live invocations remain in the body.
-%% ---------------------------------------------------------------------------
 \usepackage{soul}
-\newcommand{\TBD}[2]{#2} % placeholder retired: render second arg only.
-\newcommand{\TBDcell}[1]{--}
-\newcommand{\REMARK}[1]{}
+\title{HSM: Workload-Similarity Gating for Index-Maintenance Decisions, with Formal Bounds}
+
+\author{Arun~Reungsilpkolkarn%
+\thanks{A.~Reungsilpkolkarn is with the School of Information Technology and Innovation, Bangkok University, Pathum Thani, Thailand. E-mail: arun.r@bu.ac.th. ORCID: 0009-0009-2077-0006.}%
+\thanks{Manuscript submitted to IEEE Transactions on Knowledge and Data Engineering, 2026.}}
+
+\markboth{IEEE Transactions on Knowledge and Data Engineering, Vol.~XX, No.~X, 2026}%
+{Reungsilpkolkarn: HSM: Workload-Similarity Gating for Index-Maintenance Decisions}
+
 \begin{document}
-\twocolumn[{\begin{center}
-{\large\bfseries HSM: Workload-Similarity Gating for
-Index-Maintenance Decisions, with Formal Bounds}\\[4pt]
-{\normalsize Arun Reungsilpkolkarn}\\
-{\small School of Information Technology and Innovation, Bangkok University, Pathum Thani, Thailand.
-\texttt{arun.r@bu.ac.th}}\\[6pt]
-\end{center}
-\begin{quote}\small
-\textbf{Abstract---}Existing index advisors (Dexter, Supabase
+\maketitle
+
+\begin{abstract}
+Existing index advisors (Dexter, Supabase
 \texttt{index\_advisor}, BALANCE, Indexer++) answer \emph{which}
 indexes to build but invoke their $\Omega(N\log N)$ search at
 every window or on a fixed schedule.  We address the complementary
@@ -78,10 +58,12 @@ DWT-based temporal pattern) and exposes a single calibrated
 threshold $\thetastar(N,Q)$.  Six theorems and four lemmas
 establish metric soundness, complexity, economic gating
 optimality, detector-quality bounds, a deployment speedup
-certificate, and a closed-form optimal window size.
+certificate, and a convex-optimal window size.
 On PostgreSQL\,16 with TPC-H (SF\,0.2--3.0), HSM attains
-$J\!\ge\!0.96$ at every scale and reduces advisor invocations by
-$80.8\%$ versus always-on and $42.5\%$ versus periodic
+Youden $J\!\ge\!0.96$ at every scale on the phase-labelled
+retain-vs-rebuild detection protocol (within-phase vs.\ cross-phase
+window pairs, $m_w\!=\!m_c\!=\!160$, \S V.A14), and reduces advisor
+invocations by $80.8\%$ versus always-on and $42.5\%$ versus periodic
 ($K\!=\!3$), at a kernel cost of $\approx\!1$\,ms per decision.
 End-to-end deployment with two production PostgreSQL advisors
 (Dexter, Supabase \texttt{index\_advisor}) demonstrates $66$--$71\%$
@@ -89,12 +71,12 @@ wall-clock savings versus always-on with $100\%$ trigger precision.
 Four external workloads (SDSS, JOB/IMDB, pgbench, burst) and
 cross-engine validation on MongoDB~7 confirm the kernel transfers
 unmodified; only $\theta$ requires per-engine recalibration---no
-kernel retraining.\\[2pt]
-\textbf{Index Terms---}Decision layer, index-maintenance timing,
-proactive index management, workload similarity,
-hierarchical similarity measurement, discrete wavelet transform,
-self-tuning databases.
-\end{quote}\vspace{4pt}}]
+kernel retraining.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Decision layer, index-maintenance timing, proactive index management, workload similarity, hierarchical similarity measurement, discrete wavelet transform, self-tuning databases.
+\end{IEEEkeywords}
 
 \section{Introduction}
 
@@ -105,8 +87,7 @@ previous workload window may become inefficient for the current one.
 Proactive index management---deciding whether to retain an existing index
 or rebuild it based on workload evolution---requires a reliable mechanism
 to determine how similar the current workload window is to the reference
-window under which the index was last calibrated. This paper addresses
-that prerequisite.
+window under which the index was last calibrated.
 
 Prior work~\cite{Reungsinkonkarn2026iEEECON,Reungsilpkolkarn2026ICICT}
 validated the HSM concept, demonstrating 77\% classification accuracy and
@@ -127,21 +108,18 @@ simultaneously.
 \textbf{C2}~A theoretical core of six theorems and four lemmas
 covering wavelet pattern preservation, minimal-sufficient dimensions,
 economic gating optimality, stratified-Hoeffding detector-quality
-bounds, a deployment speedup certificate, and a closed-form optimal
+bounds, a deployment speedup certificate, and a convex-optimal
 window size (Section~IV).
 \textbf{C3}~Access-attribute independence: HSM incurs no
 reconstruction cost when the accessed column set changes
-(Theorem~\ref{thm:econ}).
+(Theorem~\ref{thm:econ}, part~(ii); supplementary~\S VII).
 \textbf{C4}~A closed-form threshold $\thetastar(N,Q)$ validated
-across SF\,0.2--3 (Youden $J\!\ge\!0.96$ at every scale) and
-generalising across TPC-H, burst, and cross-engine workloads.
+across SF\,0.2--3 (Youden $J\!\ge\!0.96$ at every scale under the
+phase-labelled detection protocol) and generalising across TPC-H,
+burst, and cross-engine workloads.
 \textbf{C5}~Cross-engine validation on MongoDB~7, confirming that
 the HSM kernel is DBMS-agnostic and requires only per-engine
 $\theta$ recalibration---no kernel retraining.
-
-HSM is a measurement layer rather than a physical index: $\Theta(\Npts)$
-per decision, dominated by the $\Theta(N\log N)$ reconstruction it
-gates.
 
 \section{Related Work}
 
@@ -164,10 +142,9 @@ trigger.  Prior HSM work~\cite{Reungsinkonkarn2026iEEECON,%
 Reungsilpkolkarn2026ICICT} validated the concept empirically; the
 present paper adds formal proofs and scale-sensitivity analysis.
 
-\smallskip\noindent\emph{Gap~2.1: We are not aware of a prior method
-that jointly provides a continuous multi-dimensional similarity score
-with formal metric properties, a closed-form decision threshold, and a
-training-free deployment model for online indexing.}
+\emph{Gap~2.1: no prior method jointly provides a continuous
+multi-dimensional similarity score with formal metric properties, a
+closed-form decision threshold, and a training-free deployment model.}
 
 \smallskip\noindent\textbf{Deployed Index Advisors.}
 Alongside academic prototypes, two open-source PostgreSQL advisors
@@ -211,15 +188,27 @@ bounded-error symbolisation (SAX), and elastic alignment
 (FastDTW)---motivating the three-stage $\SPER$ pipeline
 (Section~III).
 
+\textit{Change-point detection (CPD).} Classical sequential CPD
+includes CUSUM~\cite{Page1954CUSUM} and Bayesian Online Change-Point
+Detection~\cite{AdamsMacKay2007BOCPD}, which optimise a
+detection-delay/false-alarm trade-off by scanning a \emph{stream}
+position-by-position. HSM differs in protocol: it is a
+\emph{window-pair similarity classifier} that decides retain-vs-rebuild
+on aligned windows, not on stream positions (Theorem~4 reformulates
+the gate as a binary detector under this protocol). The two families
+are complementary---streaming CPD can supply windows to HSM
+dynamically, while HSM supplies a DBMS-agnostic composite similarity
+that single-signal CPD does not provide---and are therefore not
+substitutable baselines.
+
 \textit{Theoretical foundations.} Metric space theory~\cite{Deza2009Distances}
 formalises similarity properties. Information-theoretic bounds for
 symbolic representations draw on Cover \& Thomas~\cite{Cover2006InfoTheory}.
 Wavelet approximation bounds are established in Mallat~\cite{Mallat1989Wavelets}.
 These classical results provide the mathematical scaffolding for Section~IV.
 
-\smallskip\noindent\emph{Gap~2.2: No prior work provides formal guarantees
-for multi-scale workload similarity measurement---neither proving metric
-properties nor establishing parameter optimality bounds.}
+\emph{Gap~2.2: no prior work provides formal guarantees for multi-scale
+workload similarity---neither metric properties nor parameter optimality bounds.}
 
 \subsection{Database Optimisation and Access-Attribute Dependence}
 
@@ -241,11 +230,9 @@ WaZI~\cite{Pai2024WaZI}).
 A formal comparison appears in the Supplementary
 (Structural Comparison with Prior Methods).
 
-\smallskip\noindent\emph{Gap~2.3: No existing framework---B-Trees,
-cracking, learned indexes (PGM, ALEX, XIndex), or workload-aware
-partitioning (WaZI)---formally characterises access-attribute
-independence or provides multi-dimensional temporal similarity with
-cost guarantees.}
+\emph{Gap~2.3: no existing framework (B-Trees, cracking, learned indexes,
+WaZI) formally characterises access-attribute independence or provides
+multi-dimensional temporal similarity with cost guarantees.}
 
 \subsection{NoSQL and Document Store Indexing}
 
@@ -271,14 +258,9 @@ observes that relational and document models increasingly coexist in
 modern deployments, yet no cross-engine workload similarity framework
 has been proposed.
 
-\smallskip\noindent\emph{Gap~2.4: No existing index management
-framework---relational or NoSQL---provides a DBMS-agnostic workload
-similarity measure validated across both SQL and document-store
-engines with formal metric guarantees.}
-
-These four gaps map to contributions C1--C5 (Section~I):
-Gaps~2.1--2.2 $\to$ C1--C2; Gap~2.3 $\to$ C3--C5; Gap~2.4 $\to$
-cross-engine MongoDB validation (Section~\ref{sec:mongo-exp}).
+\emph{Gap~2.4: no existing framework provides a DBMS-agnostic workload
+similarity measure validated across SQL and document-store engines with
+formal metric guarantees.}
 
 \section{The HSM Framework}
 
@@ -539,7 +521,7 @@ Theorem~4 establishes a stratified-Hoeffding concentration bound on the
 HSM as a binary classifier of phase boundaries. Theorem~5 transports
 that band into a deployment-time certificate on the asymptotic speedup,
 parameterised by the operator's phase-mix prior $\pi_w$. Theorem~6
-closes the framework with a closed-form optimal window size $\Nstar$
+closes the framework with the convex-optimal window size $\Nstar$
 that minimises total steady-state cost.
 
 \subsection{Supporting Lemmas}
@@ -562,17 +544,10 @@ regime $\times$ query-type dominance). The minimum SAX alphabet size
 that guarantees correct state discrimination under the maximum-entropy
 model with the two-sided burst extension satisfies $\alpha^{*}\!=\!2k\!=\!8$;
 under Quantile-SAX breakpoints,
-$P(\mathrm{misclass.})<1/\alpha\!=\!1/8$. (Implementation uses
-$\alpha\!=\!4$, the half-precision setting empirically validated
-in Section~V.)
-\end{lemma}
-
-\begin{lemma}[Wavelet Coefficient Bound]\label{lem:wcb}
-For any signal $q(t)$ on $[0,\Npts)$ with $\sup|q(t)|\leq M$ and
-its $L^{2}$ norm $\|q\|_{2}\leq M\sqrt{\Npts}$, the level-$L$ db4
-DWT approximation $\tilde{q}$ satisfies
-$\|q-\tilde{q}\|_{2}\leq C_{\mathrm{db4}}^{L}\,M\sqrt{\Npts}$,
-with $C_{\mathrm{db4}}\!=\!\sqrt{2}/2\approx 0.707$~\cite{Mallat1989Wavelets}.
+$P(\mathrm{misclass.})<1/\alpha\!=\!1/8$.\footnote{The deployed pipeline
+uses $\alpha\!=\!k\!=\!4$: DWT detail bands $cD_1$--$cD_3$ encode burst
+direction, leaving SAX on $cA_3$ to discriminate only the $k$ canonical
+states; $\alpha^{*}\!=\!2k$ is the SAX-only fallback (Supp.~\S II).}
 \end{lemma}
 
 \begin{lemma}[Tight Linear Complexity]\label{lem:complexity}
@@ -588,6 +563,14 @@ flip the value of $\mathrm{sim}$ while preserving P1--P4.
 Upper: each dimension $O(\Npts)$ with no page access; total $\Theta(\Npts)$.
 Lower: adversary argument. Full proof: Supplementary~\S III.
 
+\begin{lemma}[Wavelet Coefficient Bound]\label{lem:wcb}
+For any signal $q(t)$ on $[0,\Npts)$ with $\sup|q(t)|\leq M$ and
+its $L^{2}$ norm $\|q\|_{2}\leq M\sqrt{\Npts}$, the level-$L$ db4
+DWT approximation $\tilde{q}$ satisfies
+$\|q-\tilde{q}\|_{2}\leq C_{\mathrm{db4}}^{L}\,M\sqrt{\Npts}$,
+with $C_{\mathrm{db4}}\!=\!\sqrt{2}/2\approx 0.707$~\cite{Mallat1989Wavelets}.
+\end{lemma}
+
 \subsection{Theorem 1: Wavelet Pattern Preservation}
 
 \begin{theorem}[Wavelet Pattern Preservation]\label{thm:wavelet}
@@ -602,7 +585,7 @@ is a closed-form expression in operator-measurable quantities.
 \end{theorem}
 \noindent\textit{Proof sketch.}
 Follows from Lemma~\ref{lem:wcb} and the normalised FastDTW score sensitivity.
-Full proof: Supplementary~\S III.
+Full proof: Supplementary~\S V.
 At the v2 default ($L\!=\!3$, $\Npts\!=\!100$), $\varepsilon\!\leq\!0.071\,M$.
 
 \subsection{Theorem 2: Minimal Sufficient Dimensions}
@@ -625,20 +608,25 @@ sufficient: removing any one violates at least one witness pair above.
 Full proof with explicit witnesses: Supplementary Section~VI.
 \end{theorem}
 
-\noindent\textit{Empirical caveat.}
-On TPC-H, $\Delta\SPER\!\approx\!0$ across all SFs (vs.\ $\Delta\ST\!\approx\!0.53$, $\Delta\SA\!\approx\!0.56$), so $(\ST,\SA)$ dominate phase separation.
-We retain $\SPER$ because $(i)$~it carries unique intra-window shape information required by the witness pair,
-and $(ii)$~workloads with temporal periodicity make $\SPER$ informative (confirmed in burst A8d).
-Per-dimension utility across five workloads is quantified in the
-Supplementary (Dimensional-Utility Table).
+\noindent\textit{Empirical caveat (global sufficiency vs.\ per-workload utility).}
+Theorem~\ref{thm:minimal} establishes \emph{global} sufficiency and
+minimality: the witness construction guarantees that no four-dimensional
+subset suffices on the joint workload space. This does \emph{not}
+imply every dimension is equally informative on every single workload.
+On TPC-H, $\Delta\SPER\!\approx\!0$ across all SFs
+(vs.\ $\Delta\ST\!\approx\!0.53$, $\Delta\SA\!\approx\!0.56$), so
+$(\ST,\SA)$ dominate phase separation; we retain $\SPER$ because
+$(i)$~it carries unique intra-window shape information required by
+the burst witness pair (necessary for global sufficiency in
+Theorem~\ref{thm:minimal}), and $(ii)$~workloads with temporal
+periodicity make $\SPER$ informative (14\,\% contribution on burst
+A8d). Per-dimension utility across five workloads is quantified in
+the Supplementary (Dimensional-Utility Table).
 
 \subsection{Theorem 3: Economic Optimality of HSM Gating}
 
-The cost model summarises the
-system-measurable constants $a,b,f,g,c$ (full parameter table in the
-Supplementary, Cost-Model Parameters). The next theorem derives the
-optimal gating policy under this model and shows that HSM's cost is
-independent of access-attribute changes.
+The cost model uses system-measurable constants $a,b,f,g,c$
+(full parameter table in the Supplementary, Cost-Model Parameters).
 
 \begin{theorem}[Economic Optimality of HSM Gating]\label{thm:econ}
 Under this cost model, define the
@@ -664,14 +652,13 @@ $(i)$--$(ii)$: limit analysis and cost minimisation in $\theta$.
 $(iii)$--$(v)$: substitute Lemma~\ref{lem:complexity}; ratio vanishes because $\Npts$ is constant in $N$.
 Full proof: Supplementary~\S VII.
 
-A complete cost-model parameter table and a structural comparison of HSM
-against B-tree, cracking, learned indices, and recent workload-similarity
-methods (BALANCE, Indexer++, ShapeShifter, Brucato) appear in the
-Supplementary (Cost-Model Parameters; Structural Comparison). HSM is the
-only method that simultaneously satisfies metric axioms P1--P4, exposes
-five orthogonal similarity dimensions, supplies a continuous score with a
-closed-form threshold, requires no labelled training data, and amortises
-advisor cost to $O(1)$ per window.
+A structural comparison against B-tree, cracking, learned indices, and
+recent workload-similarity methods (BALANCE, Indexer++, ShapeShifter,
+Brucato) appears in the Supplementary (Cost-Model Parameters;
+Structural Comparison): HSM is the only method that simultaneously
+satisfies P1--P4, exposes five orthogonal dimensions, supplies a
+continuous score with a closed-form threshold, requires no labelled
+training data, and amortises advisor cost to $O(1)$ per window.
 
 \subsection{Theorem 4: Detector-Quality Concentration via Stratified Hoeffding}
 
@@ -724,46 +711,22 @@ confidence---inputs to Theorem~\ref{thm:speedup}.
 \smallskip
 \noindent\textbf{Sensitivity as a design feature, and $\theta$ as an
 operating point.}
-The imperfect empirical rates above
-($\hat\TPR\!=\!0.986$, $\hat\TNR\!=\!0.970$) are not a calibration
-failure but a direct consequence of the metric construction in
-Lemma~\ref{lem:metric}. The angular transforms
-$d_R\!=\!\arccos(\rho)/\pi$ and
-$d_T\!=\!(2/\pi)\arccos(\hat v_A\!\cdot\!\hat v_B)$ satisfy the
-triangle inequality \emph{precisely because} they are locally linear
-near identity: small distributional deviations map to proportional
-metric distances rather than being compressed into the plateau that
-linear maps $(1\!+\!\rho)/2$ or raw cosine impose. HSM therefore
-reacts to genuine within-phase sampling variance---for instance, a
-five-slot window that by pigeonhole cannot reproduce the exact
-frequency profile of its neighbour when the active phase draws from
-fewer than five query templates. This is a desirable property: a
-metric-compliant detector \emph{should} respond to any shift in the
-underlying distribution, not merely to coarse set-level membership
-changes.
-
-Consequently, $\theta$ is best understood as an \emph{operating
-point} on the detector's ROC curve rather than a universal
-constant. Supplementary~\S XIV ($\theta$ Calibration: Cross-Engine
-ROC Analysis) reports that the
-Youden-optimal $\thetastar$ varies across engines and workloads
-(TPC-H, JOB/IMDB, SDSS, and an OLTP mix), confirming that
-per-workload tuning is both feasible and beneficial. Deployments
-facing highly regular workloads (near-uniform template
-distributions within each phase) can raise $\theta$ to suppress
-sensitivity to intra-phase sampling noise; deployments seeking
-early warning on subtle distributional drift---seasonal traffic
-patterns, gradual parameter-value shifts, or template-frequency
-skew within a nominal phase---can lower $\theta$ to exploit the
-angular transform's sensitivity. The default $\theta\!=\!0.75$ used
-throughout this paper is the Youden-optimum on the aggregated
-TPC-H+JOB calibration set, and dominates periodic rebuild at every
-evaluated SF; alternative $\theta$ values reshape the
-Theorem~\ref{thm:speedup} speedup curve predictably via
-Eq.~\eqref{eq:hoeffding}, so operators retain a principled dial
-between conservativeness (large $\theta$, fewer triggers, maximum
-throughput) and vigilance (small $\theta$, earlier warning on
-micro-drifts).
+The imperfect empirical rates ($\hat\TPR\!=\!0.986$,
+$\hat\TNR\!=\!0.970$) are a direct consequence of the metric
+construction (Lemma~\ref{lem:metric}): the angular transforms
+$d_R$, $d_T$ satisfy the triangle inequality \emph{precisely because}
+they are locally linear near identity, so small distributional
+deviations map to proportional metric distances rather than being
+compressed into a plateau. HSM therefore reacts to genuine
+within-phase sampling variance, the desirable behaviour of a
+metric-compliant detector. Consequently $\theta$ is an
+\emph{operating point} on the detector's ROC curve rather than a
+universal constant: Supplementary~\S XIV reports that the Youden-optimal
+$\thetastar$ varies across engines and workloads (TPC-H, JOB/IMDB, SDSS,
+OLTP), so operators can raise $\theta$ on highly regular workloads or
+lower it for early warning on subtle drift. The default
+$\theta\!=\!0.75$ is the Youden-optimum on aggregated TPC-H+JOB
+calibration and dominates periodic rebuild at every evaluated SF.
 
 \subsection{Theorem 5: Operational Speedup with Phase-Mix Prior}
 
@@ -800,7 +763,7 @@ and $p\!\mapsto\!1/(1\!-\!p)$ is strictly increasing on $[0,1)$.
 Theorem~\ref{thm:gate} band $(\TPR,\TNR)\!\in\!\mathcal{B}_{\delta}$
 and any operator estimate $\pi_w$, with probability at least
 $1\!-\!\delta$,
-\begingroup\footnotesize
+\begingroup\scriptsize
 \begin{align*}
 \mathrm{Speedup}_\infty&\;\ge\;\frac{1}{1\!-\!\pi_w(\hat\TPR\!-\!\eta_w)\!-\!(1\!-\!\pi_w)(1\!-\!(\hat\TNR\!+\!\eta_c))},\\[3pt]
 \mathrm{Speedup}_\infty&\;\le\;\frac{1}{1\!-\!\pi_w(\hat\TPR\!+\!\eta_w)\!-\!(1\!-\!\pi_w)(1\!-\!(\hat\TNR\!-\!\eta_c))}.
@@ -813,27 +776,24 @@ $(i)$--$(ii)$: geometric series yields the Amdahl-style limit.
 $(iii)$: direct partial derivatives.
 $(iv)$: monotone composition transports the Theorem~\ref{thm:gate} band to a closed-form speedup interval.
 Full proof: Supplementary~\S IX.
-At SF\,=\,3.0 (worst case; $\hat\TPR\!=\!0.986$, $\hat\TNR\!=\!0.970$),
-the speedup curve gives $16.1\times$--$41.9\times$ at realistic
-$\pi_w\!\in\![0.95,0.99]$, with 95\% certificate $[5.72\times,23.45\times]$
-at $\pi_w\!=\!0.95$ (Supplementary~\S XII).
+Numerical values at SF\,=\,3.0 (worst case; $\hat\TPR\!=\!0.986$,
+$\hat\TNR\!=\!0.970$) are reported once in \S V.A14
+(Theorem-5 certificate and the $\pi_w$-parameterised curve);
+Supplementary~\S XII gives the full per-SF tables and the scale
+analysis figure.
 
 \smallskip
-\noindent\textit{Applicability to state-of-the-art index advisors.}
+\noindent\textit{Applicability to state-of-the-art advisors.}
 The premise $T_{\mathcal{A}}(N)\!=\!\Omega(N\log N)$ is satisfied by
-\emph{every} published index advisor we surveyed (Table~\ref{tab:advisor-applicability}),
-because each must touch $\Omega(N)$ rows to evaluate, build, or amortise
-a candidate index. Theorem~\ref{thm:speedup} therefore applies
-\emph{orthogonally} to any of them: HSM does not compete with
-BALANCE, MFIX, or Indexer++ at the index-selection (\emph{what})
-layer; it inserts a decision (\emph{when}) layer in front of them and
-delivers the certified speedup of part~(iv) to the host advisor without
-modifying its internals. End-to-end validation in this paper uses the
-two most widely deployed open-source PostgreSQL advisors,
-Dexter~\cite{AnkaneDexter} and
-\texttt{index\_advisor}~\cite{SupabaseIndexAdvisor}; extension to
-GPU-trained academic advisors (BALANCE, MFIX, Indexer++) follows the
-same gating protocol under the identical premise.
+\emph{every} published advisor we surveyed
+(Table~\ref{tab:advisor-applicability}): each touches $\Omega(N)$ rows
+to evaluate, build, or amortise a candidate index.
+Theorem~\ref{thm:speedup} therefore applies \emph{orthogonally}---HSM
+inserts a decision (\emph{when}) layer in front of any
+index-selection (\emph{what}) advisor without modifying its internals.
+End-to-end validation uses Dexter~\cite{AnkaneDexter} and
+\texttt{index\_advisor}~\cite{SupabaseIndexAdvisor}; the same protocol
+extends to GPU-trained advisors (BALANCE, MFIX, Indexer++).
 
 \begin{table}[!htb]\centering\scriptsize
 \caption{Applicability of Theorem~\ref{thm:speedup} to recent index advisors.
@@ -884,8 +844,13 @@ Consider the per-window expected cost
 \!+\!\underbrace{\lambda(f_{\mathrm{N}}\!-\!g\log\Npts)}_{\text{miss-detect rebuild}}
 \!+\!\underbrace{\tfrac{M^{2}C_{\mathrm{db4}}^{\,2L}}{\Npts^{2}}}_{\text{wavelet approx.}}$}
 \end{equation}
-where (i)~$a\Npts\log \Npts$ is the measurement cost with $a\!>\!0$
-the per-point HSM constant (Lemma~\ref{lem:complexity}); (ii)~the
+where (i)~$a\Npts\log \Npts$ is a conservative upper bound on the
+measurement cost that accommodates kernel variants beyond the default
+FastDTW-based pipeline of Lemma~\ref{lem:complexity} (which establishes
+the tight $\Theta(\Npts)$ bound, a strict special case of
+$a\Npts\log \Npts$); using this conservative form makes Theorem~6
+robust to slower DWT/DTW variants, and $a\!>\!0$ is the per-point
+HSM constant; (ii)~the
 miss-detection term is a first-order expansion of
 $(1\!-\!\TPR(\Npts))$ around the operating point using the wavelet
 pattern-preservation bound of Theorem~\ref{thm:wavelet} with
@@ -893,16 +858,30 @@ $f_{\mathrm{N}},g\!>\!0$ empirical constants, and $\lambda$ the
 expected per-miss advisor-rebuild cost; (iii)~$M^{2}C_{\mathrm{db4}}^{\,2L}/\Npts^{2}$
 is the squared $\ell_{2}$ reconstruction bound of
 Theorem~\ref{thm:wavelet} with $M\!=\!\max_{n}|x[n]|$, $L$ the DWT
-depth, and $C_{\mathrm{db4}}\!\approx\!1.5$ the Daubechies-4 constant.
+depth, and $C_{\mathrm{db4}}\!=\!\sqrt{2}/2\!\approx\!0.707$ the
+Daubechies-4 attenuation constant of Lemma~\ref{lem:wcb}.
 Then $\mathcal{C}$ admits a unique global minimum
+$\Nstar$ characterised by the stationarity condition
+$\mathrm{d}\mathcal{C}/\mathrm{d}\Npts\!=\!0$, which, after rearrangement,
+yields the implicit fixed-point equation
 \begin{equation}\label{eq:optwin-Nstar}
 \resizebox{0.82\columnwidth}{!}{$\displaystyle
-\Nstar\,=\,\sqrt{\frac{8\,C_{\mathrm{db4}}^{\,2L}\,M^{2}\,a\,\Npts\log\Npts}{\lambda(f_{\mathrm{N}}\!-\!g\log\Npts)}}\;\text{(implicit)}$}
+\Nstar\,=\,\sqrt{\frac{8\,C_{\mathrm{db4}}^{\,2L}\,M^{2}\,a\,\Nstar\log\Nstar}{\lambda(f_{\mathrm{N}}\!-\!g\log\Nstar)}}\;\;\text{(solve numerically)}$}
 \end{equation}
-which is convex in $\Npts$ for all operating regimes with
-$g\log \Npts\!<\!f_{\mathrm{N}}$ (i.e.\ the linearised TPR is a valid
-approximation). Equivalently, $\Nstar$ is the unique root of
-$\mathrm{d}\mathcal{C}/\mathrm{d}\Npts\!=\!0$ in $[N_{\min}^{\mathrm{pts}},N_{\max}^{\mathrm{pts}}]$.
+in a single scalar $\Nstar$. $\mathcal{C}$ is strictly convex in $\Npts$
+for all operating regimes with $g\log \Npts\!<\!f_{\mathrm{N}}$
+(i.e.\ the linearised TPR approximation is valid), so $\Nstar$ is the
+unique root of $\mathrm{d}\mathcal{C}/\mathrm{d}\Npts\!=\!0$ in
+$[N_{\min}^{\mathrm{pts}},N_{\max}^{\mathrm{pts}}]$, where
+$N_{\min}^{\mathrm{pts}}\!\geq\!8$ ensures sufficient sample size for
+rank-based statistics ($\SR$, Spearman~$\rho$) and SAX
+discretisation.\footnote{The real-valued solution is rounded to the
+nearest admissible integer
+$\lceil\Nstar\rceil$ or $\lfloor\Nstar\rfloor$, whichever yields
+lower $\mathcal{C}$; convexity guarantees the rounded value is within
+one unit of optimal.} Bisection or fixed-point iteration on
+Eq.~\eqref{eq:optwin-Nstar} converges in $O(\log(1/\epsilon))$ steps
+for any tolerance $\epsilon\!>\!0$.
 \end{theorem}
 
 \noindent\textit{Proof sketch.} Differentiating \eqref{eq:optwin-cost},
@@ -915,10 +894,11 @@ condition gives \eqref{eq:optwin-Nstar}. Full proof: Supplementary~\S X.
 
 \begin{corollary}[Cross-Scale Consistency of $\Nstar$]\label{cor:scale-invariance}
 Assume the rebuild cost scales as
-$\lambda(N)\!=\!\Theta(N\log N)$ (Lemma~\ref{lem:complexity} and
-$T_{\mathcal{A}}$ of Theorem~\ref{thm:speedup}), and assume $M$, $a$,
+$\lambda(N)\!=\!\Theta(N\log N)$ (the premise
+$T_{\mathcal{A}}(N)\!=\!\Omega(N\log N)$ of Theorem~\ref{thm:speedup}),
+and assume $M$, $a$,
 $f_{\mathrm{N}}$, $g$, $L$ are fixed design constants. Then the
-closed-form $\Nstar$ of Theorem~\ref{thm:optwin} is invariant in $N$
+convex-optimal $\Nstar$ of Theorem~\ref{thm:optwin} is invariant in $N$
 to leading order: $\Nstar(N_1)/\Nstar(N_2)\!\to\!1$ as
 $\min(N_1,N_2)\!\to\!\infty$. Hence a single operator-chosen $\Nstar$
 remains within one dyadic step of optimal across scales.
@@ -934,7 +914,7 @@ on TPC-H SF\,=\,0.2 \emph{and} SF\,=\,3.0 (DR\,=\,1.85, Youden
 $\hat J\!=\!1.00$ with 95\% Hoeffding lower bound $\hat J_{\mathrm{LB}}\!\ge\!0.77$
 at $m_w\!=\!m_c\!=\!160$, $\delta\!=\!0.05$), and at $\Nstar\!=\!100$
 on JOB/IMDB SF\,=\,1.0 ($\hat J\!=\!1.00$, same LB). All three minima
-match the closed-form prediction within one dyadic step, and the
+match the Theorem~\ref{thm:optwin} prediction within one dyadic step, and the
 15$\times$ change in $N$ (SF\,0.2 vs.\ SF\,3.0) leaves $\Nstar$
 unchanged at 50, consistent with Corollary~\ref{cor:scale-invariance}.
 To rule out cache-state bias, every A17 timing used
@@ -1085,15 +1065,15 @@ $\theta^{*}$ Generalisability).
 On a 10-block RCB across SF\,$\in\!\{0.2,1.0,3.0\}$ with PostgreSQL~16,
 HSM-gated retains $61.9\!\pm\!1.2\,\%$ of baseline throughput while
 always-on retains only $21.3\!\pm\!1.7\,\%$ and periodic ($K\!=\!3$)
-retains $43.4\!\pm\!2.0\,\%$. Equivalently, HSM cuts in-band advisor
-cost by $80.8\,\%$ versus always-on and $42.5\,\%$ versus periodic,
-firing only $4.6\!\pm\!1.4$ times per 24-window block (vs.\ $24$ and
-$8$ respectively). The decision-layer ratios are
+retains $43.4\!\pm\!2.0\,\%$. Equivalently, HSM fires only
+$4.6\!\pm\!1.4$ times per 24-window block (vs.\ $24$ and $8$ for
+always-on and periodic); Table~\ref{tab:summary} rows A13/A13c
+report the corresponding invocation-savings percentages. The decision-layer ratios are
 $2.92\!\pm\!0.18\times$ over always-on and $1.43\!\pm\!0.04\times$
 over periodic, and they are scale-invariant across the $15\times$
 data-volume range (CV $6.2\,\%$ and $2.5\,\%$). The measured
 $\hat{p}_{\mathrm{stable}}\!=\!0.808$ yields a
-Theorem~\ref{thm:speedup} bound of $5.20\times$; the realised
+Theorem~\ref{thm:speedup} bound of $5.22\times$; the realised
 $2.92\times$ falls short by exactly the $O(\Npts/(N\log N))$
 rebuild-amortisation gap of part~(ii). The relevant comparison for a
 decision layer is against \emph{other} invocation policies, not against
@@ -1106,13 +1086,16 @@ The TPC-H gate margin is $z\!=\!3.40$--$4.15\sigma$
 ($d'\!>\!12$, detection probability 100\,\%); $z\!>\!3$ is the
 deployment-ready rule (Supplementary, Gate Sensitivity).
 Replaying Theorem~\ref{thm:speedup} on four additional workloads
-(OLTP, burst, JOB/IMDB, SDSS) at each workload's calibrated
-$\thetastar$ (Youden-$J$): burst attains $80.8\,\%/44.4\,\%$ savings
-under a $5.20\times$ bound, SDSS attains $75.1\,\%/25.2\,\%$ under a
-$4.01\times$ bound, and JOB ($n\!=\!20$, sample-limited) attains
-$95\,\%/85.7\,\%$ under a $19\times$ bound. OLTP correctly
-self-deactivates: pgbench drifts on essentially every window, so
-$p_{\mathrm{stable}}\!\to\!0$ and the bound itself collapses to
+(OLTP, burst, JOB/IMDB, SDSS) at each workload's empirical
+$\hat{p}_{\mathrm{stable}}$ (CSV of record:
+\texttt{results/t5\_validation.csv}): burst at $\theta\!=\!0.75$ attains
+$80.8\,\%/44.4\,\%$ savings under a $5.20\times$ bound; SDSS at
+$\thetastar\!=\!0.6325$ (Youden) attains $75.1\,\%/25.2\,\%$ under a
+$4.01\times$ bound; JOB/IMDB at $\thetastar\!=\!0.7275$
+($n\!=\!20$, sample-limited) attains $95.0\,\%/85.7\,\%$ under a
+$20.0\times$ bound. OLTP correctly self-deactivates: pgbench drifts
+on essentially every window, so
+$\hat{p}_{\mathrm{stable}}\!\to\!0$ and the bound itself collapses to
 $1\times$---no gating policy can save work on a workload that never
 stabilises. Per-workload TPR/FPR appears in the Supplementary
 (Cross-Workload $\theta^{*}$ Generalisability).
@@ -1327,12 +1310,12 @@ A8  & Gen. & SDSS 1.310; JOB 1.250; TPC-B 2.008; burst 1.093    & $\checkmark$\\
 A9  & Util.& 0.25\% overhead; 919\,trans/s                       & $\checkmark$\\
 A10 & Rob. & $\leq\!13$\% DR change at $\pm60$\% noise; $\leq\!4.1$\% at $\pm0.05$ weight & $\checkmark$\\
 A11 & T3   & Break-even $\Npts\!\leq\!17{,}000$                  & $\checkmark$\\
-A12 & T5   & $\beta\!=\!1.094$ ($R^2\!=\!0.9999$); $\Theta(N\log N)$ rebuild scaling ($N_{\mathrm{pts}}\!\in\![100,30000]$) & $\checkmark$\\
+A12 & T5   & $\beta\!=\!1.177$ ($R^2\!=\!0.998$); $\Theta(N\log N)$ rebuild scaling ($N_{\mathrm{lineitem}}\!\in\![1.2\,\mathrm{M},18\,\mathrm{M}]$, SF\,0.2--3.0). Kernel-cost micro-benchmark over $\Npts\!\in\![100,30{,}000]$ gives $\beta\!=\!1.094$ ($R^2\!=\!0.9999$). & $\checkmark$\\
 A13 & T4,T5 & HSM-gated $2.92\!\pm\!0.18\!\times$ vs.\ always-on, $1.43\!\pm\!0.04\!\times$ vs.\ periodic; $80.8\%$/$42.5\%$ fewer calls; $61.9\!\pm\!1.2\%$ no-advisor retention; scale-invariant CV\,$<\!7\%$ across SF\,$\in\{0.2,1.0,3.0\}$ & $\checkmark$\\
 A13b & T4 & $z\!\ge\!3.40\sigma$ across scale; FAP$\!<\!1$\%; $d'\!>\!12$; Det.\,Prob\,=\,100\% & $\checkmark$\\
-A13c & T5 & Bound $1/(1\!-\!p_{\mathrm{stable}})$ realised on TPC-H ($5.20\times$, $80.8\%/42.5\%$), burst ($13.0\times$, $80.8\%/44.4\%$), SDSS ($4.01\times$, $75.1\%/25.2\%$); OLTP correctly diagnosed as high-drift ($p_{\mathrm{stable}}\!\to\!0$, bound self-deactivates) & $\checkmark$\\
+A13c & T5 & Bound $1/(1\!-\!\hat{p}_{\mathrm{stable}})$ realised on TPC-H ($5.22\times$, $80.8\%/42.5\%$), burst ($5.20\times$, $80.8\%/44.4\%$), SDSS ($4.01\times$, $75.1\%/25.2\%$), JOB ($20.0\times$, $95.0\%/85.7\%$); OLTP correctly diagnosed as high-drift ($\hat{p}_{\mathrm{stable}}\!\to\!0$, bound self-deactivates) & $\checkmark$\\
 A14 & T4,T5 & Youden $J\!\ge\!0.9626$ across all SF; best at SF\,=\,0.2 ($J\!=\!0.9684$); 95\,\% certificate $[5.72\!\times\!,23.45\!\times]$ at $\pi_w\!=\!0.95$ (SF\,=\,3.0 worst) & $\checkmark$\\
-A17 & T6   & Optimal $\Npts$ closed-form; empirical min at $\Npts\!=\!50$ (TPC-H SF\,0.2, SF\,3.0); $\Npts\!=\!100$ (JOB) & $\checkmark$\\
+A17 & T6   & Optimal $\Npts$ from convex cost model; empirical min at $\Npts\!=\!50$ (TPC-H SF\,0.2, SF\,3.0); $\Npts\!=\!100$ (JOB) & $\checkmark$\\
 \midrule
 A-CE1 & L1,T2 & MongoDB DR\,=\,1.271 ($\theta\!=\!0.75$); $J\!=\!0.705$ & $\checkmark$\\
 A-CE2 & T4,T5 & $\theta\!=\!0.65$: DR\,=\,1.486; $J\!=\!0.981$; 85.8\,\% fewer calls  & $\checkmark$\\
@@ -1362,8 +1345,6 @@ B5 & T2 & Robustness: $\theta^*$ stable 0.882--0.920 (CV$<$1\%) across noise/wei
 \textbf{Theory--Experiment Alignment.}
 All theorems and lemmas receive consistent empirical support.
 Scale-invariant DR (CV\,=\,0.1\%) confirms $\theta\!=\!0.75$ as robust.
-Stratified Hoeffding yields $16.1\times$--$41.9\times$ central speedup at
-$\pi_w\!\in\![0.95,0.99]$ (SF\,=\,3.0 inputs, worst case).
 Inter-domain DR consistency (Supplementary, Dimensional-Utility Table)
 supports Theorem~\ref{thm:minimal}; weight sensitivity (A10b) confirms
 $\mathbf{w}_0$ lies in a broad flat optimum ($\leq5.5\%$ DR change).
@@ -1433,19 +1414,21 @@ Euclidean dist.$^{\dagger}$  & 1.000 & -- & --\\
 \end{table}
 
 \textbf{A12/A14: Scale Sensitivity and Detector Quality
-(Theorems~\ref{thm:gate} and~\ref{thm:speedup}).}
-OLS regression of index-rebuild cost $T_A(N)$ across
-$N_{\mathrm{pts}}\!\in\![100,30{,}000]$ yields
-$\beta\!=\!1.094$ ($R^2\!=\!0.9999$), confirming $\Theta(N\log N)$.
-Youden $J\!\ge\!0.9626$ at every scale; SF\,=\,0.2 achieves
-$J^{*}\!=\!0.9684$ at $\thetastar\!=\!0.775$; SF\,=\,3.0 (worst case)
-still achieves $J^{*}\!=\!0.9626$ at $\thetastar\!=\!0.775$.
-Theorem~\ref{thm:speedup} gives a 95\,\% deployment certificate
-$[5.72\times,23.45\times]$ at $\pi_w\!=\!0.95$ (SF\,=\,3.0 inputs,
-worst case); central $16.1\times$ at $\pi_w\!=\!0.95$, rising to
-$41.9\times$ at $\pi_w\!=\!0.99$.
-Full per-SF tables, Hoeffding bands, ROC sweeps, and the scale
-analysis figure are in Supplementary~\S XII.
+(Theorems~\ref{thm:gate},~\ref{thm:speedup}).}
+OLS over $N_{\mathrm{lineitem}}\!\in\![1.2,18]\mathrm{M}$ (SF\,0.2--3.0)
+yields $\beta\!=\!1.177$ ($R^2\!=\!0.998$) for rebuild cost $T_A(N)$
+and $\beta\!=\!1.094$ ($R^2\!=\!0.9999$) for kernel cost
+$T_{\mathrm{HSM}}(\Npts)$ over $\Npts\!\in\![100,30{,}000]$; both are
+consistent with the Lemma~\ref{lem:complexity} bounds (the finite-range
+super-linear residual absorbs FastDTW path length and memory-hierarchy
+effects without a genuine $\log\Npts$ factor), and the gap between
+them sources the $O(\Npts/(N\log N))$ amortisation of Theorem~5.
+Youden $J\!\ge\!0.9626$ at every scale ($J^{*}\!=\!0.9684$ at
+SF\,=\,0.2, $0.9626$ at SF\,=\,3.0, both at $\thetastar\!=\!0.775$).
+Theorem~\ref{thm:speedup} gives a 95\,\% certificate
+$[5.72\times,23.45\times]$ at $\pi_w\!=\!0.95$ (SF\,=\,3.0 inputs),
+central $16.1\times$, rising to $41.9\times$ at $\pi_w\!=\!0.99$.
+Full per-SF tables, Hoeffding bands, and ROC sweeps: Supplementary~\S XII.
 
 \section{Conclusion}
 
@@ -1454,29 +1437,32 @@ proactive index management, with a formal core (six theorems, four
 lemmas) covering metric soundness, $\Theta(\Npts)$ complexity, an
 economic gating threshold, stratified-Hoeffding detector bounds, a
 speedup certificate $\to\!1/(1{-}p_{\mathrm{stable}})$, and a
-closed-form optimal window size.  Experiments confirm each theorem
+convex-optimal window size.  Experiments confirm each theorem
 (Table~\ref{tab:summary}): scale-invariant DR across SF\,0.2--3.0,
-$<\!0.3\%$ overhead, and a central $16.1\times$ speedup at
-$\pi_w\!=\!0.95$ (95\% interval $[5.72\times, 23.45\times]$ on the
-worst-case SF\,=\,3.0 inputs).
+$<\!0.3\%$ overhead, and a Theorem-5 95\% deployment certificate
+$[5.72\times, 23.45\times]$ at $\pi_w\!=\!0.95$ on the worst-case
+SF\,=\,3.0 inputs.
 
 \textit{Limitations.}\label{sec:limitations}
 (i)~J$\to$P and P$\to$C boundaries (HSM\,=\,0.77--0.83) are not
 flagged because the underlying query mixes are genuinely similar.
-(ii)~Fixed weights $\mathbf{w}_0$ do not adapt to workload class:
-on SDSS-like workloads dominated by $\ST$, a single-dimension
-detector can outperform the composite
-(Table~\ref{tab:baselines}); automated weight calibration would
-mitigate this.
+(ii)~The fixed weights $\mathbf{w}_0$ deliberately target
+cross-workload consistency rather than peak per-workload Youden~$J$:
+on workloads where a single dimension carries the phase signal
+(e.g.\ $\ST$ on SDSS), a $\mathbf{w}_0$-tuned single-dimension
+detector matches HSM on peak $J$ (Table~\ref{tab:baselines}) but
+forfeits the composite metric properties of
+Lemma~\ref{lem:metric} (triangle inequality required by the
+Theorem~\ref{thm:econ} break-even analysis) and the
+dimension-wise diagnosis of Algorithm~2. HSM therefore retains the
+five-dimensional composite as the default; automated per-workload
+weight calibration that preserves P1--P4 is left to future work.
 (iii)~End-to-end throughput is reported only for
-SF\,$\in\{0.2,1.0,3.0\}$ (up to $\approx\!18$\,M rows on TPC-H).
-The kernel-measurement cost itself is empirically
-$\Theta(\Npts\log\Npts)$ on $\Npts\!\in\![100,\,30{,}000]$
-($\beta\!=\!1.094$, $R^{2}\!=\!0.9999$), so the gating layer
-itself extrapolates beyond this range; full end-to-end runs at
+SF\,$\in\{0.2,1.0,3.0\}$ (up to $\approx\!18$\,M rows);
+the kernel-measurement cost is tight-$\Theta(\Npts)$
+(Lemma~\ref{lem:complexity}) and extrapolates, but end-to-end runs at
 SF\,$\geq\!10$ are dominated by buffer-pool, autovacuum, and
-unindexed-join effects outside the kernel and are deferred to
-future work.
+unindexed-join effects outside the kernel and are deferred to future work.
 (iv)~Theorem~\ref{thm:speedup}'s operational speedup is
 workload-specific by construction and asymptotes to $1\!\times$
 on intrinsically high-drift workloads such as pgbench OLTP
@@ -1489,17 +1475,26 @@ SF\,$\geq\!10$ end-to-end profiling.
 Complete proofs are in Supplementary~\S I--X.
 
 \section*{Code and Data Availability}
-A complete replication package---source code, configuration, scripts, and
-instructions to reproduce all reported results---is available from the
-author upon reasonable request during review, and will be publicly released
-at a citable archive upon acceptance.
+A complete replication package~\cite{HSM2026Repo}---source code,
+configuration, scripts, and instructions to reproduce all reported
+results---is publicly available at
+\url{https://github.com/stevezhai139/HSM_gated_5} (BSD-3-Clause).
+The package includes a five-minute reviewer quickstart (CPU-only path,
+no database required), the metric-axiom unit tests for Lemma~1, the
+HSM kernel and $\thetastar$ implementation, per-workload runners
+(TPC-H, SDSS, JOB/IMDB, pgbench, burst), the end-to-end Dexter and
+Supabase \texttt{index\_advisor} harnesses, and the shipped CSVs that
+back every figure and table in the paper. Step-by-step reproduction
+of the PostgreSQL\,16 and MongoDB\,7 end-to-end runs is documented in
+\texttt{REPRODUCE.md}. A versioned snapshot will be archived at Zenodo
+upon acceptance.
 
 \section*{Acknowledgments}
 This work used generative AI tools per IEEE guidelines:
 Claude (Anthropic) for code review, formula verification, and language checking;
 SciSpace for literature search and writing polish.
 
-\bibliographystyle{plain}
+\bibliographystyle{IEEEtran}
 \bibliography{references}
-\balance
+
 \end{document}

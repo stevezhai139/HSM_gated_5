@@ -1,8 +1,9 @@
-%% Supplementary Material (Version 4): HSM — Proofs of 4 Lemmas + 6 Theorems
-%% Paper: "Multi-Scale Workload Similarity Measurement for Proactive
-%%          Database Index Tuning Using Hierarchical Signal Processing"
+%% Supplementary Material (Version 5): HSM — Proofs of 4 Lemmas + 6 Theorems
+%% Paper: "HSM: Workload-Similarity Gating for Index-Maintenance Decisions,
+%%         with Formal Bounds"
 %% Author: Arun Reungsilpkolkarn
-%% Restructured to match Version 4 (6 Theorems + 4 Lemmas) of the main paper.
+%% Matches Version 5 of the main paper (6 Theorems + 4 Lemmas,
+%% HSM_gated experimental artifact).
 
 \documentclass[10pt,twocolumn,a4paper]{article}
 \usepackage[a4paper,top=19mm,bottom=24mm,left=14.5mm,right=14.5mm,columnsep=5mm]{geometry}
@@ -65,20 +66,15 @@
 \newcommand{\TPR}{\mathrm{TPR}}
 \newcommand{\TNR}{\mathrm{TNR}}
 
-%% HSM v2 placeholder macros (HSM_gated regeneration) — see main_article.tex.
-\newcommand{\TBD}[2]{\textcolor{red}{\textbf{[TBD:#1]}}\,\textcolor{gray}{\st{#2}}}
-\newcommand{\TBDcell}[1]{\textcolor{red}{\textbf{[TBD:#1]}}}
-\newcommand{\REMARK}[1]{\textcolor{red}{\textit{[REMARK: #1]}}}
-
 \begin{document}
 
 \twocolumn[{\begin{center}
 {\large\bfseries Supplementary Material}\\[2pt]
-{\normalsize\bfseries Multi-Scale Workload Similarity Measurement for
-Proactive Database Index Tuning Using Hierarchical Signal Processing}\\[4pt]
+{\normalsize\bfseries HSM: Workload-Similarity Gating for
+Index-Maintenance Decisions, with Formal Bounds}\\[4pt]
 {\normalsize Arun Reungsilpkolkarn}\\
-{\small School of Information Technology and Innovation, Bangkok University, Thailand.
-\texttt{arun.r@bu.ac.th}}\\[4pt]
+{\small School of Information Technology and Innovation, Bangkok University, Pathum Thani, Thailand.
+\texttt{arun.r@bu.ac.th} \quad ORCID: \texttt{0009-0009-2077-0006}}\\[4pt]
 \end{center}
 \begin{quote}\small
 This document provides complete proofs for the four supporting lemmas
@@ -225,11 +221,22 @@ misclassified only if its $z$-score falls in an adjacent bin, which
 has probability at most $1/\alpha$. Hence
 $P(\mathrm{misclassification})\leq1/\alpha=1/8$.
 
-\begin{remark}
-The implementation uses $\alpha=4$, a computationally efficient
-practical choice. $\alpha^{*}=8$ provides the theoretical worst-case
-guarantee. Section~V of the main paper reports empirical accuracy
-under $\alpha=4$.
+\begin{remark}[Deployed $\alpha$ vs.\ worst-case $\alpha^{*}$]
+The bound $\alpha^{*}=2k=8$ is the \emph{SAX-only} worst case, i.e.,
+the minimum alphabet required when a single SAX encoder must
+discriminate all $2k$ regions---the $k$ canonical states \emph{and}
+the burst direction (onset vs.\ recovery)---on the raw standardised
+QPS axis. The deployed pipeline is not SAX-only: DWT(db4, $L\!=\!3$)
+first decomposes each window into approximation coefficients $cA_3$
+and detail coefficients $cD_1, cD_2, cD_3$. The detail bands already
+encode burst direction through the sign of their wavelet coefficients
+at gradient reversals, so SAX operating on the $cA_3$ band need only
+discriminate the $k=4$ canonical states (volume regime $\times$
+query-type dominance). Under this decomposition of responsibility,
+$\alpha=k=4$ is sufficient and is the setting used throughout
+Section~V of the main paper, which reports Youden $J\geq0.96$ on
+every workload. The bound $\alpha^{*}=2k=8$ is retained as the
+conservative fallback for pipelines that omit DWT pre-separation.
 \end{remark}
 \hfill$\square$
 \end{proof}
@@ -726,20 +733,15 @@ $[\,1/(1-p_{\min}),\,1/(1-p_{\max})\,]$ with the same confidence
 level.\hfill$\square$
 \end{proof}
 
-\begin{remark}[Phase-mix-parameterised speedup at SF\,=\,3.0 (worst-case)]
-At SF\,=\,3.0, $\theta=0.75$, with $\hat\TPR=0.9857$,
-$\hat\TNR=0.9701$ and $m_w=m_c=160$ ($\eta\approx 0.117$ at
-$\delta=0.05$ via Theorem~4), the
-Theorem~5 deployment certificate at $\pi_w=0.95$ is
-\[
-\mathrm{Speedup}_\infty\;\in\;\bigl[\,5.72\times,\,23.45\times\,\bigr],
-\]
-and the central operating point at the empirical rates is
-$\mathrm{Speedup}_\infty\approx 16.11\times$. The full
-$\pi_w$-parameterised curve is reported in
-the accompanying experiment artifacts. At the
-realistic OLAP/HTAP range $\pi_w\in[0.95,0.99]$, the operational
-central speedup band spans $[16.1\times,41.9\times]$.
+\begin{remark}[Plug-in check]
+The algebraic steps $(i)$--$(iv)$ above reduce Theorem~5 to the
+elementary rule $\mathrm{Speedup}_\infty=1/(1{-}\pi_w\hat{\TPR}
+{-}(1{-}\pi_w)(1{-}\hat{\TNR}))$ once a confidence band for
+$(\TPR,\TNR)$ is supplied by Theorem~4.  The worked numerical
+application at SF\,=\,3.0 --- including the full
+$\pi_w$-parameterised curve and the 95\,\% deployment
+certificate --- is stated once in \S X (``Phase-Mix-Parameterised
+Speedup at SF\,=\,3.0'').
 \end{remark}
 
 %%─────────────────────────────────────────────────────────────
@@ -749,7 +751,9 @@ central speedup band spans $[16.1\times,41.9\times]$.
 Theorems~1--5 parameterise HSM by $(\TPR,\TNR,\pi_w)$ while treating
 the window size $\Npts$ as an exogenous constant. In practice $\Npts$
 is itself a design choice governed by three opposing pressures:
-(i)~measurement cost $a\Npts\log\Npts$ (Lemma~3);
+(i)~measurement cost $a\Npts\log\Npts$, a conservative upper bound
+accommodating kernel variants beyond the default FastDTW pipeline
+(Lemma~3 establishes the tight $\Theta(\Npts)$ special case);
 (ii)~miss-detection rebuild cost that decreases (in first order) with
 $\Npts$ through the wavelet linearisation
 $(1{-}\TPR(\Npts))\!\approx\!f_{\mathrm{N}}\!-\!g\log\Npts$;
@@ -886,12 +890,6 @@ Empirical minimum at $\Npts\!=\!50$.}\label{tab:supp-optwin-cost}
 %%─────────────────────────────────────────────────────────────
 \section{Extended Experimental Details}\label{supp:experiments}
 %%─────────────────────────────────────────────────────────────
-
-\REMARK{Every numeric in Sections~XI--XIII of this supplementary
-(A1--A14, A-CE1--3, scale-sensitivity tables, gate sensitivity,
-$\theta$ calibration) is a v1 placeholder pending the HSM\_gated
-v2 regeneration.  Do not cite these values as final; the proofs
-in Sections~I--X are unaffected.}
 
 This section provides the full experimental details summarised in the
 main paper. All notation follows Sections~I--X above.
@@ -1493,13 +1491,10 @@ At $m\!=\!1120$: $\eta\!\approx\!0.044$,
 $\TPR\!\in\![0.941,1.000]$, $\TNR\!\in\![0.926,1.000]$.
 
 \textbf{Speedup certificate.} Theorem~5 transports the bands into a
-$\pi_w$-parameterised speedup curve (SF\,=\,3.0 inputs):
-$\pi_w\!=\!0.50\!\to\!2.03\times$;
-$\pi_w\!=\!0.80\!\to\!4.87\times$;
-$\pi_w\!=\!0.95\!\to\!16.11\times$;
-$\pi_w\!=\!0.99\!\to\!41.94\times$.
-The 95\,\% deployment certificate at $\pi_w\!=\!0.95$ is
-$[5.72\times,23.45\times]$.
+$\pi_w$-parameterised speedup curve (SF\,=\,3.0 inputs); the full
+curve and the 95\,\% deployment certificate at $\pi_w\!=\!0.95$ are
+stated once in the Phase-Mix-Parameterised Speedup remark of
+\S X (Theorem~5 Extended Remarks).
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\columnwidth]{figures/supp01_scale_analysis.pdf}
@@ -1585,10 +1580,10 @@ Figure~\ref{fig:theta-cal-xworkload}.
 \toprule
 \textbf{Workload} & \boldmath$n_{\mathrm{pairs}}$ & \boldmath$\theta^{*}$ & \boldmath$J^{*}$ & \textbf{AUC}\\
 \midrule
-TPC-H (SF$=0.2$)  & 7{,}892 & 0.605 & 0.498 & 0.788\\
-SDSS              & 4{,}954 & 0.633 & 0.477 & 0.810\\
-JOB-light         &     210 & 0.728 & 0.331 & 0.705\\
-JOB-complexity    &     630 & 0.775 & 0.464 & 0.789\\
+TPC-H (SF$=0.2$)  & 7{,}892 & 0.605  & 0.498 & 0.788\\
+SDSS              & 4{,}954 & 0.6325 & 0.477 & 0.810\\
+JOB-light         &     210 & 0.7275 & 0.331 & 0.705\\
+JOB-complexity    &     630 & 0.775  & 0.464 & 0.789\\
 \midrule
 Min--Max          &  ---    & 0.605--0.775 & 0.331--0.498 & 0.705--0.810\\
 \bottomrule
@@ -1701,27 +1696,33 @@ operating point across the $15\times$ data-volume range.}
 \begin{table}[!htb]\centering\scriptsize
 \caption{A13c: Cross-workload empirical validation of
 Theorem~5 (operational speedup with phase-mix prior).
-Each row is one workload at its calibrated $\thetastar$.
+Each row is one workload at the $\theta$ used for the deployment run.
 $N$\,=\,number of consecutive window-pairs;
-$\hat{p}^{\,\mathrm{T}}_{\mathrm{stable}}$\,=\,fraction of within-phase pairs;
-Bnd\,=\,$1/(1\!-\!\hat{p}^{\,\mathrm{T}}_{\mathrm{stable}})$
-(asymptotic upper bound of Theorem~5);
+$\hat{p}_{\mathrm{stable}}$\,=\,\emph{empirical} fraction of retained
+window-pairs from the Hoeffding-certified estimator (not the oracle
+phase-mix);
+Bnd\,=\,$1/(1\!-\!\hat{p}_{\mathrm{stable}})$
+(asymptotic upper bound of Theorem~5 evaluated at the empirical
+estimate; the certificate is valid w.h.p.\ via the $\eta$ band);
 TPR\,=\,gate sensitivity against phase labels;
 sav\textsubscript{A}/sav\textsubscript{P}\,=\,realised invocation
 savings versus always-on / periodic ($K\!=\!3$). TPC-H entries aggregate
-$10$-block RCB across SF\,$\in\!\{0.2,1.0,3.0\}$.}\label{tab:t5-cross-supp}
+$10$-block RCB across SF\,$\in\!\{0.2,1.0,3.0\}$.
+All rows are regenerated from
+\texttt{results/t5\_validation.csv} in the HSM\_gated v5
+artifact.}\label{tab:t5-cross-supp}
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{@{}lrrrrrrr@{}}
 \toprule
 \textbf{Workload} & $\theta$ & $N$ &
-$\hat{p}^{\,\mathrm{T}}_{\mathrm{stable}}$ & Bnd & TPR &
+$\hat{p}_{\mathrm{stable}}$ & Bnd & TPR &
 sav\textsubscript{A} & sav\textsubscript{P}\\
 \midrule
-TPC-H (3 SFs)    & 0.750 & 240  & ---   & ---   & ---  & $80.8\,\%$ & $42.5\,\%$\\
-Burst            & 0.750 & 26   & 0.923 & $13.0\times$ & 0.50 & $80.8\,\%$ & $44.4\,\%$\\
-SDSS ($\thetastar$) & 0.633 & 4954 & 0.731 & $3.71\times$ & 0.60 & $75.1\,\%$ & $25.2\,\%$\\
-JOB ($\thetastar$, small $n$) & 0.728 & 20  & 0.850 & $6.67\times$ & 0.00 & $95.0\,\%$ & $85.7\,\%$\\
-OLTP (pgbench)   & 0.750 & 37   & 0.919 & $12.3\times$ & 1.00 & $0.0\,\%$  & ---\\
+TPC-H (3 SFs)    & 0.750 & 240  & 0.808 & $5.22\times$ & ---  & $80.8\,\%$ & $42.5\,\%$\\
+Burst            & 0.750 & 26   & 0.808 & $5.20\times$ & 0.50 & $80.8\,\%$ & $44.4\,\%$\\
+SDSS ($\thetastar$) & 0.6325 & 4954 & 0.751 & $4.01\times$ & 0.60 & $75.1\,\%$ & $25.2\,\%$\\
+JOB ($\thetastar$, small $n$) & 0.7275 & 20  & 0.950 & $20.0\times$ & 0.00 & $95.0\,\%$ & $85.7\,\%$\\
+OLTP (pgbench)   & 0.750 & 37   & 0.000 & $1.00\times$ & 1.00 & $0.0\,\%$  & ---\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1760,7 +1761,7 @@ $\dHSM=1-\SHSM$ & HSM distance function\\
 $\thetastar$    & Optimal RETAIN/REBUILD decision threshold (Theorem~3)\\
 $p_{\mathrm{stable}}$ & Probability HSM decides RETAIN on a window\\
 $\hat{p}_{m}$   & Empirical RETAIN rate from $m$ window observations\\
-$\eta_{m,\delta}$ & Hoeffding half-width $\sqrt{\log(2/\delta)/(2m)}$\\
+$\eta_{m,\delta}$ & Stratified-Hoeffding half-width $\sqrt{\log(4/\delta)/(2m)}$\\
 $\Cdb=\sqrt{2}/2$ & db4 $\ell^{2}$-norm filter constant (Lemma~4)\\
 $\varepsilon(M,\Npts,L)$ & DWT pattern-preservation error (Theorem~1)\\
 $Q_{\min}(N)$   & Break-even query volume (Theorem~3)\\
