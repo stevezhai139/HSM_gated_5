@@ -1,0 +1,7 @@
+# Do NOT commit experiment run artefacts to git.
+# Results are versioned via timestamped directory names + JSON provenance.
+# Keep EXPERIMENT_LOG.md (committed) as the audit trail of what was run.
+
+# Everything under results/cal/validation/ is ignored EXCEPT the log.
+# (This .gitignore lives in cal/validation/ for documentation; the actual
+# gitignore rules go in the repo-root .gitignore per 4.1 of the README.)
