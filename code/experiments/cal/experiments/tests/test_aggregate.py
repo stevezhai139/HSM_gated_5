@@ -183,3 +183,82 @@ class TestCellComputation:
         cell = agg._compute_cell("easy", 10, bo_results, baseline_f1)
         # Needs >=2 valid (both have baseline); here only 1 has → None
         assert cell is None
+
+
+class TestDisjunctiveReject:
+    """Tests for rejects_any_fdr_005 = rejects_h0_at_fdr_005 OR perm_rejects_h0_at_fdr_005."""
+
+    def _build_run_dir(self, tmp_path, bo_f1: list, w0_f1: list, window: int = 10):
+        """Helper: create a minimal TPC-H-style run_dir with N blocks in 'easy' track."""
+        import json
+        (tmp_path / "easy").mkdir()
+        (tmp_path / "baseline").mkdir()
+        for b, (f_bo, f_w0) in enumerate(zip(bo_f1, w0_f1)):
+            # BO result (set P=R=f_bo so F1_BO = f_bo)
+            bdir = tmp_path / "easy" / f"block_{b}" / f"window_{window}"
+            bdir.mkdir(parents=True)
+            (bdir / "result.json").write_text(json.dumps({
+                "track": "easy", "block": b, "window": window,
+                "result": {
+                    "final_precision": f_bo, "final_recall": f_bo,
+                    "history": [], "final_w_star": [0.2]*5,
+                    "final_theta_star": 0.7, "final_hypervolume": f_bo*f_bo,
+                    "pareto_indices": [],
+                },
+            }))
+            # Baseline (set f1 directly)
+            (tmp_path / "baseline" / f"block_{b}.json").write_text(json.dumps({
+                "block": b, "f1": f_w0,
+            }))
+
+    def test_wilcoxon_rejects_perm_rejects_any_true(self, tmp_path):
+        """Both tests reject → rejects_any_fdr_005 = True."""
+        # Clear signal: 20 blocks, all positive ΔF1
+        bo_f1 = [1.0] * 20
+        w0_f1 = [0.5] * 20
+        self._build_run_dir(tmp_path, bo_f1, w0_f1)
+        result = agg.aggregate(tmp_path)
+        c = result["cells"][0]
+        assert c["rejects_h0_at_fdr_005"] is True
+        assert c["perm_rejects_h0_at_fdr_005"] is True
+        assert c["rejects_any_fdr_005"] is True
+
+    def test_neither_rejects_any_false(self, tmp_path):
+        """Neither test rejects → rejects_any_fdr_005 = False."""
+        # Noise with no consistent direction
+        bo_f1 = [0.5, 0.6, 0.4, 0.55, 0.45]
+        w0_f1 = [0.5, 0.5, 0.5, 0.5, 0.5]
+        self._build_run_dir(tmp_path, bo_f1, w0_f1)
+        result = agg.aggregate(tmp_path)
+        c = result["cells"][0]
+        # With n=5 and mixed Δ, neither test should reach q ≤ 0.05
+        assert c["rejects_h0_at_fdr_005"] is False
+        assert c["perm_rejects_h0_at_fdr_005"] is False
+        assert c["rejects_any_fdr_005"] is False
+
+    def test_perm_only_rejects_any_true(self, tmp_path):
+        """Perm rejects but Wilcoxon doesn't (simulated SDSS-like scenario) → any_true."""
+        # Many ties at 0 + a few positives: Wilcoxon drops zeros,
+        # effective n becomes ~5; sign test p = 1/2^5 = 0.031 — borderline.
+        # Permutation treats zeros as neutral, effective n = 20; strong signal.
+        # Pattern: 15 zero-differences + 5 positive (+0.1) → Wilcoxon may fail,
+        # Permutation should succeed.
+        bo_f1 = [0.5] * 15 + [0.6] * 5  # 15 zeros, 5 positives
+        w0_f1 = [0.5] * 15 + [0.5] * 5
+        self._build_run_dir(tmp_path, bo_f1, w0_f1)
+        result = agg.aggregate(tmp_path)
+        c = result["cells"][0]
+        # We just verify that rejects_any is the disjunction.
+        any_expected = c["rejects_h0_at_fdr_005"] or c["perm_rejects_h0_at_fdr_005"]
+        assert c["rejects_any_fdr_005"] == any_expected
+
+    def test_field_present_in_serialization(self, tmp_path):
+        """aggregate.json must include rejects_any_fdr_005 field."""
+        bo_f1 = [0.8] * 10
+        w0_f1 = [0.5] * 10
+        self._build_run_dir(tmp_path, bo_f1, w0_f1)
+        result = agg.aggregate(tmp_path)
+        assert "rejects_any_fdr_005" in result["cells"][0]
+        # Summary md should mention "(either test — used for ★ plot annotation)"
+        md = agg._render_summary_md(result)
+        assert "either test" in md

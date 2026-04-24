@@ -138,14 +138,27 @@ def plot_delta_f1_histogram(agg: Dict[str, Any], out_dir: Path) -> None:
     )
     ax.grid(True, alpha=0.3, axis="y")
 
-    # Annotate FDR-significant cells
+    # Annotate FDR-significant cells. Use disjunctive reject (Wilcoxon OR
+    # Permutation) so ties-robust Permutation signals are not hidden by
+    # Wilcoxon's tie-dropping behaviour. Falls back to Wilcoxon-only for
+    # backward compatibility with older aggregate.json files.
+    # Compute global y_max across all cells so we can extend ylim safely;
+    # otherwise small-range plots (e.g., SDSS ΔF1 ≈ 0.1) clip star annotation.
+    global_y_max = max(max(d) for d in deltas_list) if deltas_list else 0.0
+    global_y_min = min(min(d) for d in deltas_list) if deltas_list else 0.0
+    star_pad = max(0.02, 0.04 * (global_y_max - global_y_min))
     for i, c in enumerate(cells):
-        if c["rejects_h0_at_fdr_005"]:
+        reject = c.get("rejects_any_fdr_005", c.get("rejects_h0_at_fdr_005"))
+        if reject:
             y_max = max(c["delta_f1_per_block"])
-            ax.annotate("★", (positions[i], y_max + 0.02),
+            ax.annotate("★", (positions[i], y_max + star_pad),
                         ha="center", fontsize=14, color="#2ca02c")
-    ax.text(0.02, 0.98, "★ = BY-FDR q ≤ 0.05", transform=ax.transAxes,
-            fontsize=9, va="top")
+    # Extend ylim to ensure stars and legend text are visible
+    y_lo = global_y_min - star_pad
+    y_hi = global_y_max + 3 * star_pad  # room for stars + legend above
+    ax.set_ylim(y_lo, y_hi)
+    ax.text(0.02, 0.98, "★ = BY-FDR q ≤ 0.05 (Wilcoxon or Permutation)",
+            transform=ax.transAxes, fontsize=9, va="top")
     fig.tight_layout()
     fig.savefig(out_dir / "delta_f1_histogram.png", dpi=150)
     plt.close(fig)

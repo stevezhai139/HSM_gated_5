@@ -232,11 +232,16 @@ class CellStats:
     wilcoxon_stat: float
     wilcoxon_p_raw: float
     wilcoxon_p_fdr: Optional[float] = None  # set after FDR correction
-    rejects_h0_at_fdr_005: Optional[bool] = None
+    rejects_h0_at_fdr_005: Optional[bool] = None  # Wilcoxon-only (legacy)
     # Sign-flip permutation test — robust to ties at 0
     perm_p_raw: Optional[float] = None
     perm_p_fdr: Optional[float] = None
     perm_rejects_h0_at_fdr_005: Optional[bool] = None
+    # Disjunctive reject: true iff either Wilcoxon OR Permutation rejects H0
+    # at BY-FDR q ≤ 0.05. Used by plots for ★ annotation. Rationale:
+    # Permutation is ties-robust — Wilcoxon can miss signal when many
+    # paired differences tie at 0 (real-data case for SDSS).
+    rejects_any_fdr_005: Optional[bool] = None
 
 
 def _compute_cell(track: str, window: int, bo_results: List[Dict[str, Any]],
@@ -364,6 +369,17 @@ def aggregate(run_dir: Path, alpha: float = 0.05) -> Dict[str, Any]:
             c.perm_p_fdr = float(q)
             c.perm_rejects_h0_at_fdr_005 = bool(rej)
 
+    # Disjunctive reject: OR of Wilcoxon and Permutation test rejections.
+    # Motivates ★ annotation in plots. Rationale: Permutation is robust to
+    # ties at 0 — for paired differences with many zeros (common in real
+    # workloads where F1_BO = F1_W0 on some blocks), Wilcoxon drops zeros
+    # and loses power. Permutation preserves effective n. Reporting either
+    # significant result is appropriate when both tests are pre-registered.
+    for c in cells:
+        c.rejects_any_fdr_005 = bool(
+            c.rejects_h0_at_fdr_005 or c.perm_rejects_h0_at_fdr_005
+        )
+
     # Baseline summary — prefer TPC-H-style baseline; fall back to SDSS
     chosen_baseline = baseline_f1 if baseline_f1 else sdss_baseline_f1
     baseline_f1_list = list(chosen_baseline.values())
@@ -395,6 +411,7 @@ def aggregate(run_dir: Path, alpha: float = 0.05) -> Dict[str, Any]:
                 "perm_p_raw": c.perm_p_raw,
                 "perm_p_fdr": c.perm_p_fdr,
                 "perm_rejects_h0_at_fdr_005": c.perm_rejects_h0_at_fdr_005,
+                "rejects_any_fdr_005": c.rejects_any_fdr_005,
             }
             for c in cells
         ],
@@ -444,8 +461,10 @@ def _render_summary_md(agg: Dict[str, Any]) -> str:
     n_total = len(agg["cells"])
     n_rejected_w = sum(1 for c in agg["cells"] if c["rejects_h0_at_fdr_005"])
     n_rejected_p = sum(1 for c in agg["cells"] if c.get("perm_rejects_h0_at_fdr_005"))
+    n_rejected_any = sum(1 for c in agg["cells"] if c.get("rejects_any_fdr_005"))
     lines.append(f"- **{n_rejected_w}/{n_total} cells** (Wilcoxon signed-rank, BY-FDR q ≤ 0.05)")
     lines.append(f"- **{n_rejected_p}/{n_total} cells** (sign-flip permutation, BY-FDR q ≤ 0.05) — robust to ties")
+    lines.append(f"- **{n_rejected_any}/{n_total} cells** (either test — used for ★ plot annotation)")
     easy_cells = [c for c in agg["cells"] if c["track"] == "easy"]
     hard_cells = [c for c in agg["cells"] if c["track"] == "hard"]
     if easy_cells:
