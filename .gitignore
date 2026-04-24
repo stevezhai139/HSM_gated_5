@@ -72,3 +72,6 @@ paper/**/*.fdb_latexmk
 paper/**/*.synctex.gz
 paper/**/*.pdf~
 paper/**/*.dvi
+
+# BO experiment artifacts (large, regeneratable)
+results/cal/
