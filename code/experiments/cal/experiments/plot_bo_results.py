@@ -43,10 +43,17 @@ def _load_all_bo(run_dir: Path) -> List[Dict[str, Any]]:
         for p in sorted(track_dir.glob("block_*/window_*/result.json")):
             with p.open() as fh:
                 out.append(json.load(fh))
-    # SDSS-style: bo/ block_* / result.json (no window dir)
+    # SDSS layouts:
+    # - Legacy: bo/block_<N>/result.json              (single window)
+    # - Multi:  bo/window_<W>/block_<N>/result.json   (new)
     bo_dir = run_dir / "bo"
     if bo_dir.is_dir():
         for p in sorted(bo_dir.glob("block_*/result.json")):
+            with p.open() as fh:
+                row = json.load(fh)
+                row.setdefault("track", "sdss_real")
+                out.append(row)
+        for p in sorted(bo_dir.glob("window_*/block_*/result.json")):
             with p.open() as fh:
                 row = json.load(fh)
                 row.setdefault("track", "sdss_real")

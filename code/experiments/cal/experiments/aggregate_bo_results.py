@@ -112,11 +112,17 @@ def _load_track_block_window(run_dir: Path, track: str) -> List[Dict[str, Any]]:
             with p.open() as fh:
                 out.append(json.load(fh))
     elif track == "bo":
-        # SDSS real-data run structure: bo/block_<N>/result.json (no window dir)
+        # Two SDSS layouts, both supported:
+        # - Legacy (single window):   bo/block_<N>/result.json
+        # - Multi-window (new):       bo/window_<W>/block_<N>/result.json
         for p in sorted(track_dir.glob("block_*/result.json")):
             with p.open() as fh:
                 row = json.load(fh)
-                # Normalise track name to match other aggregation code
+                row.setdefault("track", row.get("track", "sdss_real"))
+                out.append(row)
+        for p in sorted(track_dir.glob("window_*/block_*/result.json")):
+            with p.open() as fh:
+                row = json.load(fh)
                 row.setdefault("track", row.get("track", "sdss_real"))
                 out.append(row)
     else:
@@ -127,18 +133,84 @@ def _load_track_block_window(run_dir: Path, track: str) -> List[Dict[str, Any]]:
 
 
 def _load_sdss_baseline(run_dir: Path) -> Dict[int, float]:
-    """Load per-block baseline F1 from the SDSS-style baseline.json, if present."""
+    """Load per-block baseline F1 from SDSS-style baseline.json.
+
+    Returns a flat {block_idx: f1} dict. For legacy single-window runs, reads
+    top-level 'per_block'. For multi-window runs, merges per_window_block
+    entries keyed by block (blocks with same index across windows share the
+    same slice start/end — only the dims matrix differs, but baseline F1
+    could differ across windows).
+
+    For multi-window aggregation, the (track, window) cell lookup in
+    _compute_cell uses `baseline_f1_per_block_per_window` via the new helper
+    _load_sdss_baseline_per_window (see below). This legacy function only
+    returns the FIRST window's baseline to preserve old single-window behaviour.
+    """
     baseline_json = run_dir / "baseline.json"
     if not baseline_json.is_file():
         return {}
     with baseline_json.open() as fh:
         data = json.load(fh)
     per_block = data.get("per_block", [])
-    out = {}
-    for entry in per_block:
-        if entry is None:
-            continue
-        out[int(entry["block"])] = float(entry["f1"])
+    if per_block:
+        # Legacy single-window run
+        out = {}
+        for entry in per_block:
+            if entry is None:
+                continue
+            out[int(entry["block"])] = float(entry["f1"])
+        return out
+    # Multi-window run: use FIRST window as a flat fallback (legacy callers)
+    pwb = data.get("per_window_block", {})
+    if pwb:
+        first_w_entry = next(iter(pwb.values()))
+        out = {}
+        for entry in first_w_entry.get("per_block", []):
+            if entry is None:
+                continue
+            out[int(entry["block"])] = float(entry["f1"])
+        return out
+    return {}
+
+
+def _load_sdss_baseline_per_window(run_dir: Path) -> Dict[int, Dict[int, float]]:
+    """Load SDSS per-window-per-block baseline F1.
+
+    Returns {window: {block: f1}}. Works for both legacy single-window and
+    new multi-window baseline.json layouts.
+    """
+    baseline_json = run_dir / "baseline.json"
+    if not baseline_json.is_file():
+        return {}
+    with baseline_json.open() as fh:
+        data = json.load(fh)
+    out: Dict[int, Dict[int, float]] = {}
+    pwb = data.get("per_window_block", {})
+    if pwb:
+        for w_str, entry in pwb.items():
+            w = int(w_str)
+            out[w] = {}
+            for block_entry in entry.get("per_block", []):
+                if block_entry is None:
+                    continue
+                out[w][int(block_entry["block"])] = float(block_entry["f1"])
+        return out
+    # Legacy: single-window run_meta; infer W from any result.json
+    per_block = data.get("per_block", [])
+    if per_block:
+        # Try to read a result.json to learn the window
+        candidate_paths = list((run_dir / "bo").glob("block_*/result.json"))
+        if candidate_paths:
+            with candidate_paths[0].open() as fh:
+                row = json.load(fh)
+            legacy_window = int(row.get("window", 20))
+        else:
+            legacy_window = 20
+        out[legacy_window] = {}
+        for entry in per_block:
+            if entry is None:
+                continue
+            out[legacy_window][int(entry["block"])] = float(entry["f1"])
     return out
 
 
@@ -332,7 +404,9 @@ def aggregate(run_dir: Path, alpha: float = 0.05) -> Dict[str, Any]:
 
     # TPC-H-style baseline F1 per block
     baseline_f1 = {r["block"]: float(r.get("f1", 0.0)) for r in baseline}
-    # SDSS-style per-block baseline
+    # SDSS-style per-(window, block) baseline
+    sdss_baseline_per_window = _load_sdss_baseline_per_window(run_dir)
+    # Flat fallback for legacy callers that expect {block: f1}
     sdss_baseline_f1 = _load_sdss_baseline(run_dir)
 
     # Cells: (track, window) combos that have data
@@ -340,13 +414,21 @@ def aggregate(run_dir: Path, alpha: float = 0.05) -> Dict[str, Any]:
     for track, rows, bl in [
         ("easy", easy, baseline_f1),
         ("hard", hard, baseline_f1),
-        ("sdss_real", sdss_bo, sdss_baseline_f1),
     ]:
         windows = sorted({r["window"] for r in rows})
         for window in windows:
             cell = _compute_cell(track, window, rows, bl)
             if cell is not None:
                 cells.append(cell)
+
+    # SDSS: use per-window baseline (different windows re-bin the trace
+    # differently, so per-window baseline F1 is distinct)
+    sdss_windows = sorted({r["window"] for r in sdss_bo})
+    for window in sdss_windows:
+        bl_w = sdss_baseline_per_window.get(window, sdss_baseline_f1)
+        cell = _compute_cell("sdss_real", window, sdss_bo, bl_w)
+        if cell is not None:
+            cells.append(cell)
 
     # BY-FDR adjustment (Wilcoxon)
     p_values = [c.wilcoxon_p_raw for c in cells]

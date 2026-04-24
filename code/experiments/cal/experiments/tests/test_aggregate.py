@@ -262,3 +262,103 @@ class TestDisjunctiveReject:
         # Summary md should mention "(either test — used for ★ plot annotation)"
         md = agg._render_summary_md(result)
         assert "either test" in md
+
+
+class TestSdssMultiWindow:
+    """Tests for SDSS multi-window layout: bo/window_<W>/block_<N>/result.json."""
+
+    def _build_multi_window_run(self, tmp_path, windows, bo_f1_per_w, w0_f1_per_w):
+        """Helper: build SDSS-style multi-window run_dir."""
+        import json
+        (tmp_path / "bo").mkdir()
+        baseline = {
+            "w": [0.25, 0.20, 0.20, 0.20, 0.15], "theta": 0.75,
+            "per_window_block": {},
+        }
+        for w, bo_list, w0_list in zip(windows, bo_f1_per_w, w0_f1_per_w):
+            per_block = []
+            for b, (fb, fw) in enumerate(zip(bo_list, w0_list)):
+                # BO result (P=R=fb → F1=fb)
+                bdir = tmp_path / "bo" / f"window_{w}" / f"block_{b}"
+                bdir.mkdir(parents=True)
+                (bdir / "result.json").write_text(json.dumps({
+                    "track": "sdss_real", "block": b, "window": w,
+                    "result": {
+                        "final_precision": fb, "final_recall": fb,
+                        "history": [], "final_w_star": [0.2]*5,
+                        "final_theta_star": 0.7, "final_hypervolume": fb*fb,
+                        "pareto_indices": [],
+                    },
+                }))
+                per_block.append({"block": b, "n_pairs": 100,
+                                  "precision": fw, "recall": fw, "f1": fw})
+            baseline["per_window_block"][str(w)] = {
+                "precision_full": sum(w0_list)/len(w0_list),
+                "recall_full": sum(w0_list)/len(w0_list),
+                "f1_full": sum(w0_list)/len(w0_list),
+                "n_pairs": 100, "per_block": per_block,
+            }
+        (tmp_path / "baseline.json").write_text(json.dumps(baseline))
+
+    def test_aggregate_recognises_multi_window_layout(self, tmp_path):
+        """Aggregate should produce 1 cell per window from new layout."""
+        windows = [20, 50, 100]
+        # n=5 blocks per window; BO always better than baseline
+        bo_f1_per_w = [[0.6]*5, [0.7]*5, [0.9]*5]
+        w0_f1_per_w = [[0.4]*5, [0.5]*5, [0.6]*5]
+        self._build_multi_window_run(tmp_path, windows, bo_f1_per_w, w0_f1_per_w)
+        result = agg.aggregate(tmp_path)
+        # 3 cells (one per window)
+        assert len(result["cells"]) == 3
+        got_windows = sorted(c["window"] for c in result["cells"])
+        assert got_windows == [20, 50, 100]
+        # Each cell should have 5 blocks and positive ΔF1
+        for c in result["cells"]:
+            assert c["n_blocks"] == 5
+            assert c["delta_f1_mean"] > 0
+            assert c["track"] == "sdss_real"
+
+    def test_aggregate_uses_correct_baseline_per_window(self, tmp_path):
+        """Each window's baseline should match its per_window_block entry,
+        NOT leak across windows."""
+        windows = [20, 100]
+        # Distinct baselines per window
+        bo_f1_per_w = [[0.5]*4, [0.9]*4]
+        w0_f1_per_w = [[0.3]*4, [0.8]*4]   # W=20 baseline 0.3; W=100 baseline 0.8
+        self._build_multi_window_run(tmp_path, windows, bo_f1_per_w, w0_f1_per_w)
+        result = agg.aggregate(tmp_path)
+        cells_by_w = {c["window"]: c for c in result["cells"]}
+        # ΔF1 for W=20 should be 0.5-0.3=0.2; W=100 should be 0.9-0.8=0.1
+        assert abs(cells_by_w[20]["delta_f1_mean"] - 0.2) < 1e-9
+        assert abs(cells_by_w[100]["delta_f1_mean"] - 0.1) < 1e-9
+
+    def test_legacy_single_window_layout_still_works(self, tmp_path):
+        """Old bo/block_<N>/result.json (no window dir) must still aggregate."""
+        import json
+        (tmp_path / "bo").mkdir()
+        n = 5
+        baseline = {
+            "w": [0.25, 0.20, 0.20, 0.20, 0.15], "theta": 0.75,
+            "per_block": [],
+        }
+        for b in range(n):
+            bdir = tmp_path / "bo" / f"block_{b}"
+            bdir.mkdir()
+            (bdir / "result.json").write_text(json.dumps({
+                "track": "sdss_real", "block": b, "window": 20,
+                "result": {
+                    "final_precision": 0.6, "final_recall": 0.6,
+                    "history": [], "final_w_star": [0.2]*5,
+                    "final_theta_star": 0.7, "final_hypervolume": 0.36,
+                    "pareto_indices": [],
+                },
+            }))
+            baseline["per_block"].append({"block": b, "n_pairs": 100,
+                                          "precision": 0.4, "recall": 0.4, "f1": 0.4})
+        (tmp_path / "baseline.json").write_text(json.dumps(baseline))
+        result = agg.aggregate(tmp_path)
+        assert len(result["cells"]) == 1
+        c = result["cells"][0]
+        assert c["track"] == "sdss_real"
+        assert c["window"] == 20
+        assert abs(c["delta_f1_mean"] - 0.2) < 1e-9

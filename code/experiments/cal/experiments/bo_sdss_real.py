@@ -126,22 +126,29 @@ def _recompute_dims_from_skylog(window_size: int = 20) -> Tuple[np.ndarray, np.n
     return dims, y_true_aligned, window_idx_aligned
 
 
-def _cache_path(run_dir: Path) -> Path:
-    return run_dir / "precomputed_dims.npz"
+def _cache_path(run_dir: Path, window_size: int = 20) -> Path:
+    """Per-window dims cache. Legacy single-window name 'precomputed_dims.npz'
+    is preserved for window_size=20 for backward-compat with existing runs."""
+    if window_size == 20:
+        legacy = run_dir / "precomputed_dims.npz"
+        if legacy.is_file():
+            return legacy
+    return run_dir / f"precomputed_dims_W{window_size}.npz"
 
 
 def _load_or_compute_dims(
     run_dir: Path, window_size: int, verbose: bool
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Load cached dims matrix if present, else compute and cache."""
-    cache = _cache_path(run_dir)
+    cache = _cache_path(run_dir, window_size)
     if cache.is_file():
         if verbose:
             print(f"[precompute] cache hit: {cache}")
         data = np.load(cache)
         return data["dims"], data["y_true"], data["window_idx"]
     if verbose:
-        print(f"[precompute] computing dims from SkyLog (this takes several minutes)...")
+        print(f"[precompute] computing dims from SkyLog at W={window_size} "
+              f"(this takes several minutes)...")
     t0 = time.monotonic()
     dims, y_true, widx = _recompute_dims_from_skylog(window_size=window_size)
     elapsed = time.monotonic() - t0
@@ -327,13 +334,29 @@ def _make_block_slices(n_pairs: int, n_blocks: int = 10) -> List[np.ndarray]:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="BO-qLogNEHVI on SDSS real workload")
-    p.add_argument("--all", action="store_true", help="Run 10 blocks + baseline")
-    p.add_argument("--smoke", action="store_true", help="1 block × 5 iters")
+    p.add_argument("--all", action="store_true", help="Run n_blocks per window + baseline")
+    p.add_argument("--smoke", action="store_true", help="1 block × 5 iters (first window only)")
     p.add_argument("--out-root", default="results/cal/experiments")
-    p.add_argument("--window-size", type=int, default=20,
-                   help="Window size for re-binning SkyLog (default 20, matches Paper 3A)")
+    # Either --window-size (single) or --windows (multi). Kept both for backward compat.
+    p.add_argument("--window-size", type=int, default=None,
+                   help="Single window size. Equivalent to --windows N. "
+                        "Default: 20 if neither --window-size nor --windows is set.")
+    p.add_argument("--windows", type=str, default=None,
+                   help="Comma-separated list of window sizes, e.g. '20,50,100'. "
+                        "Creates one cell per window; BY-FDR family m = len(windows).")
     p.add_argument("--n-blocks", type=int, default=10)
+    p.add_argument("--resume-dir", default=None,
+                   help="Reuse existing SDSS run directory (skips cached dims + result.json)")
     return p
+
+
+def _parse_windows(args: argparse.Namespace) -> List[int]:
+    """Coalesce --window-size and --windows into a canonical list."""
+    if args.windows:
+        return [int(w.strip()) for w in args.windows.split(",") if w.strip()]
+    if args.window_size is not None:
+        return [int(args.window_size)]
+    return [20]
 
 
 def _repo_root() -> Path:
@@ -348,106 +371,146 @@ def main(argv: Optional[List[str]] = None) -> int:
         print("Use --all or --smoke")
         return 1
 
+    windows = _parse_windows(args)
+    if args.smoke and len(windows) > 1:
+        print(f"[info] --smoke restricting to first window only: W={windows[0]}")
+        windows = windows[:1]
+
     meta = _run_meta.capture(
         experiment="bo_sdss_real",
         cli_args=argv,
         seed=0,
-        extra={"window_size": args.window_size, "smoke": args.smoke},
+        extra={"windows": windows, "smoke": args.smoke},
     )
-    slug = _run_meta.slug_for_filename(meta)
-    run_dir = _repo_root() / args.out_root / f"{slug}_sdss"
-    run_dir.mkdir(parents=True, exist_ok=True)
+
+    # Resume-dir support (mirror run_bo_experiment.py semantics)
+    if args.resume_dir:
+        resume_path = Path(args.resume_dir)
+        if not resume_path.is_absolute():
+            resume_path = _repo_root() / args.resume_dir
+        if not resume_path.is_dir():
+            print(f"ERROR: --resume-dir not found: {resume_path}", file=sys.stderr)
+            return 1
+        run_dir = resume_path
+        print(f"[bo_sdss_real] resuming existing run_dir (checkpoint-reuse): {run_dir}")
+    else:
+        slug = _run_meta.slug_for_filename(meta)
+        run_dir = _repo_root() / args.out_root / f"{slug}_sdss"
+        run_dir.mkdir(parents=True, exist_ok=True)
+
     with (run_dir / "run_meta.json").open("w") as fh:
         json.dump(meta, fh, indent=2, default=str)
 
     progress_path = run_dir / "progress.log"
     progress_fh = progress_path.open("a")
-    progress_fh.write(f"\n==== SDSS run start: {meta['timestamp_utc']} ====\n")
+    progress_fh.write(f"\n==== SDSS run start: {meta['timestamp_utc']} "
+                      f"windows={windows} ====\n")
 
     t_total0 = time.monotonic()
 
-    # Pre-compute per-pair dims (shared across all blocks)
-    print(f"[pre-compute] loading SkyLog + computing per-pair 5-dim HSM scores...")
-    progress_fh.write(f"[pre-compute] started\n"); progress_fh.flush()
-    dims, y_true, widx = _load_or_compute_dims(run_dir, args.window_size, verbose=True)
-    progress_fh.write(f"[pre-compute] dims shape {dims.shape}, "
-                      f"transitions {int(y_true.sum())}/{len(y_true)}\n")
-
-    # Baseline evaluation (W₀ = (0.25, 0.20, 0.20, 0.20, 0.15), θ=0.75) on FULL data
+    # Baseline container: per window, per block
+    # Keeps backward compat: single-W run still writes 'per_block' at top level.
     W0 = np.array([0.25, 0.20, 0.20, 0.20, 0.15])
-    p_w0, r_w0 = _eval_fast(dims, y_true, W0, 0.75)
-    f1_w0 = (2 * p_w0 * r_w0 / (p_w0 + r_w0)) if (p_w0 + r_w0) > 0 else 0.0
-    baseline = {
+    baseline_all: Dict[str, Any] = {
         "w": W0.tolist(), "theta": 0.75,
-        "precision_full": p_w0, "recall_full": r_w0, "f1_full": f1_w0,
-        "n_pairs": int(dims.shape[0]),
+        "per_window_block": {},   # {str(W): [per_block_entries]}
     }
-    print(f"[baseline] W₀ full SDSS: P={p_w0:.4f} R={r_w0:.4f} F1={f1_w0:.4f}")
-    progress_fh.write(f"[baseline] full W0 F1={f1_w0:.4f}\n"); progress_fh.flush()
 
-    # Per-block baseline evaluation (on same slices BO will use)
     n_blocks = 1 if args.smoke else args.n_blocks
-    slices = _make_block_slices(dims.shape[0], n_blocks)
-
-    baseline_per_block = []
-    for b, idx in enumerate(slices):
-        if int(y_true[idx].sum()) < 2 or int((1 - y_true[idx]).sum()) < 2:
-            baseline_per_block.append(None)
-            continue
-        p, r = _eval_fast(dims[idx], y_true[idx], W0, 0.75)
-        f1 = (2 * p * r / (p + r)) if (p + r) > 0 else 0.0
-        baseline_per_block.append({"block": b, "n_pairs": int(len(idx)),
-                                   "precision": p, "recall": r, "f1": f1})
-    baseline["per_block"] = baseline_per_block
-    with (run_dir / "baseline.json").open("w") as fh:
-        json.dump(baseline, fh, indent=2)
-
-    # BO per block
     n_init = 4 if args.smoke else 10
     n_iter = 5 if args.smoke else 50
 
-    for b, idx in enumerate(slices):
-        out_path = run_dir / "bo" / f"block_{b}" / "result.json"
-        if out_path.is_file():
-            print(f"[skip] block_{b} cached at {out_path}")
-            continue
-        if baseline_per_block[b] is None:
-            print(f"[skip] block_{b} — too few transitions or stable pairs")
-            continue
-        print(f"[bo] block_{b} (slice {idx[0]}..{idx[-1]}, n_pairs={len(idx)})")
-        progress_fh.write(f"[bo] block_{b} start\n"); progress_fh.flush()
-        t0 = time.monotonic()
-        result = run_bo_on_sdss_slice(
-            dims=dims, y_true=y_true, block_seed=b,
-            slice_indices=idx, n_init=n_init, n_iter=n_iter, verbose=False,
-        )
-        elapsed = time.monotonic() - t0
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {
-            "track": "sdss_real", "block": b, "window": args.window_size,
-            "slice_start": int(idx[0]), "slice_end": int(idx[-1]),
-            "n_pairs": int(len(idx)), "n_init": n_init, "n_iter": n_iter,
-            "elapsed_seconds": elapsed,
-            "result": result.as_dict(),
-            "baseline_f1": baseline_per_block[b]["f1"],
+    for window_size in windows:
+        print(f"\n===== SDSS window={window_size} =====")
+        progress_fh.write(f"\n===== window={window_size} =====\n"); progress_fh.flush()
+
+        # Pre-compute per-pair dims for THIS window size (cached per W)
+        print(f"[pre-compute] W={window_size}: loading SkyLog + computing 5-dim HSM scores...")
+        dims, y_true, widx = _load_or_compute_dims(run_dir, window_size, verbose=True)
+        progress_fh.write(f"[pre-compute] W={window_size} dims shape {dims.shape}, "
+                          f"transitions {int(y_true.sum())}/{len(y_true)}\n")
+
+        # Full-dataset baseline for this window
+        p_w0, r_w0 = _eval_fast(dims, y_true, W0, 0.75)
+        f1_w0 = (2 * p_w0 * r_w0 / (p_w0 + r_w0)) if (p_w0 + r_w0) > 0 else 0.0
+        print(f"[baseline] W={window_size} full: P={p_w0:.4f} R={r_w0:.4f} F1={f1_w0:.4f}")
+
+        slices = _make_block_slices(dims.shape[0], n_blocks)
+        baseline_per_block: List[Optional[Dict[str, Any]]] = []
+        for b, idx in enumerate(slices):
+            if int(y_true[idx].sum()) < 2 or int((1 - y_true[idx]).sum()) < 2:
+                baseline_per_block.append(None)
+                continue
+            p, r = _eval_fast(dims[idx], y_true[idx], W0, 0.75)
+            f1 = (2 * p * r / (p + r)) if (p + r) > 0 else 0.0
+            baseline_per_block.append({"block": b, "n_pairs": int(len(idx)),
+                                       "precision": p, "recall": r, "f1": f1})
+        baseline_all["per_window_block"][str(window_size)] = {
+            "precision_full": p_w0, "recall_full": r_w0, "f1_full": f1_w0,
+            "n_pairs": int(dims.shape[0]),
+            "per_block": baseline_per_block,
         }
-        with out_path.open("w") as fh:
-            json.dump(payload, fh, indent=2, default=float)
-        msg = (f"    → HV={result.final_hypervolume:.4f} "
-               f"(P, R)=({result.final_precision:.3f}, {result.final_recall:.3f}) "
-               f"θ*={result.final_theta_star:.4f} "
-               f"baseline_F1={baseline_per_block[b]['f1']:.4f} "
-               f"{elapsed:.1f}s")
-        print(msg)
-        progress_fh.write(msg + "\n"); progress_fh.flush()
+        # Backward-compat: for single-window runs, also write flat per_block/f1_full
+        if len(windows) == 1:
+            baseline_all["precision_full"] = p_w0
+            baseline_all["recall_full"] = r_w0
+            baseline_all["f1_full"] = f1_w0
+            baseline_all["n_pairs"] = int(dims.shape[0])
+            baseline_all["per_block"] = baseline_per_block
+        with (run_dir / "baseline.json").open("w") as fh:
+            json.dump(baseline_all, fh, indent=2)
+
+        # BO per block for THIS window
+        for b, idx in enumerate(slices):
+            # Output path: single-W keeps legacy bo/block_<b>/; multi-W uses bo/window_<W>/block_<b>/
+            if len(windows) == 1:
+                out_path = run_dir / "bo" / f"block_{b}" / "result.json"
+            else:
+                out_path = run_dir / "bo" / f"window_{window_size}" / f"block_{b}" / "result.json"
+            if out_path.is_file():
+                print(f"[skip] W={window_size}/block_{b} cached at {out_path}")
+                continue
+            if baseline_per_block[b] is None:
+                print(f"[skip] W={window_size}/block_{b} — too few transitions or stable pairs")
+                continue
+            print(f"[bo] W={window_size}/block_{b} (slice {idx[0]}..{idx[-1]}, n_pairs={len(idx)})")
+            progress_fh.write(f"[bo] W={window_size} block_{b} start\n"); progress_fh.flush()
+            t0 = time.monotonic()
+            result = run_bo_on_sdss_slice(
+                dims=dims, y_true=y_true, block_seed=b,
+                slice_indices=idx, n_init=n_init, n_iter=n_iter, verbose=False,
+            )
+            elapsed = time.monotonic() - t0
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "track": "sdss_real", "block": b, "window": window_size,
+                "slice_start": int(idx[0]), "slice_end": int(idx[-1]),
+                "n_pairs": int(len(idx)), "n_init": n_init, "n_iter": n_iter,
+                "elapsed_seconds": elapsed,
+                "result": result.as_dict(),
+                "baseline_f1": baseline_per_block[b]["f1"],
+            }
+            with out_path.open("w") as fh:
+                json.dump(payload, fh, indent=2, default=float)
+            msg = (f"    → HV={result.final_hypervolume:.4f} "
+                   f"(P, R)=({result.final_precision:.3f}, {result.final_recall:.3f}) "
+                   f"θ*={result.final_theta_star:.4f} "
+                   f"baseline_F1={baseline_per_block[b]['f1']:.4f} "
+                   f"{elapsed:.1f}s")
+            print(msg)
+            progress_fh.write(msg + "\n"); progress_fh.flush()
 
     t_total = time.monotonic() - t_total0
     msg = f"\n=== SDSS total elapsed: {t_total:.1f}s ({t_total/60:.2f} min) ==="
     print(msg); progress_fh.write(msg + "\n"); progress_fh.close()
 
     log_path = _repo_root() / args.out_root / "EXPERIMENT_LOG.md"
-    summary = (f"sdss_real; n_blocks={n_blocks}; smoke={args.smoke}; "
-               f"baseline_F1_full={f1_w0:.4f}; elapsed={t_total:.1f}s; "
+    baseline_f1_summary = next(
+        (entry["f1_full"] for entry in baseline_all["per_window_block"].values()),
+        0.0,
+    )
+    summary = (f"sdss_real; windows={windows}; n_blocks={n_blocks}; smoke={args.smoke}; "
+               f"baseline_F1_first_W={baseline_f1_summary:.4f}; elapsed={t_total:.1f}s; "
                f"dir=`{run_dir.relative_to(_repo_root())}`")
     _run_meta.append_experiment_log(log_path, meta, summary)
 
